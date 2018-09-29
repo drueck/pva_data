@@ -8,7 +8,12 @@ defmodule PVAData.DivisionsScraperTest do
       divisions = DivisionsScraper.get_divisions()
 
       assert length(divisions) > 0
-      assert %{name: _, url: _} = hd(divisions)
+      assert %{name: name, url: url} = hd(divisions)
+
+      assert is_binary(name)
+      assert is_binary(url)
+
+      assert "http://" <> rest = url
     end
   end
 end
