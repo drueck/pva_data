@@ -7,7 +7,7 @@ defmodule PVAData.DivisionDataScraperTest do
     test "gets the standings, schedules, and scores from the given url" do
       test_division = DivisionsScraper.get_divisions() |> hd()
 
-      assert %{standings: standings, schedules: schedules} =
+      assert %{standings: standings, matches: matches} =
                DivisionDataScraper.get_division_data(test_division.url)
 
       assert length(standings) > 0
@@ -29,6 +29,37 @@ defmodule PVAData.DivisionDataScraperTest do
       assert is_float(matches_back)
       assert is_integer(games_won)
       assert is_integer(games_lost)
+
+      assert length(matches) > 0
+
+      test_match = hd(matches)
+
+      assert %{
+               date: date,
+               time: time,
+               location: %{
+                 name: location,
+                 map_url: map_url
+               },
+               home: %{
+                 name: home_team_name,
+                 games_won: home_team_wins
+               },
+               visitor: %{
+                 name: visiting_team_name,
+                 games_won: visiting_team_wins
+               }
+             } = test_match
+
+      assert %Date{} = date
+      assert %Time{} = time
+      assert is_binary(location)
+      assert is_binary(map_url)
+      assert "http" <> _ = map_url
+      assert is_binary(home_team_name)
+      assert is_integer(home_team_wins) or is_nil(home_team_wins)
+      assert is_binary(visiting_team_name)
+      assert is_integer(visiting_team_wins) or is_nil(visiting_team_wins)
     end
   end
 end
