@@ -1,7 +1,11 @@
 defmodule PVAData.DivisionDataScraperTest do
   use ExUnit.Case, async: true
 
-  alias PVAData.{DivisionsScraper, DivisionDataScraper}
+  alias PVAData.{
+    DivisionsScraper,
+    DivisionDataScraper,
+    Standings.Standing
+  }
 
   describe "get_division_data/1" do
     test "gets the standings, schedules, and scores from the given url" do
@@ -14,8 +18,8 @@ defmodule PVAData.DivisionDataScraperTest do
 
       test_team_record = hd(standings)
 
-      assert %{
-               name: name,
+      assert %Standing{
+               team_name: team_name,
                matches_won: matches_won,
                matches_lost: matches_lost,
                matches_back: matches_back,
@@ -23,7 +27,7 @@ defmodule PVAData.DivisionDataScraperTest do
                games_lost: games_lost
              } = test_team_record
 
-      assert is_binary(name)
+      assert is_binary(team_name)
       assert is_integer(matches_won)
       assert is_integer(matches_lost)
       assert is_float(matches_back)
