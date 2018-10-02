@@ -4,7 +4,8 @@ defmodule PVAData.DivisionDataScraperTest do
   alias PVAData.{
     DivisionsScraper,
     DivisionDataScraper,
-    Standings.Standing
+    Standings.Standing,
+    Matches.Match
   }
 
   describe "get_division_data/1" do
@@ -38,18 +39,18 @@ defmodule PVAData.DivisionDataScraperTest do
 
       test_match = hd(matches)
 
-      assert %{
+      assert %Match{
                date: date,
                time: time,
-               location: %{
+               location: %Match.Location{
                  name: location,
                  map_url: map_url
                },
-               home: %{
+               home: %Match.Team{
                  name: home_team_name,
                  games_won: home_team_wins
                },
-               visitor: %{
+               visitor: %Match.Team{
                  name: visiting_team_name,
                  games_won: visiting_team_wins
                }

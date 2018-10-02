@@ -2,6 +2,8 @@ defmodule PVAData.DivisionDataScraper do
   import Meeseeks.CSS
 
   alias PVAData.Standings.Standing
+  alias PVAData.Matches
+  alias Matches.Match
 
   def get_division_data(url) do
     html = HTTPoison.get!(url).body
@@ -38,17 +40,17 @@ defmodule PVAData.DivisionDataScraper do
     |> Enum.reduce({nil, nil, []}, fn tr, {current_date, current_match, matches} ->
       cond do
         match_date_row?(tr) ->
-          with date <- date(tr), do: {date, %{date: date}, matches}
+          with date <- date(tr), do: {date, %Match{date: date}, matches}
 
         first_team_row?(tr) ->
           updated_match =
             current_match
             |> Map.put(:time, time(tr))
-            |> Map.put(:location, %{
+            |> Map.put(:location, %Match.Location{
               name: location_name(tr),
               map_url: map_url(tr)
             })
-            |> Map.put(home_or_visitor(tr), %{
+            |> Map.put(home_or_visitor(tr), %Match.Team{
               name: team_name(tr),
               games_won: games_won(tr)
             })
@@ -58,7 +60,7 @@ defmodule PVAData.DivisionDataScraper do
         second_team_row?(tr) ->
           updated_match =
             current_match
-            |> Map.put(home_or_visitor(tr), %{
+            |> Map.put(home_or_visitor(tr), %Match.Team{
               name: team_name(tr),
               games_won: games_won(tr)
             })
