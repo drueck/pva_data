@@ -25,4 +25,17 @@ defmodule PVAData.DataTest do
       end)
     end
   end
+
+  describe "get_divisions/1" do
+    test "returns the divisions from the state", %{data: data} do
+      divisions = [
+        %Division{name: "Coed A Thursday", url: "https://example.com/coed-a-thursday"},
+        %Division{name: "Womens AA Monday", url: "https://example.com/womens-aa-monday"}
+      ]
+
+      assert :ok = Data.update_divisions(data, divisions)
+
+      assert Data.get_divisions(data) == divisions
+    end
+  end
 end
