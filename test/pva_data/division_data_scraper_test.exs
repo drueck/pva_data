@@ -2,7 +2,7 @@ defmodule PVAData.DivisionDataScraperTest do
   use ExUnit.Case, async: true
 
   alias PVAData.{
-    DivisionsScraper,
+    DivisionLinksScraper,
     DivisionDataScraper,
     Standings.Standing,
     Matches.Match
@@ -10,10 +10,10 @@ defmodule PVAData.DivisionDataScraperTest do
 
   describe "get_division_data/1" do
     test "gets the standings, schedules, and scores from the given url" do
-      test_division = DivisionsScraper.get_divisions() |> hd()
+      test_division_link = DivisionLinksScraper.get_division_links() |> hd()
 
       assert %{standings: standings, matches: matches} =
-               DivisionDataScraper.get_division_data(test_division.url)
+               DivisionDataScraper.get_division_data(test_division_link.url)
 
       assert length(standings) > 0
 
