@@ -23,7 +23,11 @@ defmodule PVAData.MixProject do
   defp deps do
     [
       {:meeseeks, "~> 0.10.0"},
-      {:httpoison, "~> 1.0"}
+      {:httpoison, "~> 1.0"},
+      {:absinthe_plug, "~> 1.4.0"},
+      {:poison, "~> 3.1.0"},
+      {:cowboy, "~> 2.5.0"},
+      {:plug, "~> 1.6.4"}
     ]
   end
 end
