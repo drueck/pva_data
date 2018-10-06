@@ -3,12 +3,13 @@ defmodule PVAData.Application do
 
   use Application
 
-  alias PVAData.{Data, ScraperBot}
+  alias PVAData.{Data, ScraperBot, Router}
 
   def start(_type, _args) do
     children = [
       {Data, [name: Data]},
-      {ScraperBot, [name: ScraperBot]}
+      {ScraperBot, [name: ScraperBot]},
+      Plug.Adapters.Cowboy2.child_spec(scheme: :http, plug: Router, options: [port: 9001])
     ]
 
     opts = [strategy: :one_for_one, name: PVAData.Supervisor]
