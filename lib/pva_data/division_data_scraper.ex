@@ -3,12 +3,14 @@ defmodule PVAData.DivisionDataScraper do
 
   alias PVAData.Standings.Standing
   alias PVAData.Matches
+  alias PVAData.Divisions.DivisionLink
+  alias PVAData.Divisions.Division
   alias Matches.Match
 
-  def get_division_data(url) do
+  def get_division_data(%DivisionLink{name: name, url: url}) do
     html = HTTPoison.get!(url).body
 
-    %{standings: parse_standings(html), matches: parse_matches(html)}
+    %Division{name: name, standings: parse_standings(html), matches: parse_matches(html)}
   end
 
   defp parse_standings(html) do

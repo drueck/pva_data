@@ -5,15 +5,18 @@ defmodule PVAData.DivisionDataScraperTest do
     DivisionLinksScraper,
     DivisionDataScraper,
     Standings.Standing,
-    Matches.Match
+    Matches.Match,
+    Divisions.Division
   }
 
   describe "get_division_data/1" do
-    test "gets the standings, schedules, and scores from the given url" do
+    test "gets the division data from the given division link" do
       test_division_link = DivisionLinksScraper.get_division_links() |> hd()
 
-      assert %{standings: standings, matches: matches} =
-               DivisionDataScraper.get_division_data(test_division_link.url)
+      assert %Division{name: division_name, standings: standings, matches: matches} =
+               DivisionDataScraper.get_division_data(test_division_link)
+
+      assert division_name == test_division_link.name
 
       assert length(standings) > 0
 
