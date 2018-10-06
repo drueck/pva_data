@@ -3,9 +3,12 @@ defmodule PVAData.Application do
 
   use Application
 
+  alias PVAData.{Data, ScraperBot}
+
   def start(_type, _args) do
     children = [
-      {PVAData.Data, [name: PVAData.Data]}
+      {Data, [name: Data]},
+      {ScraperBot, [name: ScraperBot]}
     ]
 
     opts = [strategy: :one_for_one, name: PVAData.Supervisor]
