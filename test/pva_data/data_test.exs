@@ -3,6 +3,7 @@ defmodule PVAData.DataTest do
 
   alias PVAData.Data
   alias PVAData.Divisions.Division
+  alias PVAData.Standings.Standing
 
   setup do
     %{server: start_supervised!(Data)}
@@ -32,6 +33,25 @@ defmodule PVAData.DataTest do
       assert length(division_names) == 2
       assert division1.name in division_names
       assert division2.name in division_names
+    end
+  end
+
+  describe "get_division_standings/2" do
+    test "it gets the standings for the given division name", %{server: server} do
+      coed_a_thursday = %Division{
+        name: "Coed A Thursday",
+        standings: [
+          %Standing{team_name: "Court Jesters", matches_won: 1, matches_lost: 0},
+          %Standing{team_name: "Other Team", matches_won: 0, matches_lost: 1}
+        ],
+        matches: []
+      }
+
+      assert :ok = Data.put_division(server, coed_a_thursday)
+
+      standings = Data.get_division_standings(server, "Coed A Thursday")
+
+      assert standings == coed_a_thursday.standings
     end
   end
 end
