@@ -48,6 +48,7 @@ defmodule PVAData.DivisionDataScraper do
           updated_match =
             current_match
             |> Map.put(:time, time(tr))
+            |> Map.put(:date, current_date)
             |> Map.put(:location, %Match.Location{
               name: location_name(tr),
               map_url: map_url(tr)
@@ -67,7 +68,7 @@ defmodule PVAData.DivisionDataScraper do
               games_won: games_won(tr)
             })
 
-          {current_date, %{}, [updated_match | matches]}
+          {current_date, %Match{}, [updated_match | matches]}
 
         true ->
           {current_date, current_match, matches}
