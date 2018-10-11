@@ -23,6 +23,10 @@ defmodule PVAData.Data do
     GenServer.call(pid, {:get_division_standings, division_name})
   end
 
+  def get_team_schedule(pid \\ __MODULE__, division_name, team_name) do
+    GenServer.call(pid, {:get_team_schedule, division_name, team_name})
+  end
+
   def handle_cast({:put_division, division}, %{divisions: divisions} = state) do
     {:noreply, %{state | divisions: Map.put(divisions, division.name, division)}}
   end
@@ -38,5 +42,24 @@ defmodule PVAData.Data do
       |> Map.get(:standings)
 
     {:reply, standings, state}
+  end
+
+  def handle_call({:get_team_schedule, division_name, team_name}, _from, state) do
+    schedule =
+      state.divisions
+      |> Map.get(division_name)
+      |> Map.get(:matches)
+      |> Enum.filter(fn match ->
+        (match.home.name == team_name || match.visitor.name == team_name) &&
+          is_nil(match.home.games_won) && is_nil(match.visitor.games_won)
+      end)
+      |> Enum.sort(fn ma, mb ->
+        cond do
+          ma.date == mb.date -> ma.time <= mb.time
+          true -> ma.date <= mb.date
+        end
+      end)
+
+    {:reply, schedule, state}
   end
 end
