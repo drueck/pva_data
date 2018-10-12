@@ -1,7 +1,7 @@
 defmodule PVAData.DivisionDataScraper do
   import Meeseeks.CSS
 
-  alias PVAData.Standings.Standing
+  alias PVAData.Standings.TeamRecord
   alias PVAData.Matches
   alias PVAData.Divisions.DivisionLink
   alias PVAData.Divisions.Division
@@ -25,7 +25,7 @@ defmodule PVAData.DivisionDataScraper do
 
       {matches_back_float, _} = Float.parse(matches_back)
 
-      %Standing{
+      %TeamRecord{
         team_name: team_name,
         matches_won: String.to_integer(matches_won),
         matches_lost: String.to_integer(matches_lost),

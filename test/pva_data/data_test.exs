@@ -3,7 +3,7 @@ defmodule PVAData.DataTest do
 
   alias PVAData.Data
   alias PVAData.Divisions.Division
-  alias PVAData.Standings.Standing
+  alias PVAData.Standings.TeamRecord
   alias PVAData.Matches.Match
 
   setup do
@@ -42,8 +42,8 @@ defmodule PVAData.DataTest do
       coed_a_thursday = %Division{
         name: "Coed A Thursday",
         standings: [
-          %Standing{team_name: "Court Jesters", matches_won: 1, matches_lost: 0},
-          %Standing{team_name: "Other Team", matches_won: 0, matches_lost: 1}
+          %TeamRecord{team_name: "Court Jesters", matches_won: 1, matches_lost: 0},
+          %TeamRecord{team_name: "Other Team", matches_won: 0, matches_lost: 1}
         ],
         matches: []
       }

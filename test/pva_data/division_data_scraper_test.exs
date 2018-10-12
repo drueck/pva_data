@@ -4,7 +4,7 @@ defmodule PVAData.DivisionDataScraperTest do
   alias PVAData.{
     DivisionLinksScraper,
     DivisionDataScraper,
-    Standings.Standing,
+    Standings.TeamRecord,
     Matches.Match,
     Divisions.Division
   }
@@ -22,7 +22,7 @@ defmodule PVAData.DivisionDataScraperTest do
 
       standings
       |> Enum.each(fn standing ->
-        assert %Standing{
+        assert %TeamRecord{
                  team_name: team_name,
                  matches_won: matches_won,
                  matches_lost: matches_lost,

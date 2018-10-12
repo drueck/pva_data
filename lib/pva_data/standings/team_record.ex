@@ -1,4 +1,4 @@
-defmodule PVAData.Standings.Standing do
+defmodule PVAData.Standings.TeamRecord do
   defstruct team_name: "",
             matches_won: 0,
             matches_lost: 0,
