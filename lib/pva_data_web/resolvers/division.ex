@@ -1,12 +1,12 @@
 defmodule PVADataWeb.Resolvers.Division do
   alias PVAData.Data
-  alias PVAData.Divisions.Division
 
-  def all(_args, _resolution) do
-    divisions_with_name_only =
-      Data.get_division_names()
-      |> Enum.map(fn name -> %Division{name: name} end)
+  def all(pagination_args, _resolution) do
+    Data.get_divisions()
+    |> Absinthe.Relay.Connection.from_list(pagination_args)
+  end
 
-    {:ok, divisions_with_name_only}
+  def get(%{name: name}, _resolution) do
+    {:ok, Data.get_division(name)}
   end
 end
