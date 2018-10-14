@@ -55,7 +55,7 @@ defmodule PVAData.DivisionDataScraper do
             })
             |> Map.put(home_or_visitor(tr), %Match.Team{
               name: team_name(tr),
-              games_won: games_won(tr)
+              games_won: first_team_games_won(tr)
             })
 
           {current_date, updated_match, matches}
@@ -65,7 +65,7 @@ defmodule PVAData.DivisionDataScraper do
             current_match
             |> Map.put(home_or_visitor(tr), %Match.Team{
               name: team_name(tr),
-              games_won: games_won(tr)
+              games_won: second_team_games_won(tr)
             })
 
           {current_date, %Match{}, [updated_match | matches]}
@@ -139,10 +139,22 @@ defmodule PVAData.DivisionDataScraper do
     |> Meeseeks.text()
   end
 
-  defp games_won(tr) do
+  defp first_team_games_won(tr) do
     tr
-    |> Meeseeks.one(css(".game-list-score"))
+    |> Meeseeks.one(css("td:nth-child(2)"))
     |> Meeseeks.text()
+    |> parse_wins_text()
+  end
+
+  defp second_team_games_won(tr) do
+    tr
+    |> Meeseeks.one(css("td:first-child"))
+    |> Meeseeks.text()
+    |> parse_wins_text()
+  end
+
+  defp parse_wins_text(wins_text) do
+    wins_text
     |> case do
       "" -> nil
       nil -> nil

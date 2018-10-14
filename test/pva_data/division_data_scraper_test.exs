@@ -67,6 +67,11 @@ defmodule PVAData.DivisionDataScraperTest do
         assert is_integer(home_team_wins) or is_nil(home_team_wins)
         assert is_binary(visiting_team_name)
         assert is_integer(visiting_team_wins) or is_nil(visiting_team_wins)
+
+        if !is_nil(home_team_wins) || !is_nil(visiting_team_wins) do
+          assert !is_nil(home_team_wins) && !is_nil(visiting_team_wins) &&
+                   home_team_wins + visiting_team_wins == 3
+        end
       end)
     end
   end
