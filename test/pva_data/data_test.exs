@@ -21,6 +21,36 @@ defmodule PVAData.DataTest do
     end
   end
 
+  describe "get_divisions/1" do
+    test "it returns a list of all the divisions with all of their data", %{server: server} do
+      division1 = %Division{name: "Coed A Thursday"}
+      division2 = %Division{name: "Coed A Wednesday"}
+
+      assert :ok = Data.put_division(server, division1)
+      assert :ok = Data.put_division(server, division2)
+
+      divisions = Data.get_divisions(server)
+
+      assert length(divisions) == 2
+      assert division1 in divisions
+      assert division2 in divisions
+    end
+  end
+
+  describe "get_division/2" do
+    test "it returns the division from the division name", %{server: server} do
+      division1 = %Division{name: "Coed A Thursday"}
+      division2 = %Division{name: "Coed A Wednesday"}
+
+      assert :ok = Data.put_division(server, division1)
+      assert :ok = Data.put_division(server, division2)
+
+      division = Data.get_division(server, "Coed A Thursday")
+
+      assert division == division1
+    end
+  end
+
   describe "get_division_names/1" do
     test "it a list of all the division names it knows about", %{server: server} do
       division1 = %Division{name: "Coed A Thursday"}

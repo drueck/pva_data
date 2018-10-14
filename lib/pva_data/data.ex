@@ -15,6 +15,14 @@ defmodule PVAData.Data do
     GenServer.cast(pid, {:put_division, division})
   end
 
+  def get_divisions(pid \\ __MODULE__) do
+    GenServer.call(pid, :get_divisions)
+  end
+
+  def get_division(pid \\ __MODULE__, division_name) do
+    GenServer.call(pid, {:get_division, division_name})
+  end
+
   def get_division_names(pid \\ __MODULE__) do
     GenServer.call(pid, :get_division_names)
   end
@@ -29,6 +37,14 @@ defmodule PVAData.Data do
 
   def handle_cast({:put_division, division}, %{divisions: divisions} = state) do
     {:noreply, %{state | divisions: Map.put(divisions, division.name, division)}}
+  end
+
+  def handle_call(:get_divisions, _from, %{divisions: divisions} = state) do
+    {:reply, Map.values(divisions), state}
+  end
+
+  def handle_call({:get_division, division_name}, _from, %{divisions: divisions} = state) do
+    {:reply, Map.get(divisions, division_name), state}
   end
 
   def handle_call(:get_division_names, _from, %{divisions: divisions} = state) do
