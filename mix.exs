@@ -28,7 +28,8 @@ defmodule PVAData.MixProject do
       {:absinthe_relay, "~> 1.4.4"},
       {:poison, "~> 3.1.0"},
       {:cowboy, "~> 2.5.0"},
-      {:plug, "~> 1.6.4"}
+      {:plug, "~> 1.6.4"},
+      {:distillery, "~> 2.0"}
     ]
   end
 end
