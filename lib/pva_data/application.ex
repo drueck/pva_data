@@ -9,7 +9,11 @@ defmodule PVAData.Application do
     children = [
       {Data, [name: Data]},
       {ScraperBot, [name: ScraperBot]},
-      Plug.Adapters.Cowboy2.child_spec(scheme: :http, plug: Router, options: [port: 9001])
+      Plug.Adapters.Cowboy2.child_spec(
+        scheme: :http,
+        plug: Router,
+        options: [port: Application.get_env(:pva_data, :port) |> IO.inspect()]
+      )
     ]
 
     opts = [strategy: :one_for_one, name: PVAData.Supervisor]
