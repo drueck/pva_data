@@ -29,7 +29,8 @@ defmodule PVAData.MixProject do
       {:poison, "~> 3.1.0"},
       {:cowboy, "~> 2.5.0"},
       {:plug, "~> 1.6.4"},
-      {:distillery, "~> 2.0"}
+      {:distillery, "~> 2.0"},
+      {:uuid, "~> 1.1.8"}
     ]
   end
 end

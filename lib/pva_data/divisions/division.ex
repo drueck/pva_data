@@ -1,3 +1,3 @@
 defmodule PVAData.Divisions.Division do
-  defstruct [:name, :standings, :matches]
+  defstruct [:id, :name, :standings, :matches]
 end

@@ -1,3 +1,3 @@
 defmodule PVAData.Divisions.DivisionLink do
-  defstruct [:name, :url]
+  defstruct [:id, :name, :url]
 end
