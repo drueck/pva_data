@@ -21,6 +21,7 @@ defmodule PVADataWeb.Resolvers.Team do
 
   defp build_team(team_record, division) do
     %{
+      id: team_record.id,
       name: team_record.team_name,
       division: division,
       record: team_record

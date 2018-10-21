@@ -14,6 +14,7 @@ defmodule PVAData.DivisionLinksScraper do
     |> Meeseeks.all(css("li span.st-tkt-directory-item a"))
     |> Enum.map(fn link ->
       %DivisionLink{
+        id: UUID.uuid4(),
         name: Meeseeks.text(link),
         url: @root_url <> Meeseeks.attr(link, "href")
       }

@@ -1,3 +1,3 @@
 defmodule PVAData.Matches.Match do
-  defstruct [:date, :time, :location, :home, :visitor]
+  defstruct [:id, :date, :time, :location, :home, :visitor]
 end

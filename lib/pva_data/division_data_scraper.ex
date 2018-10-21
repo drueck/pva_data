@@ -7,10 +7,10 @@ defmodule PVAData.DivisionDataScraper do
   alias PVAData.Divisions.Division
   alias Matches.Match
 
-  def get_division_data(%DivisionLink{name: name, url: url}) do
+  def get_division_data(%DivisionLink{id: id, name: name, url: url}) do
     html = HTTPoison.get!(url).body
 
-    %Division{name: name, standings: parse_standings(html), matches: parse_matches(html)}
+    %Division{id: id, name: name, standings: parse_standings(html), matches: parse_matches(html)}
   end
 
   defp parse_standings(html) do
@@ -26,6 +26,7 @@ defmodule PVAData.DivisionDataScraper do
       {matches_back_float, _} = Float.parse(matches_back)
 
       %TeamRecord{
+        id: UUID.uuid4(),
         team_name: team_name,
         matches_won: String.to_integer(matches_won),
         matches_lost: String.to_integer(matches_lost),
@@ -47,13 +48,16 @@ defmodule PVAData.DivisionDataScraper do
         first_team_row?(tr) ->
           updated_match =
             current_match
+            |> Map.put(:id, UUID.uuid4())
             |> Map.put(:time, time(tr))
             |> Map.put(:date, current_date)
             |> Map.put(:location, %Match.Location{
+              id: UUID.uuid4(),
               name: location_name(tr),
               map_url: map_url(tr)
             })
             |> Map.put(home_or_visitor(tr), %Match.Team{
+              id: UUID.uuid4(),
               name: team_name(tr),
               games_won: first_team_games_won(tr)
             })
@@ -64,6 +68,7 @@ defmodule PVAData.DivisionDataScraper do
           updated_match =
             current_match
             |> Map.put(home_or_visitor(tr), %Match.Team{
+              id: UUID.uuid4(),
               name: team_name(tr),
               games_won: second_team_games_won(tr)
             })
