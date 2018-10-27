@@ -1,6 +1,8 @@
 defmodule PVAData.Router do
   use Plug.Router
 
+  plug CORSPlug, origin: "*"
+
   plug :match
 
   plug Plug.Parsers,

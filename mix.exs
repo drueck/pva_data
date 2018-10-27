@@ -22,14 +22,15 @@ defmodule PVAData.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:meeseeks, "~> 0.10.0"},
-      {:httpoison, "~> 1.0"},
       {:absinthe_plug, "~> 1.4.5"},
       {:absinthe_relay, "~> 1.4.4"},
-      {:poison, "~> 3.1.0"},
+      {:cors_plug, "~> 1.5"},
       {:cowboy, "~> 2.5.0"},
-      {:plug, "~> 1.6.4"},
       {:distillery, "~> 2.0"},
+      {:httpoison, "~> 1.0"},
+      {:meeseeks, "~> 0.10.0"},
+      {:plug, "~> 1.6.4"},
+      {:poison, "~> 3.1.0"},
       {:uuid, "~> 1.1.8"}
     ]
   end
