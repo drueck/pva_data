@@ -7,14 +7,14 @@ defmodule PVADataWeb.Schema do
   alias PVADataWeb.Resolvers
 
   query do
-    connection field :divisions, node_type: :division do
-      resolve &Resolvers.Division.all/2
-    end
+    # connection field :divisions, node_type: :division do
+    #   resolve &Resolvers.Division.all/2
+    # end
 
-    field :division, :division do
-      arg :name, :string
+    # field :division, :division do
+    #   arg :name, :string
 
-      resolve &Resolvers.Division.get/2
-    end
+    #   resolve &Resolvers.Division.get/2
+    # end
   end
 end
