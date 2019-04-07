@@ -11,7 +11,7 @@ defmodule PVAData.SchedulesScraperTest do
       assert {:ok, matches} =
                "test/fixtures/schedules.php"
                |> File.read!()
-               |> ShedulesScraper.get_matches()
+               |> SchedulesScraper.get_matches()
 
       expected_match_count = 28
 
@@ -22,7 +22,8 @@ defmodule PVAData.SchedulesScraperTest do
         visitor: "Floor Burn",
         location: "St. Johns Community Center",
         ref: "Jim R.",
-        division: "Womens BB"
+        division: "Womens BB",
+        set_results: []
       }
 
       expected_last_match = %Match{
@@ -31,15 +32,18 @@ defmodule PVAData.SchedulesScraperTest do
         home: "Merda Mafia",
         visitor: "Hit it N Dig It",
         location: "East Portland Community Center",
-        ref: "Marshall R.",
-        division: "Coed A Wednesday"
+        ref: "Marshal R.",
+        division: "Coed A Wednesday",
+        set_results: []
       }
+
+      assert length(matches) == expected_match_count
 
       matches
       |> Enum.each(fn match -> assert %Match{} = match end)
 
-      assert expected_first_match == Enum.first(matches)
-      assert expected_last_match == Enum.last(matches)
+      assert expected_first_match == List.first(matches)
+      assert expected_last_match == List.last(matches)
     end
   end
 end
