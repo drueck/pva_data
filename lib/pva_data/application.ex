@@ -10,7 +10,7 @@ defmodule PVAData.Application do
     children = [
       # {Data, [name: Data]},
       # {ScraperBot, [name: ScraperBot]},
-      Plug.Adapters.Cowboy2.child_spec(
+      Plug.Cowboy.child_spec(
         scheme: :http,
         plug: Router,
         options: [port: Application.get_env(:pva_data, :port) |> IO.inspect()]
