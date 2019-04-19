@@ -3,6 +3,21 @@ defmodule PVAData.DateUtilsTest do
 
   alias PVAData.DateUtils
 
+  describe "parse_date/1" do
+    test "parses the date format used on the PVA website" do
+      assert %Date{} = date = DateUtils.parse_date("4/08 (Mon)")
+      assert date.month == 4
+      assert date.day == 8
+      assert date.year == Date.utc_today().year
+    end
+  end
+
+  describe "parse_time/1" do
+    test "it parses the time format used on the PVA website" do
+      assert DateUtils.parse_time("8:00") == ~T[20:00:00]
+    end
+  end
+
   describe "guess_year/2" do
     test "it guesses the next year when appropriate" do
       assert DateUtils.guess_year(1, ~D[2019-12-01]) == 2020
