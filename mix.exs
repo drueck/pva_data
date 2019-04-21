@@ -26,12 +26,13 @@ defmodule PVAData.MixProject do
       {:absinthe_relay, "~> 1.4.4"},
       {:cors_plug, "~> 2.0.0"},
       {:cowboy, "~> 2.6.3"},
-      {:plug_cowboy, "~> 2.0"},
       {:distillery, "~> 2.0"},
       {:httpoison, "~> 1.0"},
       {:meeseeks, "~> 0.11.0"},
       {:plug, "~> 1.8.0"},
+      {:plug_cowboy, "~> 2.0"},
       {:poison, "~> 4.0.1"},
+      {:slugger, "~> 0.3.0"},
       {:uuid, "~> 1.1.8"}
     ]
   end
