@@ -4,12 +4,12 @@ defmodule PVAWebsite.SchedulesParserTest do
   alias PVAWebsite.SchedulesParser
   alias PVAData.Match
 
-  describe "get_matches/1" do
+  describe "get_scheduled_matches/1" do
     test "returns a list of matches from the schedules page body" do
       assert {:ok, matches} =
                "test/fixtures/schedules.php"
                |> File.read!()
-               |> SchedulesParser.get_matches()
+               |> SchedulesParser.get_scheduled_matches()
 
       expected_match_count = 28
 

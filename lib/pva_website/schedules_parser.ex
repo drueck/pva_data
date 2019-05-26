@@ -4,7 +4,7 @@ defmodule PVAWebsite.SchedulesParser do
   alias PVAWebsite.DateUtils
   alias PVAData.Match
 
-  def get_matches(schedules_html) do
+  def get_scheduled_matches(schedules_html) do
     schedules_html
     |> Meeseeks.all(css("tr.schedule-table__row"))
     |> Enum.map(fn row ->
