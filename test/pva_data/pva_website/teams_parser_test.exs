@@ -1,7 +1,7 @@
 defmodule PVAData.TeamsScraperTest do
   use ExUnit.Case, async: true
 
-  alias PVAWebsite.TeamsParser
+  alias PVAData.PVAWebsite.TeamsParser
 
   alias PVAData.{
     Division,

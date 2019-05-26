@@ -1,4 +1,4 @@
-defmodule PVAWebsite.DateUtils do
+defmodule PVAData.PVAWebsite.DateUtils do
   def parse_date(date_string) do
     ~r/(?<month>\d{1,2})\/(?<day>\d{1,2})/
     |> Regex.named_captures(date_string)

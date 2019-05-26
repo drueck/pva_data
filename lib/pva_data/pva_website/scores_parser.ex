@@ -1,14 +1,14 @@
-defmodule PVAWebsite.ScoresParser do
+defmodule PVAData.PVAWebsite.ScoresParser do
   import Meeseeks.CSS
 
-  alias PVAWebsite.DateUtils
+  alias PVAData.PVAWebsite.DateUtils
 
   alias PVAData.{
     Match,
     SetResult
   }
 
-  def get_scores(scores_html) do
+  def get_completed_matches(scores_html) do
     scores_html
     |> Meeseeks.all(css("tr"))
     |> Enum.slice(2..-1)

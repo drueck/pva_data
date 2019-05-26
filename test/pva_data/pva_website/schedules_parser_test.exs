@@ -1,7 +1,7 @@
-defmodule PVAWebsite.SchedulesParserTest do
+defmodule PVAData.PVAWebsite.SchedulesParserTest do
   use ExUnit.Case, async: true
 
-  alias PVAWebsite.SchedulesParser
+  alias PVAData.PVAWebsite.SchedulesParser
   alias PVAData.Match
 
   describe "get_scheduled_matches/1" do
