@@ -1,7 +1,7 @@
-defmodule PVAData.DateUtilsTest do
+defmodule PVAWebsite.DateUtilsTest do
   use ExUnit.Case, async: true
 
-  alias PVAData.DateUtils
+  alias PVAWebsite.DateUtils
 
   describe "parse_date/1" do
     test "parses the date format used on the PVA website" do

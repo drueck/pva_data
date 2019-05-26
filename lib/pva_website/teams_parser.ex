@@ -1,4 +1,4 @@
-defmodule PVAData.TeamsScraper do
+defmodule PVAWebsite.TeamsParser do
   import Meeseeks.CSS
 
   alias PVAData.{

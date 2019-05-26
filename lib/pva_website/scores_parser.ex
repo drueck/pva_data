@@ -1,10 +1,11 @@
-defmodule PVAData.ScoresScraper do
+defmodule PVAWebsite.ScoresParser do
   import Meeseeks.CSS
+
+  alias PVAWebsite.DateUtils
 
   alias PVAData.{
     Match,
-    SetResult,
-    DateUtils
+    SetResult
   }
 
   def get_scores(scores_html) do

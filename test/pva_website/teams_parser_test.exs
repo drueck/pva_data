@@ -1,8 +1,9 @@
 defmodule PVAData.TeamsScraperTest do
   use ExUnit.Case, async: true
 
+  alias PVAWebsite.TeamsParser
+
   alias PVAData.{
-    TeamsScraper,
     Division,
     Team
   }
@@ -12,7 +13,7 @@ defmodule PVAData.TeamsScraperTest do
       assert {:ok, divisions} =
                "test/fixtures/schedules.php"
                |> File.read!()
-               |> TeamsScraper.get_teams_by_division()
+               |> TeamsParser.get_teams_by_division()
 
       expected_division_count = 8
 

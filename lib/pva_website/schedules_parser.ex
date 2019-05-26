@@ -1,10 +1,8 @@
-defmodule PVAData.SchedulesScraper do
+defmodule PVAWebsite.SchedulesParser do
   import Meeseeks.CSS
 
-  alias PVAData.{
-    Match,
-    DateUtils
-  }
+  alias PVAWebsite.DateUtils
+  alias PVAData.Match
 
   def get_matches(schedules_html) do
     schedules_html
