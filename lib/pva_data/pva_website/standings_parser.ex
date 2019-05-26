@@ -1,4 +1,4 @@
-defmodule PVAWebsite.StandingsParser do
+defmodule PVAData.PVAWebsite.StandingsParser do
   import Meeseeks.CSS
 
   alias PVAData.{

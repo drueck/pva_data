@@ -1,7 +1,7 @@
-defmodule PVAWebsite.StandingsParserTest do
+defmodule PVAData.PVAWebsite.StandingsParserTest do
   use ExUnit.Case, async: true
 
-  alias PVAWebsite.StandingsParser
+  alias PVAData.PVAWebsite.StandingsParser
 
   alias PVAData.{
     DivisionStandings,

@@ -1,19 +1,19 @@
-defmodule PVAWebsite.ScoresParserTest do
+defmodule PVAData.PVAWebsite.ScoresParserTest do
   use ExUnit.Case, async: true
 
-  alias PVAWebsite.ScoresParser
+  alias PVAData.PVAWebsite.ScoresParser
 
   alias PVAData.{
     Match,
     SetResult
   }
 
-  describe "get_scores/1" do
+  describe "get_completed_matches/1" do
     test "returns a list of matches with set results from scores page body" do
       assert {:ok, matches} =
                "test/fixtures/scores.php"
                |> File.read!()
-               |> ScoresParser.get_scores()
+               |> ScoresParser.get_completed_matches()
 
       expected_match_count = 8
 
