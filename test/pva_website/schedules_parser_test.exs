@@ -1,17 +1,15 @@
-defmodule PVAData.SchedulesScraperTest do
+defmodule PVAWebsite.SchedulesParserTest do
   use ExUnit.Case, async: true
 
-  alias PVAData.{
-    SchedulesScraper,
-    Match
-  }
+  alias PVAWebsite.SchedulesParser
+  alias PVAData.Match
 
   describe "get_matches/1" do
     test "returns a list of matches from the schedules page body" do
       assert {:ok, matches} =
                "test/fixtures/schedules.php"
                |> File.read!()
-               |> SchedulesScraper.get_matches()
+               |> SchedulesParser.get_matches()
 
       expected_match_count = 28
 

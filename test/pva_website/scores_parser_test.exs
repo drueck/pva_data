@@ -1,8 +1,9 @@
-defmodule PVAData.ScoresScraperTest do
+defmodule PVAWebsite.ScoresParserTest do
   use ExUnit.Case, async: true
 
+  alias PVAWebsite.ScoresParser
+
   alias PVAData.{
-    ScoresScraper,
     Match,
     SetResult
   }
@@ -12,7 +13,7 @@ defmodule PVAData.ScoresScraperTest do
       assert {:ok, matches} =
                "test/fixtures/scores.php"
                |> File.read!()
-               |> ScoresScraper.get_scores()
+               |> ScoresParser.get_scores()
 
       expected_match_count = 8
 

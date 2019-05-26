@@ -1,8 +1,9 @@
-defmodule PVAData.StandingsScraperTest do
+defmodule PVAWebsite.StandingsParserTest do
   use ExUnit.Case, async: true
 
+  alias PVAWebsite.StandingsParser
+
   alias PVAData.{
-    StandingsScraper,
     DivisionStandings,
     Standing
   }
@@ -12,7 +13,7 @@ defmodule PVAData.StandingsScraperTest do
       assert {:ok, division_standings} =
                "test/fixtures/standings.php"
                |> File.read!()
-               |> StandingsScraper.get_divisions_standings()
+               |> StandingsParser.get_divisions_standings()
 
       expected_count = 8
 
