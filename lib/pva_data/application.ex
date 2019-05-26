@@ -3,12 +3,14 @@ defmodule PVAData.Application do
 
   use Application
 
-  # alias PVAData.{Data, ScraperBot, Router}
-  alias PVAData.Router
+  alias PVAData.{
+    Data,
+    Router
+  }
 
   def start(_type, _args) do
     children = [
-      # {Data, [name: Data]},
+      {Data, [name: Data]},
       # {ScraperBot, [name: ScraperBot]},
       Plug.Cowboy.child_spec(
         scheme: :http,
