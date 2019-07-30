@@ -17,6 +17,11 @@ defmodule PVADataWeb.Schema.Types do
     parse &Scalars.Time.parse/1
   end
 
+  object :division do
+    field :name, :string
+    field :slug, :string
+  end
+
   # node interface do
   #   resolve_type fn
   #     _, _ -> nil
