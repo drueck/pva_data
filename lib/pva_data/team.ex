@@ -1,3 +1,5 @@
 defmodule PVAData.Team do
-  defstruct [:name, :slug]
+  use PVAData.ComputedId, keys: [:name, :division]
+
+  defstruct [:id, :name, :division, :slug]
 end

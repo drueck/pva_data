@@ -1,6 +1,10 @@
 defmodule PVAData.Standing do
+  use PVAData.ComputedId, keys: [:team, :division]
+
   defstruct [
+    :id,
     :team,
+    :division,
     wins: 0,
     losses: 0,
     winning_percentage: 0.0,
