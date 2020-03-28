@@ -15,7 +15,8 @@ defmodule PVAData.PVAWebsite.StandingsParser do
     divisions_standings =
       standings_html
       |> Meeseeks.all(css("table tbody"))
-      |> Enum.map(fn body ->
+      |> Enum.zip(divisions)
+      |> Enum.map(fn {body, division} ->
         body
         |> Meeseeks.all(css("tr"))
         |> tl()
@@ -34,8 +35,9 @@ defmodule PVAData.PVAWebsite.StandingsParser do
             |> Meeseeks.all(css("td"))
             |> Enum.map(&Meeseeks.text/1)
 
-          %Standing{
+          %{
             team: team,
+            division: division,
             wins: to_int(wins),
             losses: to_int(losses),
             winning_percentage: to_float(winning_percentage),
@@ -43,15 +45,18 @@ defmodule PVAData.PVAWebsite.StandingsParser do
             match_points_possible: to_float(match_points_possible),
             match_point_percentage: to_float(match_point_percentage)
           }
+          |> Standing.new()
         end)
       end)
 
-    Enum.zip(divisions, divisions_standings)
+    divisions
+    |> Enum.zip(divisions_standings)
     |> Enum.map(fn {division, standings} ->
-      %DivisionStandings{
+      %{
         division: division,
         standings: standings
       }
+      |> DivisionStandings.new()
     end)
     |> (fn divisions_standings -> {:ok, divisions_standings} end).()
   end

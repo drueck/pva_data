@@ -17,20 +17,29 @@ defmodule PVAData.TeamsScraperTest do
 
       expected_division_count = 8
 
-      expected_first_division = %Division{
-        name: "Coed A Thursday",
-        slug: "coed-a-thursday",
-        teams: [
-          %Team{name: "Chewblocka", slug: "chewblocka"},
-          %Team{name: "Court Jesters", slug: "court-jesters"},
-          %Team{name: "Empire Spikes Back", slug: "empire-spikes-back"},
-          %Team{name: "Group Sets", slug: "group-sets"},
-          %Team{name: "Other People's Spouses", slug: "other-peoples-spouses"},
-          %Team{name: "Pokéballs", slug: "pokeballs"},
-          %Team{name: "Pound Town", slug: "pound-town"},
-          %Team{name: "Whatever", slug: "whatever"}
-        ]
-      }
+      expected_first_division =
+        Division.new(%{
+          name: "Coed A Thursday",
+          slug: "coed-a-thursday",
+          teams: [
+            Team.new(%{division: "Coed A Thursday", name: "Chewblocka", slug: "chewblocka"}),
+            Team.new(%{division: "Coed A Thursday", name: "Court Jesters", slug: "court-jesters"}),
+            Team.new(%{
+              division: "Coed A Thursday",
+              name: "Empire Spikes Back",
+              slug: "empire-spikes-back"
+            }),
+            Team.new(%{division: "Coed A Thursday", name: "Group Sets", slug: "group-sets"}),
+            Team.new(%{
+              division: "Coed A Thursday",
+              name: "Other People's Spouses",
+              slug: "other-peoples-spouses"
+            }),
+            Team.new(%{division: "Coed A Thursday", name: "Pokéballs", slug: "pokeballs"}),
+            Team.new(%{division: "Coed A Thursday", name: "Pound Town", slug: "pound-town"}),
+            Team.new(%{division: "Coed A Thursday", name: "Whatever", slug: "whatever"})
+          ]
+        })
 
       assert length(divisions) == expected_division_count
       assert hd(divisions) == expected_first_division
