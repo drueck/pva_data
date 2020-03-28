@@ -9,6 +9,11 @@ defmodule PVADataWeb.Schema.Query.DivisionsTest do
 
   @opts Router.init([])
 
+  setup do
+    server = start_supervised!({Data, [name: Data]})
+    {:ok, server: server}
+  end
+
   test "can request list of divisions" do
     query = """
       query {

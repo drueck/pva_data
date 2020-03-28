@@ -11,6 +11,11 @@ defmodule PVAData.ScraperBotTest do
     SetResult
   }
 
+  setup do
+    server = start_supervised!({Data, [name: Data]})
+    {:ok, server: server}
+  end
+
   describe "#update_data/0" do
     test "updates the data store with the latest info from the website" do
       ScraperBot.update_data()

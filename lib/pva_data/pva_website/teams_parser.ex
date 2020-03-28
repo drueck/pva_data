@@ -31,23 +31,26 @@ defmodule PVAData.PVAWebsite.TeamsParser do
   end
 
   defp build_division_with_teams({division_name, team_names}) do
-    %Division{
+    %{
       name: division_name,
       slug: Slugger.slugify_downcase(division_name),
-      teams: build_teams(team_names)
+      teams: build_teams(team_names, division_name)
     }
+    |> Division.new()
   end
 
-  defp build_teams(team_names) do
+  defp build_teams(team_names, division_name) do
     team_names
     |> Enum.sort()
-    |> Enum.map(&build_team/1)
+    |> Enum.map(fn team_name -> build_team(team_name, division_name) end)
   end
 
-  defp build_team(team_name) do
-    %Team{
+  defp build_team(team_name, division_name) do
+    %{
       name: team_name,
+      division: division_name,
       slug: Slugger.slugify_downcase(team_name)
     }
+    |> Team.new()
   end
 end

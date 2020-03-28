@@ -17,7 +17,7 @@ defmodule PVAData.PVAWebsite.SchedulesParser do
       date = DateUtils.parse_date(date_string)
       time = DateUtils.parse_time(time_string)
 
-      %Match{
+      %{
         date: date,
         time: time,
         home: home,
@@ -26,6 +26,7 @@ defmodule PVAData.PVAWebsite.SchedulesParser do
         ref: ref,
         division: division
       }
+      |> Match.new()
     end)
     |> (fn matches -> {:ok, matches} end).()
   end

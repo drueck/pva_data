@@ -12,28 +12,35 @@ defmodule PVAData.PVAWebsite.SchedulesParserTest do
                |> SchedulesParser.get_scheduled_matches()
 
       expected_match_count = 28
+      current_year = Date.utc_today().year
 
-      expected_first_match = %Match{
-        date: ~D[2019-04-08],
-        time: ~T[19:00:00],
-        home: "Ball Busters",
-        visitor: "Floor Burn",
-        location: "St. Johns Community Center",
-        ref: "Jim R.",
-        division: "Womens BB",
-        set_results: []
-      }
+      {:ok, first_match_date} = Date.new(current_year, 4, 8)
 
-      expected_last_match = %Match{
-        date: ~D[2019-04-10],
-        time: ~T[21:00:00],
-        home: "Merda Mafia",
-        visitor: "Hit it N Dig It",
-        location: "East Portland Community Center",
-        ref: "Marshal R.",
-        division: "Coed A Wednesday",
-        set_results: []
-      }
+      expected_first_match =
+        Match.new(%{
+          date: first_match_date,
+          time: ~T[19:00:00],
+          home: "Ball Busters",
+          visitor: "Floor Burn",
+          location: "St. Johns Community Center",
+          ref: "Jim R.",
+          division: "Womens BB",
+          set_results: []
+        })
+
+      {:ok, last_match_date} = Date.new(current_year, 4, 10)
+
+      expected_last_match =
+        Match.new(%{
+          date: last_match_date,
+          time: ~T[21:00:00],
+          home: "Merda Mafia",
+          visitor: "Hit it N Dig It",
+          location: "East Portland Community Center",
+          ref: "Marshal R.",
+          division: "Coed A Wednesday",
+          set_results: []
+        })
 
       assert length(matches) == expected_match_count
 
