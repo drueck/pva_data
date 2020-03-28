@@ -1,3 +1,13 @@
 defmodule PVAData.Division do
-  defstruct [:name, :slug, teams: [], standings: [], scheduled_matches: [], completed_matches: []]
+  use PVAData.ComputedId, keys: [:name]
+
+  defstruct [
+    :id,
+    :name,
+    :slug,
+    teams: [],
+    standings: [],
+    scheduled_matches: [],
+    completed_matches: []
+  ]
 end

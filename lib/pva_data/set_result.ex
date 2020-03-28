@@ -1,3 +1,5 @@
 defmodule PVAData.SetResult do
-  defstruct [:set, :home, :visitor]
+  use PVAData.ComputedId, keys: [:match_id, :set]
+
+  defstruct [:id, :match_id, :set, :home, :visitor]
 end

@@ -1,3 +1,5 @@
 defmodule PVAData.DivisionStandings do
-  defstruct [:division, standings: []]
+  use PVAData.ComputedId, keys: [:division]
+
+  defstruct [:id, :division, standings: []]
 end
