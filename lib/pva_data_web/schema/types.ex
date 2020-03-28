@@ -2,10 +2,7 @@ defmodule PVADataWeb.Schema.Types do
   use Absinthe.Schema.Notation
   use Absinthe.Relay.Schema.Notation, :modern
 
-  alias PVADataWeb.{
-    Schema.Scalars,
-    Resolvers
-  }
+  alias PVADataWeb.Schema.Scalars
 
   scalar :date, name: "Date" do
     serialize &Scalars.Date.serialize/1
