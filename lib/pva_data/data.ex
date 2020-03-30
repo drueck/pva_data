@@ -30,10 +30,7 @@ defmodule PVAData.Data do
   end
 
   def handle_call(:list_divisions, _from, %{divisions: divisions} = state) do
-    division_list =
-      divisions
-      |> Map.values()
-      |> Enum.map(&Map.take(&1, [:name, :slug]))
+    division_list = divisions |> Map.values()
 
     {:reply, division_list, state}
   end
