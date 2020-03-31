@@ -18,6 +18,24 @@ defmodule PVADataWeb.Schema.Types do
     field :id, :string
     field :name, :string
     field :slug, :string
+    field :teams, list_of(:team)
+    field :standings, list_of(:standing)
+    field :scheduled_matches, list_of(:match)
+    field :completed_matches, list_of(:match)
+  end
+
+  object :team do
+    field :id, :string
+    field :name, :string
+    field :slug, :string
+  end
+
+  object :standing do
+    field :id, :string
+  end
+
+  object :match do
+    field :id, :string
   end
 
   # node interface do

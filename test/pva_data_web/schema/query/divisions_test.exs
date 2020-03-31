@@ -5,7 +5,8 @@ defmodule PVADataWeb.Schema.Query.DivisionsTest do
   alias PVAData.{
     Router,
     Data,
-    Division
+    Division,
+    Team
   }
 
   @opts Router.init([])
@@ -50,6 +51,54 @@ defmodule PVADataWeb.Schema.Query.DivisionsTest do
       |> Enum.map(fn division -> Map.take(division, [:id, :name, :slug]) end)
 
     assert sort_by_name(returned_divisions) == sort_by_name(expected_divisions)
+  end
+
+  test "can get the list of teams in each division" do
+    query = """
+    query {
+      divisions {
+        id
+        teams {
+          id
+          name
+        }
+      }
+    }
+    """
+
+    court_jesters = Team.new(name: "Court Jesters", division: "Coed A Thursday")
+    whatever = Team.new(name: "Whatever", division: "Coed A Thursday")
+
+    division =
+      Division.new(
+        name: "Coed A Thursday",
+        teams: [court_jesters, whatever]
+      )
+
+    Data.put_division(division)
+
+    conn =
+      conn(:post, "/api", query: query)
+      |> put_req_header("content-type", "application/json")
+      |> Router.call(@opts)
+
+    returned_divisions =
+      Poison.decode!(conn.resp_body, %{keys: :atoms!})
+      |> get_in([:data, :divisions])
+
+    assert conn.status == 200
+
+    actual_teams_data =
+      returned_divisions
+      |> hd()
+      |> Map.get(:teams)
+
+    expected_teams_data =
+      division
+      |> Map.get(:teams)
+      |> Enum.map(fn team -> Map.take(team, [:id, :name]) end)
+
+    assert sort_by_name(expected_teams_data) == sort_by_name(actual_teams_data)
   end
 
   def sort_by_name(maps) do
