@@ -4,7 +4,8 @@ defmodule PVADataWeb.Schema.Query.DivisionsTest do
 
   alias PVAData.{
     Router,
-    Data
+    Data,
+    Division
   }
 
   @opts Router.init([])
@@ -16,24 +17,19 @@ defmodule PVADataWeb.Schema.Query.DivisionsTest do
 
   test "can request list of divisions" do
     query = """
-      query {
-        divisions {
-          name
-          slug
-        }
+    query {
+      divisions {
+        id
+        name
+        slug
       }
+    }
     """
 
-    [
-      %PVAData.Division{
-        name: "Coed A Thursday",
-        slug: "coed-a-thursday"
-      },
-      %PVAData.Division{
-        name: "Womens AA Monday",
-        slug: "womens-aa-monday"
-      }
-    ]
+    coed_a_thursday = Division.new(name: "Coed A Thursday", slug: "coed-a-thursday")
+    womens_aa_monday = Division.new(name: "Womens AA Monday", slug: "womens-aa-monday")
+
+    [coed_a_thursday, womens_aa_monday]
     |> Enum.each(fn division ->
       Data.put_division(division)
     end)
@@ -49,11 +45,11 @@ defmodule PVADataWeb.Schema.Query.DivisionsTest do
 
     assert conn.status == 200
 
-    assert sort_by_name(returned_divisions) ==
-             [
-               %{name: "Coed A Thursday", slug: "coed-a-thursday"},
-               %{name: "Womens AA Monday", slug: "womens-aa-monday"}
-             ]
+    expected_divisions =
+      [coed_a_thursday, womens_aa_monday]
+      |> Enum.map(fn division -> Map.take(division, [:id, :name, :slug]) end)
+
+    assert sort_by_name(returned_divisions) == sort_by_name(expected_divisions)
   end
 
   def sort_by_name(maps) do

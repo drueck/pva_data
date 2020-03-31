@@ -15,6 +15,7 @@ defmodule PVADataWeb.Schema.Types do
   end
 
   object :division do
+    field :id, :string
     field :name, :string
     field :slug, :string
   end
