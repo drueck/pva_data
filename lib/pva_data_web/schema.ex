@@ -7,7 +7,7 @@ defmodule PVADataWeb.Schema do
 
   query do
     field :divisions, list_of(:division) do
-      resolve &Resolvers.Divisions.all/2
+      resolve &Resolvers.Division.all/2
     end
   end
 end
