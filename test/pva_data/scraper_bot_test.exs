@@ -20,9 +20,11 @@ defmodule PVAData.ScraperBotTest do
     test "updates the data store with the latest info from the website" do
       ScraperBot.update_data()
 
+      expected_division = Division.new(name: "Womens AA Tuesday")
+
       assert %{divisions: divisions} = :sys.get_state(Data)
-      assert Map.has_key?(divisions, "womens-aa-tuesday")
-      assert %Division{} = division = divisions["womens-aa-tuesday"]
+      assert Map.has_key?(divisions, expected_division.id)
+      assert %Division{} = division = divisions[expected_division.id]
 
       assert division.name == "Womens AA Tuesday"
       assert division.slug == "womens-aa-tuesday"

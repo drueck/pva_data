@@ -1,5 +1,15 @@
 defmodule PVAData.Match do
-  use PVAData.ComputedId, keys: [:date, :time, :home, :visitor, :division]
+  use PVAData.ComputedId, keys: [:date, :time, :division_id, :home_team_id, :visiting_team_id]
 
-  defstruct [:id, :date, :time, :home, :visitor, :location, :ref, :division, set_results: []]
+  defstruct [
+    :id,
+    :date,
+    :time,
+    :division_id,
+    :home_team_id,
+    :visiting_team_id,
+    :location,
+    :ref,
+    set_results: []
+  ]
 end

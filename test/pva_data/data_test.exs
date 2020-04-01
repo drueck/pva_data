@@ -3,8 +3,7 @@ defmodule PVAData.DataTest do
 
   alias PVAData.{
     Data,
-    Division,
-    Team
+    Division
   }
 
   setup do
@@ -12,34 +11,33 @@ defmodule PVAData.DataTest do
   end
 
   describe "put_division/2" do
-    test "adds the division by its slug to the divisions map", %{server: server} do
-      coed_a_thursday =
-        Division.new(
-          name: "Coed A Thursday",
-          slug: "coed-a-thursday",
-          teams: [
-            %Team{name: "Court Jesters", slug: "court-jesters"}
-          ]
-        )
+    test "adds the division by its id to the divisions map", %{server: server} do
+      coed_a_thursday = Division.new(name: "Coed A Thursday", slug: "coed-a-thursday")
 
       assert :ok = Data.put_division(server, coed_a_thursday)
 
       assert %{divisions: divisions} = :sys.get_state(server)
-      assert divisions["coed-a-thursday"] == coed_a_thursday
+      assert divisions[coed_a_thursday.id] == coed_a_thursday
     end
   end
 
   describe "get_division/2" do
-    test "gets the division with the given slug", %{server: server} do
-      coed_a_thursday =
-        Division.new(
-          name: "Coed A Thursday",
-          slug: "coed-a-thursday"
-        )
+    test "gets the division with the given id", %{server: server} do
+      coed_a_thursday = Division.new(name: "Coed A Thursday", slug: "coed-a-thursday")
 
       assert :ok = Data.put_division(server, coed_a_thursday)
 
-      assert ^coed_a_thursday = Data.get_division(server, "coed-a-thursday")
+      assert ^coed_a_thursday = Data.get_division(server, coed_a_thursday.id)
+    end
+  end
+
+  describe "get_division_by_slug/2" do
+    test "gets the division with the given slug", %{server: server} do
+      coed_b_wednesday = Division.new(name: "Coed B Wednesday", slug: "coed-b-wednesday")
+
+      assert :ok = Data.put_division(server, coed_b_wednesday)
+
+      assert ^coed_b_wednesday = Data.get_division_by_slug(server, "coed-b-wednesday")
     end
   end
 
