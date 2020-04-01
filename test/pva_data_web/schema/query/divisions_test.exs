@@ -6,7 +6,8 @@ defmodule PVADataWeb.Schema.Query.DivisionsTest do
     Router,
     Data,
     Division,
-    Team
+    Team,
+    Standing
   }
 
   @opts Router.init([])
@@ -61,19 +62,20 @@ defmodule PVADataWeb.Schema.Query.DivisionsTest do
         teams {
           id
           name
+          slug
         }
       }
     }
     """
 
-    court_jesters = Team.new(name: "Court Jesters", division: "Coed A Thursday")
-    whatever = Team.new(name: "Whatever", division: "Coed A Thursday")
+    division = Division.new(name: "Coed A Thursday")
 
-    division =
-      Division.new(
-        name: "Coed A Thursday",
-        teams: [court_jesters, whatever]
-      )
+    court_jesters =
+      Team.new(name: "Court Jesters", slug: "court-jesters", division_id: division.id)
+
+    whatever = Team.new(name: "Whatever", slug: "whatever", division_id: division.id)
+
+    division = %{division | teams: [court_jesters, whatever]}
 
     Data.put_division(division)
 
@@ -96,12 +98,106 @@ defmodule PVADataWeb.Schema.Query.DivisionsTest do
     expected_teams_data =
       division
       |> Map.get(:teams)
-      |> Enum.map(fn team -> Map.take(team, [:id, :name]) end)
+      |> Enum.map(fn team -> Map.take(team, [:id, :name, :slug]) end)
 
-    assert sort_by_name(expected_teams_data) == sort_by_name(actual_teams_data)
+    assert sort_by_name(actual_teams_data) == sort_by_name(expected_teams_data)
+  end
+
+  test "can get standings for each division" do
+    query = """
+    query {
+      divisions {
+        standings {
+          id
+          team {
+            id
+            name
+            slug
+          }
+          wins
+          losses
+        }
+      }
+    }
+    """
+
+    division = Division.new(name: "Coed A Thursday")
+
+    court_jesters =
+      Team.new(name: "Court Jesters", slug: "court-jesters", division_id: division.id)
+
+    whatever = Team.new(name: "Whatever", slug: "whatever", division_id: division.id)
+
+    court_jesters_standings =
+      Standing.new(
+        team_id: court_jesters.id,
+        division_id: division.id,
+        wins: 2,
+        losses: 3
+      )
+
+    whatever_standings =
+      Standing.new(
+        team_id: whatever.id,
+        division_id: division.id,
+        wins: 3,
+        losses: 2
+      )
+
+    division =
+      division
+      |> Map.put(:teams, [court_jesters, whatever])
+      |> Map.put(:standings, [court_jesters_standings, whatever_standings])
+
+    Data.put_division(division)
+
+    conn =
+      conn(:post, "/api", query: query)
+      |> put_req_header("content-type", "application/json")
+      |> Router.call(@opts)
+
+    returned_divisions =
+      Poison.decode!(conn.resp_body, %{keys: :atoms!})
+      |> get_in([:data, :divisions])
+
+    assert conn.status == 200
+
+    actual_standings =
+      returned_divisions
+      |> hd()
+      |> Map.get(:standings)
+
+    expected_standings = [
+      %{
+        id: court_jesters_standings.id,
+        team: %{
+          id: court_jesters.id,
+          name: "Court Jesters",
+          slug: "court-jesters"
+        },
+        wins: 2,
+        losses: 3
+      },
+      %{
+        id: whatever_standings.id,
+        team: %{
+          id: whatever.id,
+          name: "Whatever",
+          slug: "whatever"
+        },
+        wins: 3,
+        losses: 2
+      }
+    ]
+
+    assert sort_by_id(actual_standings) == sort_by_id(expected_standings)
   end
 
   def sort_by_name(maps) do
     Enum.sort_by(maps, & &1.name)
+  end
+
+  def sort_by_id(maps) do
+    Enum.sort_by(maps, & &1.id)
   end
 end

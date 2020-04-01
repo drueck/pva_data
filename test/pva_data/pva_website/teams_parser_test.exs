@@ -17,29 +17,28 @@ defmodule PVAData.TeamsScraperTest do
 
       expected_division_count = 8
 
-      expected_first_division =
-        Division.new(%{
-          name: "Coed A Thursday",
-          slug: "coed-a-thursday",
-          teams: [
-            Team.new(%{division: "Coed A Thursday", name: "Chewblocka", slug: "chewblocka"}),
-            Team.new(%{division: "Coed A Thursday", name: "Court Jesters", slug: "court-jesters"}),
-            Team.new(%{
-              division: "Coed A Thursday",
-              name: "Empire Spikes Back",
-              slug: "empire-spikes-back"
-            }),
-            Team.new(%{division: "Coed A Thursday", name: "Group Sets", slug: "group-sets"}),
-            Team.new(%{
-              division: "Coed A Thursday",
-              name: "Other People's Spouses",
-              slug: "other-peoples-spouses"
-            }),
-            Team.new(%{division: "Coed A Thursday", name: "Pokéballs", slug: "pokeballs"}),
-            Team.new(%{division: "Coed A Thursday", name: "Pound Town", slug: "pound-town"}),
-            Team.new(%{division: "Coed A Thursday", name: "Whatever", slug: "whatever"})
-          ]
-        })
+      first_division = Division.new(name: "Coed A Thursday", slug: "coed-a-thursday")
+
+      teams = [
+        Team.new(division_id: first_division.id, name: "Chewblocka", slug: "chewblocka"),
+        Team.new(division_id: first_division.id, name: "Court Jesters", slug: "court-jesters"),
+        Team.new(
+          division_id: first_division.id,
+          name: "Empire Spikes Back",
+          slug: "empire-spikes-back"
+        ),
+        Team.new(division_id: first_division.id, name: "Group Sets", slug: "group-sets"),
+        Team.new(
+          division_id: first_division.id,
+          name: "Other People's Spouses",
+          slug: "other-peoples-spouses"
+        ),
+        Team.new(division_id: first_division.id, name: "Pokéballs", slug: "pokeballs"),
+        Team.new(division_id: first_division.id, name: "Pound Town", slug: "pound-town"),
+        Team.new(division_id: first_division.id, name: "Whatever", slug: "whatever")
+      ]
+
+      expected_first_division = %{first_division | teams: teams}
 
       assert length(divisions) == expected_division_count
       assert hd(divisions) == expected_first_division

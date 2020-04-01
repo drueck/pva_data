@@ -1,5 +1,5 @@
 defmodule PVAData.Team do
-  use PVAData.ComputedId, keys: [:name, :division]
+  use PVAData.ComputedId, keys: [:name, :division_id]
 
-  defstruct [:id, :name, :division, :slug]
+  defstruct [:id, :name, :division_id, :slug]
 end

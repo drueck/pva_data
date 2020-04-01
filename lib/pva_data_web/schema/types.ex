@@ -3,6 +3,8 @@ defmodule PVADataWeb.Schema.Types do
   use Absinthe.Relay.Schema.Notation, :modern
 
   alias PVADataWeb.Schema.Scalars
+  alias PVADataWeb.Resolvers
+  alias PVAData.Standing
 
   scalar :date, name: "Date" do
     serialize &Scalars.Date.serialize/1
@@ -32,6 +34,15 @@ defmodule PVADataWeb.Schema.Types do
 
   object :standing do
     field :id, :string
+
+    field :team, :team do
+      resolve fn %Standing{division_id: division_id, team_id: team_id}, _, _ ->
+        Resolvers.Team.get(division_id, team_id)
+      end
+    end
+
+    field :wins, :integer
+    field :losses, :integer
   end
 
   object :match do

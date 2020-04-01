@@ -4,6 +4,8 @@ defmodule PVAData.PVAWebsite.ScoresParserTest do
   alias PVAData.PVAWebsite.ScoresParser
 
   alias PVAData.{
+    Team,
+    Division,
     Match,
     SetResult
   }
@@ -20,80 +22,96 @@ defmodule PVAData.PVAWebsite.ScoresParserTest do
 
       {:ok, first_match_date} = Date.new(current_year, 4, 8)
 
+      first_match_division = Division.new(name: "Womens A1 Monday")
+
+      first_match_home_team =
+        Team.new(name: "Hot Piece of Ace MON", division_id: first_match_division.id)
+
+      first_match_visiting_team =
+        Team.new(name: "Lollipop Girls", division_id: first_match_division.id)
+
       expected_first_match =
-        Match.new(%{
+        Match.new(
           date: first_match_date,
           time: ~T[19:00:00],
-          home: "Hot Piece of Ace MON",
-          visitor: "Lollipop Girls",
-          division: "Womens A1 Monday",
+          division_id: first_match_division.id,
+          home_team_id: first_match_home_team.id,
+          visiting_team_id: first_match_visiting_team.id,
           location: nil,
           ref: nil
-        })
+        )
 
       expected_first_match =
         expected_first_match
         |> Map.put(
           :set_results,
           [
-            SetResult.new(%{
+            SetResult.new(
               match_id: expected_first_match.id,
               set: 1,
               home: 25,
               visitor: 11
-            }),
-            SetResult.new(%{
+            ),
+            SetResult.new(
               match_id: expected_first_match.id,
               set: 2,
               home: 27,
               visitor: 25
-            }),
-            SetResult.new(%{
+            ),
+            SetResult.new(
               match_id: expected_first_match.id,
               set: 3,
               home: 15,
               visitor: 11
-            })
+            )
           ]
         )
 
       {:ok, last_match_date} = Date.new(current_year, 4, 9)
 
+      last_match_division = Division.new(name: "Womens AA Tuesday")
+
+      last_match_home_team =
+        Team.new(name: "Natural Diaster", division_id: last_match_division.id)
+
+      last_match_visiting_team =
+        Team.new(name: "Sneaker Wave", division_id: last_match_division.id)
+
       expected_last_match =
-        Match.new(%{
+        Match.new(
           date: last_match_date,
           time: ~T[20:00:00],
-          home: "Natural Diaster",
-          visitor: "Sneaker Wave",
-          division: "Womens AA Tuesday",
+          division_id: last_match_division.id,
+          home_team_id: last_match_home_team.id,
+          visiting_team_id: last_match_visiting_team.id,
           location: nil,
           ref: nil,
           set_results: []
-        })
+        )
 
       expected_last_match =
         expected_last_match
         |> Map.put(
           :set_results,
           [
-            SetResult.new(%{
+            SetResult.new(
               match_id: expected_last_match.id,
               set: 1,
               home: 25,
               visitor: 21
-            }),
-            SetResult.new(%{
+            ),
+            SetResult.new(
               match_id: expected_last_match.id,
               set: 2,
               home: 15,
               visitor: 25
-            }),
-            SetResult.new(%{
+            ),
+            SetResult.new(
               match_id: expected_last_match.id,
               set: 3,
               home: 15,
               visitor: 11
-            })
+            )
           ]
         )
 

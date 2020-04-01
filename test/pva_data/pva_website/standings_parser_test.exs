@@ -4,7 +4,8 @@ defmodule PVAData.PVAWebsite.StandingsParserTest do
   alias PVAData.PVAWebsite.StandingsParser
 
   alias PVAData.{
-    DivisionStandings,
+    Team,
+    Division,
     Standing
   }
 
@@ -17,92 +18,93 @@ defmodule PVAData.PVAWebsite.StandingsParserTest do
 
       expected_count = 8
 
-      expected_first =
-        DivisionStandings.new(%{
-          division: "Coed A Thursday",
-          standings: [
-            Standing.new(%{
-              team: "Pound Town",
-              division: "Coed A Thursday",
-              wins: 0,
-              losses: 0,
-              winning_percentage: 0.0,
-              match_points: 0.0,
-              match_points_possible: 0.0,
-              match_point_percentage: 0.0
-            }),
-            Standing.new(%{
-              team: "Group Sets",
-              division: "Coed A Thursday",
-              wins: 0,
-              losses: 0,
-              winning_percentage: 0.0,
-              match_points: 0.0,
-              match_points_possible: 0.0,
-              match_point_percentage: 0.0
-            }),
-            Standing.new(%{
-              team: "Court Jesters",
-              division: "Coed A Thursday",
-              wins: 0,
-              losses: 0,
-              winning_percentage: 0.0,
-              match_points: 0.0,
-              match_points_possible: 0.0,
-              match_point_percentage: 0.0
-            }),
-            Standing.new(%{
-              team: "Other People's Spouses",
-              division: "Coed A Thursday",
-              wins: 0,
-              losses: 0,
-              winning_percentage: 0.0,
-              match_points: 0.0,
-              match_points_possible: 0.0,
-              match_point_percentage: 0.0
-            }),
-            Standing.new(%{
-              team: "Chewblocka",
-              division: "Coed A Thursday",
-              wins: 0,
-              losses: 0,
-              winning_percentage: 0.0,
-              match_points: 0.0,
-              match_points_possible: 0.0,
-              match_point_percentage: 0.0
-            }),
-            Standing.new(%{
-              team: "Whatever",
-              division: "Coed A Thursday",
-              wins: 0,
-              losses: 0,
-              winning_percentage: 0.0,
-              match_points: 0.0,
-              match_points_possible: 0.0,
-              match_point_percentage: 0.0
-            }),
-            Standing.new(%{
-              team: "Pokéballs",
-              division: "Coed A Thursday",
-              wins: 0,
-              losses: 0,
-              winning_percentage: 0.0,
-              match_points: 0.0,
-              match_points_possible: 0.0,
-              match_point_percentage: 0.0
-            }),
-            Standing.new(%{
-              team: "Empire Spikes Back",
-              division: "Coed A Thursday",
-              wins: 0,
-              losses: 0,
-              winning_percentage: 0.0,
-              match_points: 0.0,
-              match_points_possible: 0.0,
-              match_point_percentage: 0.0
-            })
-          ]
-        })
+      division_id = Division.new(name: "Coed A Thursday").id
+
+      expected_first = %{
+        division_id: division_id,
+        standings: [
+          Standing.new(
+            team_id: Team.new(name: "Pound Town", division_id: division_id).id,
+            division_id: division_id,
+            wins: 0,
+            losses: 0,
+            winning_percentage: 0.0,
+            match_points: 0.0,
+            match_points_possible: 0.0,
+            match_point_percentage: 0.0
+          ),
+          Standing.new(
+            team_id: Team.new(name: "Group Sets", division_id: division_id).id,
+            division_id: division_id,
+            wins: 0,
+            losses: 0,
+            winning_percentage: 0.0,
+            match_points: 0.0,
+            match_points_possible: 0.0,
+            match_point_percentage: 0.0
+          ),
+          Standing.new(
+            team_id: Team.new(name: "Court Jesters", division_id: division_id).id,
+            division_id: division_id,
+            wins: 0,
+            losses: 0,
+            winning_percentage: 0.0,
+            match_points: 0.0,
+            match_points_possible: 0.0,
+            match_point_percentage: 0.0
+          ),
+          Standing.new(
+            team_id: Team.new(name: "Other People's Spouses", division_id: division_id).id,
+            division_id: division_id,
+            wins: 0,
+            losses: 0,
+            winning_percentage: 0.0,
+            match_points: 0.0,
+            match_points_possible: 0.0,
+            match_point_percentage: 0.0
+          ),
+          Standing.new(
+            team_id: Team.new(name: "Chewblocka", division_id: division_id).id,
+            division_id: division_id,
+            wins: 0,
+            losses: 0,
+            winning_percentage: 0.0,
+            match_points: 0.0,
+            match_points_possible: 0.0,
+            match_point_percentage: 0.0
+          ),
+          Standing.new(
+            team_id: Team.new(name: "Whatever", division_id: division_id).id,
+            division_id: division_id,
+            wins: 0,
+            losses: 0,
+            winning_percentage: 0.0,
+            match_points: 0.0,
+            match_points_possible: 0.0,
+            match_point_percentage: 0.0
+          ),
+          Standing.new(
+            team_id: Team.new(name: "Pokéballs", division_id: division_id).id,
+            division_id: division_id,
+            wins: 0,
+            losses: 0,
+            winning_percentage: 0.0,
+            match_points: 0.0,
+            match_points_possible: 0.0,
+            match_point_percentage: 0.0
+          ),
+          Standing.new(
+            team_id: Team.new(name: "Empire Spikes Back", division_id: division_id).id,
+            division_id: division_id,
+            wins: 0,
+            losses: 0,
+            winning_percentage: 0.0,
+            match_points: 0.0,
+            match_points_possible: 0.0,
+            match_point_percentage: 0.0
+          )
+        ]
+      }
 
       assert length(division_standings) == expected_count
       assert List.first(division_standings) == expected_first
