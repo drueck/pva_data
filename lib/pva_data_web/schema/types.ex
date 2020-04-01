@@ -4,7 +4,6 @@ defmodule PVADataWeb.Schema.Types do
 
   alias PVADataWeb.Schema.Scalars
   alias PVADataWeb.Resolvers
-  alias PVAData.Standing
 
   scalar :date, name: "Date" do
     serialize &Scalars.Date.serialize/1
@@ -36,9 +35,7 @@ defmodule PVADataWeb.Schema.Types do
     field :id, :string
 
     field :team, :team do
-      resolve fn %Standing{division_id: division_id, team_id: team_id}, _, _ ->
-        Resolvers.Team.get(division_id, team_id)
-      end
+      resolve &Resolvers.Team.from_standing/3
     end
 
     field :wins, :integer
@@ -47,6 +44,31 @@ defmodule PVADataWeb.Schema.Types do
 
   object :match do
     field :id, :string
+    field :date, :date
+    field :time, :time
+
+    field :division, :division do
+      resolve &Resolvers.Division.from_match/3
+    end
+
+    field :home_team, :team do
+      resolve &Resolvers.Team.home_team_from_match/3
+    end
+
+    field :visiting_team, :team do
+      resolve &Resolvers.Team.visiting_team_from_match/3
+    end
+
+    field :location, :string
+    field :ref, :string
+    field :set_results, list_of(:set_result)
+  end
+
+  object :set_result do
+    field :id, :string
+    field :set_number, :integer
+    field :home_team_score, :integer
+    field :visiting_team_score, :integer
   end
 
   # node interface do

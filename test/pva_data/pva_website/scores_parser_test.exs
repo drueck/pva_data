@@ -48,21 +48,21 @@ defmodule PVAData.PVAWebsite.ScoresParserTest do
           [
             SetResult.new(
               match_id: expected_first_match.id,
-              set: 1,
-              home: 25,
-              visitor: 11
+              set_number: 1,
+              home_team_score: 25,
+              visiting_team_score: 11
             ),
             SetResult.new(
               match_id: expected_first_match.id,
-              set: 2,
-              home: 27,
-              visitor: 25
+              set_number: 2,
+              home_team_score: 27,
+              visiting_team_score: 25
             ),
             SetResult.new(
               match_id: expected_first_match.id,
-              set: 3,
-              home: 15,
-              visitor: 11
+              set_number: 3,
+              home_team_score: 15,
+              visiting_team_score: 11
             )
           ]
         )
@@ -96,21 +96,21 @@ defmodule PVAData.PVAWebsite.ScoresParserTest do
           [
             SetResult.new(
               match_id: expected_last_match.id,
-              set: 1,
-              home: 25,
-              visitor: 21
+              set_number: 1,
+              home_team_score: 25,
+              visiting_team_score: 21
             ),
             SetResult.new(
               match_id: expected_last_match.id,
-              set: 2,
-              home: 15,
-              visitor: 25
+              set_number: 2,
+              home_team_score: 15,
+              visiting_team_score: 25
             ),
             SetResult.new(
               match_id: expected_last_match.id,
-              set: 3,
-              home: 15,
-              visitor: 11
+              set_number: 3,
+              home_team_score: 15,
+              visiting_team_score: 11
             )
           ]
         )

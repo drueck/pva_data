@@ -58,9 +58,9 @@ defmodule PVAData.PVAWebsite.ScoresParser do
       %{"home" => home, "visitor" => visitor} ->
         SetResult.new(
           match_id: match_id,
-          set: set_number,
-          home: String.to_integer(home),
-          visitor: String.to_integer(visitor)
+          set_number: set_number,
+          home_team_score: String.to_integer(home),
+          visiting_team_score: String.to_integer(visitor)
         )
     end
   end
