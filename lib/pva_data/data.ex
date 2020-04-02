@@ -33,7 +33,7 @@ defmodule PVAData.Data do
     {:reply, Map.get(divisions, id), state}
   end
 
-  def handle_call({:get_division_by_slug, slug}, _from, %{divisions: divisions = state}) do
+  def handle_call({:get_division_by_slug, slug}, _from, %{divisions: divisions} = state) do
     division =
       divisions
       |> Map.values()

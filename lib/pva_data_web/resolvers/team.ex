@@ -17,6 +17,16 @@ defmodule PVADataWeb.Resolvers.Team do
     get(division_id, team_id)
   end
 
+  def by_slugs(%{division_slug: division_slug, team_slug: team_slug}, _) do
+    team =
+      division_slug
+      |> Data.get_division_by_slug()
+      |> Map.get(:teams)
+      |> Enum.find(fn team -> team.slug == team_slug end)
+
+    {:ok, team}
+  end
+
   defp get(division_id, team_id) do
     team =
       division_id

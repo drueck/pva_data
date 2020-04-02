@@ -1,6 +1,7 @@
 defmodule PVADataWeb.Resolvers.Division do
   alias PVAData.{
     Data,
+    Team,
     Match
   }
 
@@ -12,7 +13,11 @@ defmodule PVADataWeb.Resolvers.Division do
     get(division_id)
   end
 
-  def by_slug(_, %{slug: slug}, _) do
+  def from_team(%Team{division_id: division_id}, _, _) do
+    get(division_id)
+  end
+
+  def by_slug(%{slug: slug}, _) do
     division = Data.get_division_by_slug(slug)
 
     {:ok, division}

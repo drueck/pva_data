@@ -29,6 +29,10 @@ defmodule PVADataWeb.Schema.Types do
     field :id, :string
     field :name, :string
     field :slug, :string
+
+    field :division, :division do
+      resolve &Resolvers.Division.from_team/3
+    end
   end
 
   object :standing do
