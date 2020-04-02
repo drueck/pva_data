@@ -6,7 +6,8 @@ defmodule PVADataWeb.Schema.Query.TeamTest do
     Router,
     Data,
     Division,
-    Team
+    Team,
+    Standing
   }
 
   @opts Router.init([])
@@ -112,6 +113,82 @@ defmodule PVADataWeb.Schema.Query.TeamTest do
         id: coed_a_thursday.id,
         name: coed_a_thursday.name,
         slug: coed_a_thursday.slug
+      }
+    }
+
+    assert returned_team == expected_team
+  end
+
+  test "can request a teams record (standing)" do
+    query = """
+    query($divisionSlug: String!, $teamSlug: String!) {
+      team(divisionSlug: $divisionSlug, teamSlug: $teamSlug) {
+        id
+        name
+        slug
+        record {
+          division {
+            id
+            name
+            slug
+          }
+          wins
+          losses
+          match_points
+        }
+      }
+    }
+    """
+
+    division = Division.new(name: "Coed A Thursday", slug: "coed-a-thursday")
+    team = Team.new(name: "Court Jesters", slug: "court-jesters", division_id: division.id)
+
+    team_standing =
+      Standing.new(
+        team_id: team.id,
+        division_id: division.id,
+        wins: 5,
+        losses: 3,
+        match_points: 22.5
+      )
+
+    division =
+      division
+      |> Map.put(:teams, [team])
+      |> Map.put(:standings, [team_standing])
+
+    Data.put_division(division)
+
+    variables = %{
+      "divisionSlug" => "coed-a-thursday",
+      "teamSlug" => "court-jesters"
+    }
+
+    conn =
+      conn(:post, "/api", query: query, variables: variables)
+      |> put_req_header("content-type", "application/json")
+      |> Router.call(@opts)
+
+    returned_team =
+      Poison.decode!(conn.resp_body, %{keys: :atoms!})
+      |> IO.inspect()
+      |> get_in([:data, :team])
+
+    assert conn.status == 200
+
+    expected_team = %{
+      id: team.id,
+      name: team.name,
+      slug: team.slug,
+      record: %{
+        division: %{
+          id: division.id,
+          name: division.name,
+          slug: division.slug
+        },
+        wins: team_standing.wins,
+        losses: team_standing.losses,
+        match_points: team_standing.match_points
       }
     }
 

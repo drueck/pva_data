@@ -2,7 +2,8 @@ defmodule PVADataWeb.Resolvers.Division do
   alias PVAData.{
     Data,
     Team,
-    Match
+    Match,
+    Standing
   }
 
   def all(_, _) do
@@ -14,6 +15,10 @@ defmodule PVADataWeb.Resolvers.Division do
   end
 
   def from_team(%Team{division_id: division_id}, _, _) do
+    get(division_id)
+  end
+
+  def from_standing(%Standing{division_id: division_id}, _, _) do
     get(division_id)
   end
 
