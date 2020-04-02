@@ -13,7 +13,14 @@ defmodule PVADataWeb.Schema do
     field :division, :division do
       arg :slug, :string
 
-      resolve &Resolvers.Division.by_slug/3
+      resolve &Resolvers.Division.by_slug/2
+    end
+
+    field :team, :team do
+      arg :division_slug, :string
+      arg :team_slug, :string
+
+      resolve &Resolvers.Team.by_slugs/2
     end
   end
 end
