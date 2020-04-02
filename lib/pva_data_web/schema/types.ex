@@ -37,6 +37,14 @@ defmodule PVADataWeb.Schema.Types do
     field :record, :standing do
       resolve &Resolvers.Standing.from_team/3
     end
+
+    field :completed_matches, list_of(:match) do
+      resolve &Resolvers.Match.completed_for_team/3
+    end
+
+    field :scheduled_matches, list_of(:match) do
+      resolve &Resolvers.Match.scheduled_for_team/3
+    end
   end
 
   object :standing do
