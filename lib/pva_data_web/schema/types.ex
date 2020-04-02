@@ -33,6 +33,10 @@ defmodule PVADataWeb.Schema.Types do
     field :division, :division do
       resolve &Resolvers.Division.from_team/3
     end
+
+    field :record, :standing do
+      resolve &Resolvers.Standing.from_team/3
+    end
   end
 
   object :standing do
@@ -42,8 +46,16 @@ defmodule PVADataWeb.Schema.Types do
       resolve &Resolvers.Team.from_standing/3
     end
 
+    field :division, :division do
+      resolve &Resolvers.Division.from_standing/3
+    end
+
     field :wins, :integer
     field :losses, :integer
+    field :winning_percentage, :float
+    field :match_points, :float
+    field :match_points_possible, :float
+    field :match_points_percentage, :float
   end
 
   object :match do
