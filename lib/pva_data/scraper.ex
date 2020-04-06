@@ -1,6 +1,4 @@
 defmodule PVAData.Scraper do
-  alias PVAData.Data
-
   @pva_website Application.get_env(:pva_data, :pva_website_client)
 
   def scrape do
