@@ -1,9 +1,8 @@
-defmodule PVAData.ScraperBotTest do
+defmodule PVAData.ScraperTest do
   use ExUnit.Case, async: true
 
   alias PVAData.{
-    Data,
-    ScraperBot,
+    Scraper,
     Division,
     Team,
     Match,
@@ -11,20 +10,17 @@ defmodule PVAData.ScraperBotTest do
     SetResult
   }
 
-  setup do
-    server = start_supervised!({Data, [name: Data]})
-    {:ok, server: server}
-  end
-
-  describe "#update_data/0" do
-    test "updates the data store with the latest info from the website" do
-      ScraperBot.update_data()
+  describe "scrape/0" do
+    test "returns the latest data from the website by divisions" do
+      {:ok, divisions} = Scraper.scrape()
 
       expected_division = Division.new(name: "Womens AA Tuesday")
 
-      assert %{divisions: divisions} = :sys.get_state(Data)
-      assert Map.has_key?(divisions, expected_division.id)
-      assert %Division{} = division = divisions[expected_division.id]
+      division =
+        divisions
+        |> Enum.find(fn division ->
+          division.name == expected_division.name
+        end)
 
       assert division.name == "Womens AA Tuesday"
       assert division.slug == "womens-aa-tuesday"
