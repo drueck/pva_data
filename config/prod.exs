@@ -1,6 +1,8 @@
 use Mix.Config
 
-alias PVAData.Data
+# compile time configuration goes here
+# see config/releases.exs for runtime config
 
 config :pva_data,
-  other_children: [{Data, [name: Data]}]
+  persistence_client: PVAData.Persistence.Redis,
+  persistence_state_key: "prod"
