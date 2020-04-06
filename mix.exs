@@ -7,7 +7,12 @@ defmodule PVAData.MixProject do
       version: "0.1.0",
       elixir: "~> 1.10",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      releases: [
+        pva_data: [
+          include_executables_for: [:unix]
+        ]
+      ]
     ]
   end
 
@@ -32,6 +37,7 @@ defmodule PVAData.MixProject do
       {:plug, "~> 1.8.0"},
       {:plug_cowboy, "~> 2.0"},
       {:poison, "~> 4.0.1"},
+      {:rollbax, ">= 0.0.0"},
       {:slugger, "~> 0.3.0"},
       {:uuid, "~> 1.1.8"}
     ]
