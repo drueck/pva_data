@@ -1,12 +1,14 @@
 defmodule PVAData.Data do
   use GenServer
 
+  alias PVAData.Persistence
+
   def start_link(opts \\ []) do
     GenServer.start_link(__MODULE__, :ok, opts)
   end
 
   def init(:ok) do
-    {:ok, %{divisions: %{}}}
+    {:ok, %{divisions: %{}, checked_at: nil, updated_at: nil, saved_at: nil}}
   end
 
   def put_division(pid \\ __MODULE__, division) do
@@ -21,12 +23,48 @@ defmodule PVAData.Data do
     GenServer.call(pid, {:get_division_by_slug, slug})
   end
 
+  def get_updated_at(pid \\ __MODULE__) do
+    GenServer.call(pid, :get_updated_at)
+  end
+
   def list_divisions(pid \\ __MODULE__) do
     GenServer.call(pid, :list_divisions)
   end
 
+  def save_state(pid \\ __MODULE__) do
+    GenServer.cast(pid, :save_state)
+  end
+
+  def load_state(pid \\ __MODULE__) do
+    GenServer.cast(pid, :load_state)
+  end
+
   def handle_cast({:put_division, division}, %{divisions: divisions} = state) do
-    {:noreply, %{state | divisions: Map.put(divisions, division.id, division)}}
+    state =
+      state
+      |> Map.put(:divisions, Map.put(divisions, division.id, division))
+      |> Map.put(:updated_at, DateTime.utc_now())
+
+    {:noreply, state}
+  end
+
+  def handle_cast(:save_state, state) do
+    updated_state = %{state | saved_at: DateTime.utc_now()}
+
+    updated_state
+    |> Persistence.save_state()
+    |> case do
+      :ok -> {:noreply, updated_state}
+      _ -> {:noreply, state}
+    end
+  end
+
+  def handle_cast(:load_state, state) do
+    Persistence.read_state()
+    |> case do
+      {:ok, persisted_state} -> {:noreply, persisted_state}
+      _ -> {:noreply, state}
+    end
   end
 
   def handle_call({:get_division, id}, _from, %{divisions: divisions} = state) do
@@ -46,5 +84,9 @@ defmodule PVAData.Data do
     division_list = divisions |> Map.values()
 
     {:reply, division_list, state}
+  end
+
+  def handle_call(:get_updated_at, _from, %{updated_at: updated_at} = state) do
+    {:reply, updated_at, state}
   end
 end

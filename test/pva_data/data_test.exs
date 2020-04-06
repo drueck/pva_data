@@ -11,13 +11,18 @@ defmodule PVAData.DataTest do
   end
 
   describe "put_division/2" do
-    test "adds the division by its id to the divisions map", %{server: server} do
+    test "adds the division by its id to the divisions map and updates updated_at", %{
+      server: server
+    } do
       coed_a_thursday = Division.new(name: "Coed A Thursday", slug: "coed-a-thursday")
 
       assert :ok = Data.put_division(server, coed_a_thursday)
 
-      assert %{divisions: divisions} = :sys.get_state(server)
+      assert %{divisions: divisions, updated_at: updated_at} = :sys.get_state(server)
+
       assert divisions[coed_a_thursday.id] == coed_a_thursday
+
+      assert DateTime.diff(updated_at, DateTime.utc_now(), :second) < 2
     end
   end
 
@@ -52,6 +57,16 @@ defmodule PVAData.DataTest do
       divisions = Data.list_divisions(server)
 
       assert sort_by_name(divisions) == sort_by_name([coed_a_thursday, coed_b_wednesday])
+    end
+  end
+
+  describe "get_updated_at/1" do
+    test "returns the updated_at datetime", %{server: server} do
+      division = Division.new(name: "Test")
+      Data.put_division(server, division)
+      assert %{updated_at: updated_at} = :sys.get_state(server)
+      assert updated_at
+      assert Data.get_updated_at(server) == updated_at
     end
   end
 
