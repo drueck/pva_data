@@ -1,21 +1,23 @@
-defmodule PVAData.ScraperBot do
+defmodule PVAData.Scraper do
   alias PVAData.Data
 
   @pva_website Application.get_env(:pva_data, :pva_website_client)
 
-  def update_data do
+  def scrape do
     with {:ok, divisions} <- @pva_website.get_teams_by_division(),
          {:ok, scheduled_matches} <- @pva_website.get_scheduled_matches(),
          {:ok, completed_matches} <- @pva_website.get_completed_matches(),
          {:ok, division_standings} <- @pva_website.get_division_standings() do
       divisions
-      |> Enum.each(fn division ->
+      |> Enum.map(fn division ->
         division
         |> add_scheduled_matches(scheduled_matches)
         |> add_completed_matches(completed_matches)
         |> add_standings(division_standings)
-        |> Data.put_division()
       end)
+      |> (fn divisions -> {:ok, divisions} end).()
+    else
+      error -> error
     end
   end
 
