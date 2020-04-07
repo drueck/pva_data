@@ -12,7 +12,7 @@ defmodule PVAData.Application do
           Plug.Cowboy.child_spec(
             scheme: :http,
             plug: PVAData.Router,
-            options: [port: Application.get_env(:pva_data, :port) |> IO.inspect()]
+            options: [port: Application.get_env(:pva_data, :port)]
           )
         ]
 
