@@ -30,7 +30,7 @@ defmodule PVAData.PVAWebsite.StandingsParser do
             winning_percentage,
             match_points,
             match_points_possible,
-            match_point_percentage,
+            match_points_percentage,
             _
           ] =
             row
@@ -47,7 +47,7 @@ defmodule PVAData.PVAWebsite.StandingsParser do
             winning_percentage: to_float(winning_percentage),
             match_points: to_float(match_points),
             match_points_possible: to_float(match_points_possible),
-            match_point_percentage: to_float(match_point_percentage)
+            match_points_percentage: to_float(match_points_percentage)
           )
         end)
       end)

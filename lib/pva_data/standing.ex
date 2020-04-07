@@ -10,6 +10,6 @@ defmodule PVAData.Standing do
     winning_percentage: 0.0,
     match_points: 0.0,
     match_points_possible: 0.0,
-    match_point_percentage: 0.0
+    match_points_percentage: 0.0
   ]
 end
