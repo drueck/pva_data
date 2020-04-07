@@ -1,178 +1,76 @@
 defmodule PVAData.DataTest do
   use ExUnit.Case, async: true
 
-  alias PVAData.Data
-  alias PVAData.Divisions.Division
-  alias PVAData.Standings.TeamRecord
-  alias PVAData.Matches.Match
+  alias PVAData.{
+    Data,
+    Division
+  }
 
   setup do
     %{server: start_supervised!(Data)}
   end
 
   describe "put_division/2" do
-    test "it sets or replaces the given division", %{server: server} do
-      division = %Division{name: "Test Division", standings: [], matches: []}
+    test "adds the division by its id to the divisions map and updates updated_at", %{
+      server: server
+    } do
+      coed_a_thursday = Division.new(name: "Coed A Thursday", slug: "coed-a-thursday")
 
-      assert :ok = Data.put_division(server, division)
+      assert :ok = Data.put_division(server, coed_a_thursday)
 
-      assert %{divisions: divisions} = :sys.get_state(server)
-      assert Map.get(divisions, division.name) == division
-    end
-  end
+      assert %{divisions: divisions, updated_at: updated_at} = :sys.get_state(server)
 
-  describe "get_divisions/1" do
-    test "it returns a list of all the divisions with all of their data", %{server: server} do
-      division1 = %Division{name: "Coed A Thursday"}
-      division2 = %Division{name: "Coed A Wednesday"}
+      assert divisions[coed_a_thursday.id] == coed_a_thursday
 
-      assert :ok = Data.put_division(server, division1)
-      assert :ok = Data.put_division(server, division2)
-
-      divisions = Data.get_divisions(server)
-
-      assert length(divisions) == 2
-      assert division1 in divisions
-      assert division2 in divisions
+      assert DateTime.diff(updated_at, DateTime.utc_now(), :second) < 2
     end
   end
 
   describe "get_division/2" do
-    test "it returns the division from the division name", %{server: server} do
-      division1 = %Division{name: "Coed A Thursday"}
-      division2 = %Division{name: "Coed A Wednesday"}
-
-      assert :ok = Data.put_division(server, division1)
-      assert :ok = Data.put_division(server, division2)
-
-      division = Data.get_division(server, "Coed A Thursday")
-
-      assert division == division1
-    end
-  end
-
-  describe "get_division_names/1" do
-    test "it a list of all the division names it knows about", %{server: server} do
-      division1 = %Division{name: "Coed A Thursday"}
-      division2 = %Division{name: "Coed A Wednesday"}
-
-      assert :ok = Data.put_division(server, division1)
-      assert :ok = Data.put_division(server, division2)
-
-      division_names = Data.get_division_names(server)
-
-      assert length(division_names) == 2
-      assert division1.name in division_names
-      assert division2.name in division_names
-    end
-  end
-
-  describe "get_division_standings/2" do
-    test "it gets the standings for the given division name", %{server: server} do
-      coed_a_thursday = %Division{
-        name: "Coed A Thursday",
-        standings: [
-          %TeamRecord{team_name: "Court Jesters", matches_won: 1, matches_lost: 0},
-          %TeamRecord{team_name: "Other Team", matches_won: 0, matches_lost: 1}
-        ],
-        matches: []
-      }
+    test "gets the division with the given id", %{server: server} do
+      coed_a_thursday = Division.new(name: "Coed A Thursday", slug: "coed-a-thursday")
 
       assert :ok = Data.put_division(server, coed_a_thursday)
 
-      standings = Data.get_division_standings(server, "Coed A Thursday")
-
-      assert standings == coed_a_thursday.standings
+      assert ^coed_a_thursday = Data.get_division(server, coed_a_thursday.id)
     end
   end
 
-  describe "get_team_schedule/3" do
-    test "it gets the unplayed matches for the given team in the given division, \
-          sorted in chronological order",
-         %{server: server} do
-      played_match = %Match{
-        date: ~D[2018-10-04],
-        time: ~T[20:00:00.000],
-        location: %Match.Location{
-          name: "Beaverton Courts > Court 1",
-          map_url: "maps.google.com"
-        },
-        home: %Match.Team{
-          name: "Court Jesters",
-          games_won: 2
-        },
-        visitor: %Match.Team{
-          name: "Other Team",
-          games_won: 1
-        }
-      }
+  describe "get_division_by_slug/2" do
+    test "gets the division with the given slug", %{server: server} do
+      coed_b_wednesday = Division.new(name: "Coed B Wednesday", slug: "coed-b-wednesday")
 
-      first_future_match = %Match{
-        date: ~D[2018-10-11],
-        time: ~T[20:00:00.000],
-        location: %Match.Location{
-          name: "Beaverton Courts > Court 2",
-          map_url: "maps.google.com"
-        },
-        home: %Match.Team{
-          name: "Court Jesters",
-          games_won: nil
-        },
-        visitor: %Match.Team{
-          name: "Other Team",
-          games_won: nil
-        }
-      }
+      assert :ok = Data.put_division(server, coed_b_wednesday)
 
-      second_future_match = %Match{
-        date: ~D[2018-10-11],
-        time: ~T[21:00:00.000],
-        location: %Match.Location{
-          name: "Beaverton Courts > Court 3",
-          map_url: "maps.google.com"
-        },
-        home: %Match.Team{
-          name: "Other Team",
-          games_won: nil
-        },
-        visitor: %Match.Team{
-          name: "Court Jesters",
-          games_won: nil
-        }
-      }
-
-      unrelated_match = %Match{
-        date: ~D[2018-10-11],
-        time: ~T[21:00:00.000],
-        location: %Match.Location{
-          name: "Beaverton Courts > Court 1",
-          map_url: "maps.google.com"
-        },
-        home: %Match.Team{
-          name: "Other Team",
-          games_won: nil
-        },
-        visitor: %Match.Team{
-          name: "Other Other Team",
-          games_won: nil
-        }
-      }
-
-      coed_a_thursday = %Division{
-        name: "Coed A Thursday",
-        standings: [],
-        matches: [
-          second_future_match,
-          played_match,
-          first_future_match,
-          unrelated_match
-        ]
-      }
-
-      assert :ok = Data.put_division(server, coed_a_thursday)
-
-      schedule = Data.get_team_schedule(server, "Coed A Thursday", "Court Jesters")
-      assert schedule == [first_future_match, second_future_match]
+      assert ^coed_b_wednesday = Data.get_division_by_slug(server, "coed-b-wednesday")
     end
+  end
+
+  describe "list_divisions/1" do
+    test "returns the divisions", %{server: server} do
+      coed_a_thursday = Division.new(name: "Coed A Thursday", slug: "coed-a-thursday")
+      coed_b_wednesday = Division.new(name: "Coed B Wednesday", slug: "coed-b-wednesday")
+
+      [coed_a_thursday, coed_b_wednesday]
+      |> Enum.each(&Data.put_division(server, &1))
+
+      divisions = Data.list_divisions(server)
+
+      assert sort_by_name(divisions) == sort_by_name([coed_a_thursday, coed_b_wednesday])
+    end
+  end
+
+  describe "get_updated_at/1" do
+    test "returns the updated_at datetime", %{server: server} do
+      division = Division.new(name: "Test")
+      Data.put_division(server, division)
+      assert %{updated_at: updated_at} = :sys.get_state(server)
+      assert updated_at
+      assert Data.get_updated_at(server) == updated_at
+    end
+  end
+
+  def sort_by_name(maps) do
+    Enum.sort_by(maps, & &1.name)
   end
 end
