@@ -1,12 +1,34 @@
 defmodule PVADataWeb.Resolvers.Division do
-  alias PVAData.Data
+  alias PVAData.{
+    Data,
+    Team,
+    Match,
+    Standing
+  }
 
-  def all(pagination_args, _resolution) do
-    Data.get_divisions()
-    |> Absinthe.Relay.Connection.from_list(pagination_args)
+  def all(_, _) do
+    {:ok, Data.list_divisions()}
   end
 
-  def get(%{name: name}, _resolution) do
-    {:ok, Data.get_division(name)}
+  def from_match(%Match{division_id: division_id}, _, _) do
+    get(division_id)
+  end
+
+  def from_team(%Team{division_id: division_id}, _, _) do
+    get(division_id)
+  end
+
+  def from_standing(%Standing{division_id: division_id}, _, _) do
+    get(division_id)
+  end
+
+  def by_slug(%{slug: slug}, _) do
+    division = Data.get_division_by_slug(slug)
+
+    {:ok, division}
+  end
+
+  defp get(id) do
+    {:ok, Data.get_division(id)}
   end
 end

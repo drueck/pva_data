@@ -21,4 +21,9 @@ erl_crash.dump
 
 # Ignore package tarball (built via "mix hex.build").
 pva_data-*.tar
+
 *.swp
+state_dev.bin
+state_test.bin
+config/dev.secrets.exs
+.env

@@ -1,30 +1,39 @@
+alias PVAData.{
+  Data,
+  Standing,
+  Match
+}
+
 defmodule PVADataWeb.Resolvers.Team do
-  alias PVAData.{
-    Data,
-    Divisions.Division
-  }
-
-  def all_for_division(%Division{} = division, pagination_args, _) do
-    Data.get_division_standings(division.name)
-    |> Enum.map(fn team_record -> build_team(team_record, division) end)
-    |> Absinthe.Relay.Connection.from_list(pagination_args)
+  def from_standing(%Standing{division_id: division_id, team_id: team_id}, _, _) do
+    get(division_id, team_id)
   end
 
-  def get(%Division{} = division, %{name: name}, _) do
-    Data.get_division_standings(division.name)
-    |> Enum.find(fn team_record -> team_record.team_name == name end)
-    |> case do
-      nil -> {:error, "Team not found"}
-      team_record -> {:ok, build_team(team_record, division)}
-    end
+  def home_team_from_match(%Match{division_id: division_id, home_team_id: team_id}, _, _) do
+    get(division_id, team_id)
   end
 
-  defp build_team(team_record, division) do
-    %{
-      id: team_record.id,
-      name: team_record.team_name,
-      division: division,
-      record: team_record
-    }
+  def visiting_team_from_match(%Match{division_id: division_id, visiting_team_id: team_id}, _, _) do
+    get(division_id, team_id)
+  end
+
+  def by_slugs(%{division_slug: division_slug, team_slug: team_slug}, _) do
+    team =
+      division_slug
+      |> Data.get_division_by_slug()
+      |> Map.get(:teams)
+      |> Enum.find(fn team -> team.slug == team_slug end)
+
+    {:ok, team}
+  end
+
+  defp get(division_id, team_id) do
+    team =
+      division_id
+      |> Data.get_division()
+      |> Map.get(:teams)
+      |> Enum.find(fn team -> team.id == team_id end)
+
+    {:ok, team}
   end
 end

@@ -1,70 +1,44 @@
+alias PVAData.{
+  Data,
+  Team,
+  Match
+}
+
 defmodule PVADataWeb.Resolvers.Match do
-  alias PVAData.{
-    Data,
-    Divisions.Division
-  }
+  def completed_for_team(%Team{division_id: division_id, id: team_id}, _, _) do
+    matches =
+      division_id
+      |> completed_matches()
+      |> for_team(team_id)
 
-  def scores_for_division(%Division{name: division_name}, pagination_args, _) do
-    division_name
-    |> sorted_matches_for_division()
-    |> Enum.filter(&has_results?/1)
-    |> Absinthe.Relay.Connection.from_list(pagination_args)
+    {:ok, matches}
   end
 
-  def scores_for_team(
-        %{name: team_name, division: %Division{name: division_name}},
-        pagination_args,
-        _
-      ) do
-    division_name
-    |> sorted_matches_for_division()
-    |> Enum.filter(&for_team(&1, team_name))
-    |> Enum.filter(&has_results?/1)
-    |> Absinthe.Relay.Connection.from_list(pagination_args)
+  def scheduled_for_team(%Team{division_id: division_id, id: team_id}, _, _) do
+    matches =
+      division_id
+      |> scheduled_matches()
+      |> for_team(team_id)
+
+    {:ok, matches}
   end
 
-  def schedules_for_division(%Division{name: division_name}, pagination_args, _) do
-    division_name
-    |> sorted_matches_for_division()
-    |> Enum.reject(&has_results?/1)
-    |> Absinthe.Relay.Connection.from_list(pagination_args)
-  end
-
-  def schedules_for_team(
-        %{name: team_name, division: %Division{name: division_name}},
-        pagination_args,
-        _
-      ) do
-    division_name
-    |> sorted_matches_for_division()
-    |> Enum.filter(&for_team(&1, team_name))
-    |> Enum.reject(&has_results?/1)
-    |> Absinthe.Relay.Connection.from_list(pagination_args)
-  end
-
-  defp sorted_matches_for_division(division_name) do
-    division_name
+  defp completed_matches(division_id) do
+    division_id
     |> Data.get_division()
-    |> Map.get(:matches)
-    |> Enum.sort(&chronological/2)
+    |> Map.get(:completed_matches)
   end
 
-  defp for_team(match, name) do
-    match.home.name == name || match.visitor.name == name
+  defp scheduled_matches(division_id) do
+    division_id
+    |> Data.get_division()
+    |> Map.get(:scheduled_matches)
   end
 
-  defp has_results?(match) do
-    !is_nil(match.home.games_won) || !is_nil(match.visitor.games_won)
-  end
-
-  def chronological(ma, mb) do
-    case Date.compare(ma.date, mb.date) do
-      :eq -> Time.compare(ma.time, mb.time)
-      result -> result
-    end
-    |> case do
-      :gt -> false
-      _ -> true
-    end
+  defp for_team(matches, team_id) do
+    matches
+    |> Enum.filter(fn %Match{home_team_id: home_team_id, visiting_team_id: visiting_team_id} ->
+      home_team_id == team_id || visiting_team_id == team_id
+    end)
   end
 end

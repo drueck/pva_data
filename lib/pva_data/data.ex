@@ -1,81 +1,92 @@
 defmodule PVAData.Data do
   use GenServer
 
-  alias PVAData.Divisions.Division
+  alias PVAData.Persistence
 
   def start_link(opts \\ []) do
     GenServer.start_link(__MODULE__, :ok, opts)
   end
 
   def init(:ok) do
-    {:ok, %{divisions: %{}}}
+    {:ok, %{divisions: %{}, checked_at: nil, updated_at: nil, saved_at: nil}}
   end
 
-  def put_division(pid \\ __MODULE__, %Division{} = division) do
+  def put_division(pid \\ __MODULE__, division) do
     GenServer.cast(pid, {:put_division, division})
   end
 
-  def get_divisions(pid \\ __MODULE__) do
-    GenServer.call(pid, :get_divisions)
+  def get_division(pid \\ __MODULE__, id) do
+    GenServer.call(pid, {:get_division, id})
   end
 
-  def get_division(pid \\ __MODULE__, division_name) do
-    GenServer.call(pid, {:get_division, division_name})
+  def get_division_by_slug(pid \\ __MODULE__, slug) do
+    GenServer.call(pid, {:get_division_by_slug, slug})
   end
 
-  def get_division_names(pid \\ __MODULE__) do
-    GenServer.call(pid, :get_division_names)
+  def get_updated_at(pid \\ __MODULE__) do
+    GenServer.call(pid, :get_updated_at)
   end
 
-  def get_division_standings(pid \\ __MODULE__, division_name) do
-    GenServer.call(pid, {:get_division_standings, division_name})
+  def list_divisions(pid \\ __MODULE__) do
+    GenServer.call(pid, :list_divisions)
   end
 
-  def get_team_schedule(pid \\ __MODULE__, division_name, team_name) do
-    GenServer.call(pid, {:get_team_schedule, division_name, team_name})
+  def save_state(pid \\ __MODULE__) do
+    GenServer.cast(pid, :save_state)
+  end
+
+  def load_state(pid \\ __MODULE__) do
+    GenServer.cast(pid, :load_state)
   end
 
   def handle_cast({:put_division, division}, %{divisions: divisions} = state) do
-    {:noreply, %{state | divisions: Map.put(divisions, division.name, division)}}
+    state =
+      state
+      |> Map.put(:divisions, Map.put(divisions, division.id, division))
+      |> Map.put(:updated_at, DateTime.utc_now())
+
+    {:noreply, state}
   end
 
-  def handle_call(:get_divisions, _from, %{divisions: divisions} = state) do
-    {:reply, Map.values(divisions), state}
+  def handle_cast(:save_state, state) do
+    updated_state = %{state | saved_at: DateTime.utc_now()}
+
+    updated_state
+    |> Persistence.save_state()
+    |> case do
+      :ok -> {:noreply, updated_state}
+      _ -> {:noreply, state}
+    end
   end
 
-  def handle_call({:get_division, division_name}, _from, %{divisions: divisions} = state) do
-    {:reply, Map.get(divisions, division_name), state}
+  def handle_cast(:load_state, state) do
+    Persistence.read_state()
+    |> case do
+      {:ok, persisted_state} -> {:noreply, persisted_state}
+      _ -> {:noreply, state}
+    end
   end
 
-  def handle_call(:get_division_names, _from, %{divisions: divisions} = state) do
-    {:reply, Map.keys(divisions), state}
+  def handle_call({:get_division, id}, _from, %{divisions: divisions} = state) do
+    {:reply, Map.get(divisions, id), state}
   end
 
-  def handle_call({:get_division_standings, division_name}, _from, state) do
-    standings =
-      state.divisions
-      |> Map.get(division_name)
-      |> Map.get(:standings)
+  def handle_call({:get_division_by_slug, slug}, _from, %{divisions: divisions} = state) do
+    division =
+      divisions
+      |> Map.values()
+      |> Enum.find(fn division -> division.slug == slug end)
 
-    {:reply, standings, state}
+    {:reply, division, state}
   end
 
-  def handle_call({:get_team_schedule, division_name, team_name}, _from, state) do
-    schedule =
-      state.divisions
-      |> Map.get(division_name)
-      |> Map.get(:matches)
-      |> Enum.filter(fn match ->
-        (match.home.name == team_name || match.visitor.name == team_name) &&
-          is_nil(match.home.games_won) && is_nil(match.visitor.games_won)
-      end)
-      |> Enum.sort(fn ma, mb ->
-        cond do
-          ma.date == mb.date -> ma.time <= mb.time
-          true -> ma.date <= mb.date
-        end
-      end)
+  def handle_call(:list_divisions, _from, %{divisions: divisions} = state) do
+    division_list = divisions |> Map.values()
 
-    {:reply, schedule, state}
+    {:reply, division_list, state}
+  end
+
+  def handle_call(:get_updated_at, _from, %{updated_at: updated_at} = state) do
+    {:reply, updated_at, state}
   end
 end
