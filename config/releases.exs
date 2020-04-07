@@ -10,7 +10,7 @@ config :pva_data,
     {Redix,
      [
        host: System.fetch_env!("REDIS_HOST"),
-       port: System.fetch_env!("REDIS_PORT"),
+       port: System.fetch_env!("REDIS_PORT") |> String.to_integer(),
        password: System.fetch_env!("REDIS_PASSWORD"),
        name: :redix
      ]},
