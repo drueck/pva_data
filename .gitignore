@@ -26,3 +26,4 @@ pva_data-*.tar
 state_dev.bin
 state_test.bin
 config/dev.secrets.exs
+.env
