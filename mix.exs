@@ -12,7 +12,8 @@ defmodule PVAData.MixProject do
         pva_data: [
           include_executables_for: [:unix]
         ]
-      ]
+      ],
+      default_release: :pva_data
     ]
   end
 
@@ -27,14 +28,13 @@ defmodule PVAData.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:absinthe_plug, "~> 1.4.5"},
-      {:absinthe_relay, "~> 1.4.4"},
-      {:cors_plug, "~> 2.0.0"},
-      {:cowboy, "~> 2.6.3"},
-      {:httpoison, "~> 1.0"},
-      {:meeseeks, "~> 0.11.0"},
-      {:plug, "~> 1.8.0"},
-      {:plug_cowboy, "~> 2.0"},
+      {:absinthe_plug, "~> 1.4.7"},
+      {:cors_plug, "~> 2.0.2"},
+      {:cowboy, "~> 2.7.0"},
+      {:httpoison, "~> 1.6.2"},
+      {:meeseeks, "~> 0.15.0"},
+      {:plug, "~> 1.10.0"},
+      {:plug_cowboy, "~> 2.1.2"},
       {:poison, "~> 4.0.1"},
       {:redix, "> 0.0.0"},
       {:rollbax, ">= 0.0.0"},
