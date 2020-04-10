@@ -11,6 +11,10 @@ defmodule PVAData.Data do
     {:ok, %{divisions: %{}, checked_at: nil, updated_at: nil, saved_at: nil}}
   end
 
+  def update_divisions(pid \\ __MODULE__, divisions) do
+    GenServer.cast(pid, {:update_divisions, divisions})
+  end
+
   def put_division(pid \\ __MODULE__, division) do
     GenServer.cast(pid, {:put_division, division})
   end
@@ -37,6 +41,19 @@ defmodule PVAData.Data do
 
   def load_state(pid \\ __MODULE__) do
     GenServer.cast(pid, :load_state)
+  end
+
+  def handle_cast({:update_divisions, divisions}, state) do
+    divisions_map =
+      divisions
+      |> Enum.map(fn division -> {division.id, division} end)
+      |> Enum.into(%{})
+
+    new_state =
+      state
+      |> Map.put(:divisions, divisions_map)
+
+    {:noreply, new_state}
   end
 
   def handle_cast({:put_division, division}, %{divisions: divisions} = state) do

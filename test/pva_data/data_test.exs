@@ -10,6 +10,28 @@ defmodule PVAData.DataTest do
     %{server: start_supervised!(Data)}
   end
 
+  describe "update_divisions/2" do
+    test "replaces existing divisions with list of divisions given", %{server: server} do
+      old_division = Division.new(name: "Old Division", slug: "old-division")
+      same_division = Division.new(name: "Same Division", slug: "same-division")
+      new_division = Division.new(name: "New Division", slug: "new-division")
+
+      Data.put_division(server, old_division)
+      Data.put_division(server, same_division)
+
+      Data.update_divisions(server, [same_division, new_division])
+
+      assert %{divisions: divisions, updated_at: updated_at} = :sys.get_state(server)
+
+      expected_divisions = %{
+        same_division.id => same_division,
+        new_division.id => new_division
+      }
+
+      assert divisions == expected_divisions
+    end
+  end
+
   describe "put_division/2" do
     test "adds the division by its id to the divisions map and updates updated_at", %{
       server: server
