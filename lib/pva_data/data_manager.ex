@@ -33,9 +33,7 @@ defmodule PVAData.DataManager do
     Scraper.scrape()
     |> case do
       {:ok, divisions} ->
-        divisions
-        |> Enum.each(fn division -> Data.put_division(division) end)
-
+        Data.update_divisions(divisions)
         Data.save_state()
 
       {:error, message} ->
