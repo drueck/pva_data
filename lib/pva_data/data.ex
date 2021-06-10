@@ -98,7 +98,7 @@ defmodule PVAData.Data do
   end
 
   def handle_call(:list_divisions, _from, %{divisions: divisions} = state) do
-    division_list = divisions |> Map.values()
+    division_list = divisions |> Map.values() |> Enum.sort_by(& &1.name)
 
     {:reply, division_list, state}
   end
