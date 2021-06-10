@@ -8,7 +8,7 @@ defmodule PVAData.DataManagerTest do
       assert DataManager.initial_update_delay(nil) == 10
     end
 
-    test "when updated_at was over an hour ago it returns 10 (milliseconds)" do
+    test "when updated_at was over 30 minutes ago it returns 10 (milliseconds)" do
       minus_two_hours = 2 * 60 * 60 * -1
       updated_at = DateTime.utc_now() |> DateTime.add(minus_two_hours)
 
@@ -16,11 +16,11 @@ defmodule PVAData.DataManagerTest do
     end
 
     test """
-    when updated_at was less than an hour ago
+    when updated_at was less than 30 minutes ago
     it returns the number of milliseconds between updated_at and now
     """ do
-      minus_thirty_minutes = 30 * 60 * -1
-      updated_at = DateTime.utc_now() |> DateTime.add(minus_thirty_minutes)
+      minus_fifteen_minutes = 15 * 60 * -1
+      updated_at = DateTime.utc_now() |> DateTime.add(minus_fifteen_minutes)
 
       expected_delay = DateTime.diff(DateTime.utc_now(), updated_at, :millisecond)
 
@@ -33,12 +33,12 @@ defmodule PVAData.DataManagerTest do
       )
     end
 
-    test "when updated_at was errantly in the future it returns an hour in ms" do
+    test "when updated_at was errantly in the future it returns 30 mins in ms" do
       updated_at = DateTime.utc_now() |> DateTime.add(30)
 
-      an_hour_in_ms = 60 * 60 * 1_000
+      thirty_mins_in_ms = 30 * 60 * 1_000
 
-      assert DataManager.initial_update_delay(updated_at) == an_hour_in_ms
+      assert DataManager.initial_update_delay(updated_at) == thirty_mins_in_ms
     end
   end
 end
