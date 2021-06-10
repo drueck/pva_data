@@ -21,7 +21,7 @@ defmodule PVAData.DataTest do
 
       Data.update_divisions(server, [same_division, new_division])
 
-      assert %{divisions: divisions, updated_at: updated_at} = :sys.get_state(server)
+      assert %{divisions: divisions, updated_at: _updated_at} = :sys.get_state(server)
 
       expected_divisions = %{
         same_division.id => same_division,
