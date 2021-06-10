@@ -9,7 +9,7 @@ defmodule PVAData.DataManager do
   }
 
   @initial_update_delay_ms 10
-  @update_interval_ms 60 * 60 * 1_000
+  @update_interval_ms 30 * 60 * 1_000
 
   def start_link(opts \\ []) do
     GenServer.start_link(__MODULE__, :ok, opts)
