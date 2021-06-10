@@ -9,6 +9,7 @@ defmodule PVAData.Match do
     :home_team_id,
     :visiting_team_id,
     :location,
+    :court,
     :ref,
     set_results: []
   ]

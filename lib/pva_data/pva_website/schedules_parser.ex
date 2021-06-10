@@ -13,7 +13,7 @@ defmodule PVAData.PVAWebsite.SchedulesParser do
     schedules_html
     |> Meeseeks.all(css("tr.schedule-table__row"))
     |> Enum.map(fn row ->
-      [date_string, time_string, _court, home, visitor, location_and_ref, division_name] =
+      [date_string, time_string, court_string, home, visitor, location_and_ref, division_name] =
         row
         |> Meeseeks.all(css("td"))
         |> Enum.map(&Meeseeks.text/1)
@@ -23,6 +23,13 @@ defmodule PVAData.PVAWebsite.SchedulesParser do
       visiting_team = Team.new(name: visitor, division_id: division.id)
 
       [location, ref] = split_location_and_ref(location_and_ref)
+
+      court =
+        case String.trim(court_string) do
+          "" -> nil
+          s -> s
+        end
+
       date = DateUtils.parse_date(date_string)
       time = DateUtils.parse_time(time_string)
 
@@ -33,6 +40,7 @@ defmodule PVAData.PVAWebsite.SchedulesParser do
         home_team_id: home_team.id,
         visiting_team_id: visiting_team.id,
         location: location,
+        court: court,
         ref: ref
       )
     end)
