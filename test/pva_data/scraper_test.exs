@@ -14,7 +14,7 @@ defmodule PVAData.ScraperTest do
     test "returns the latest data from the website by divisions" do
       {:ok, divisions} = Scraper.scrape()
 
-      expected_division = Division.new(name: "Womens AA Tuesday")
+      expected_division = Division.new(name: "Coed Grass Quads")
 
       division =
         divisions
@@ -22,13 +22,13 @@ defmodule PVAData.ScraperTest do
           division.name == expected_division.name
         end)
 
-      assert division.name == "Womens AA Tuesday"
-      assert division.slug == "womens-aa-tuesday"
+      assert division.name == "Coed Grass Quads"
+      assert division.slug == "coed-grass-quads"
 
-      assert length(division.teams) == 6
-      assert length(division.standings) == 6
-      assert length(division.scheduled_matches) == 5
-      assert length(division.completed_matches) == 2
+      assert length(division.teams) == 8
+      assert length(division.standings) == 8
+      assert length(division.scheduled_matches) == 40
+      assert length(division.completed_matches) == 8
 
       assert %Team{} = hd(division.teams)
       assert %Match{} = hd(division.scheduled_matches)

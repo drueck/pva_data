@@ -74,6 +74,9 @@
           <li>
             <a href="/contact.php">Contact</a>
           </li>
+          <li>
+            <a href="/checkin.php">COVID Check-In</a>
+          </li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More <span class="caret"></span></a>
             <ul class="dropdown-menu">
@@ -105,10 +108,12 @@
     		  To filter, choose one of the options below, and click "Filter".
     		  <br>
     			Games that have been changed are denoted with a <span style="background-color: #ffff99;">yellow background</span>.
+          <br>
+    			Games that have been rescheduled are denoted with an asterisk.
     		</p>
 
     		<p>
-    		  For scheduling questions, contact Michelle Baldwin at
+    		  For scheduling questions, contact Kimberly Minguez at
     		  <script language="javascript">
     			document.write('<a href="mailto:' + getE('info', 'portlandvolleyball.org') + '">' + getE('info', 'portlandvolleyball.org') + '</a>.</p>');
     		</script>
@@ -123,12 +128,12 @@
   	<select class="form-control" name="teams" onchange="document.sort.leagues.selectedIndex = 0;">
   	<option value="">-- Select team --</option>
 
-<option value="1699">A & L Bombers (Coed C Wednesday)</option><option value="1785">Baby Got Backset (Womens A2 Monday)</option><option value="1828">Back that Pass UP (Womens A1 Monday)</option><option value="1783">Ball Busters (Womens BB)</option><option value="1844">Becky's All-Star Jazz Hands Review (Coed A Wednesday)</option><option value="1712">Block Dirty to Me (Womens AA Tuesday)</option><option value="1845">Booya (Coed A Wednesday)</option><option value="1726">Bumptown (Womens A2 Monday)</option><option value="1837">Chewblocka (Coed A Thursday)</option><option value="1788">Court Jesters (Coed A Thursday)</option><option value="1742">Dig This! (Womens A1 Monday)</option><option value="1740">Diggers & Dozers (Womens A2 Monday)</option><option value="1833">East of Eden (Coed B Wednesday)</option><option value="1838">Empire Spikes Back (Coed A Thursday)</option><option value="1727">Floor Burn (Womens BB)</option><option value="1847">G-Unit (Coed C Wednesday)</option><option value="1846">Gangsta Pair'a Dice (Coed B Wednesday)</option><option value="1839">Group Sets (Coed A Thursday)</option><option value="1733">Guidettes (Womens BB)</option><option value="1831">Hit it N Dig It (Coed A Wednesday)</option><option value="1744">Hit This (Womens A2 Monday)</option><option value="1779">Hot Piece of Ace MON (Womens A1 Monday)</option><option value="1747">Hot Spicy Ballz (Womens AA Tuesday)</option><option value="1784">How I Set Your Mother (Womens BB)</option><option value="1848">Just the Tip (Womens A1 Monday)</option><option value="1854">Kiss My Pass (Womens BB)</option><option value="1655">LADYBALLS! (Womens A2 Monday)</option><option value="1849">Lollipop Girls (Womens A1 Monday)</option><option value="1862">Merda Mafia (Coed A Wednesday)</option><option value="1851">Motorboat (Womens A2 Monday)</option><option value="1778">Mt. Goats (Coed C Wednesday)</option><option value="1703">Mudsharks (Coed C Wednesday)</option><option value="1832">My Hand, your Balls (Coed B Wednesday)</option><option value="1858">Natural Diaster (Womens AA Tuesday)</option><option value="1840">Other People's Spouses (Coed A Thursday)</option><option value="1793">Pancakes (Womens A2 Monday)</option><option value="1860">Pokéballs (Coed A Thursday)</option><option value="1841">Pound Town (Coed A Thursday)</option><option value="1661">Raptors (Womens A1 Monday)</option><option value="1746">Red Hots (Womens A2 Monday)</option><option value="1855">Servivors (Womens BB)</option><option value="1853">Set for Life (Womens BB)</option><option value="1715">Sneaker Wave (Womens AA Tuesday)</option><option value="1836">Spiked Punch AA (Womens AA Tuesday)</option><option value="1732">Spiked Punch BB (Womens BB)</option><option value="1829">Stay Naked Mole Rats (Womens A1 Monday)</option><option value="1722">Team North (Womens A1 Monday)</option><option value="1856">Team on Three (Coed B Wednesday)</option><option value="1724">Team Trash (Womens A1 Monday)</option><option value="1707">Vertically Challenged (Coed C Wednesday)</option><option value="1863">Vollley Llamas Wed (Coed C Wednesday)</option><option value="1843">Whatever (Coed A Thursday)</option><option value="1716">Will Work for Sets (Womens AA Tuesday)</option><option value="1850">You've Been Served (Womens A1 Monday)</option>	</select>
+<option value="1928">2Legit2Hit (Coed Grass Quads)</option><option value="1914">A&M's (Womens Grass Quads A)</option><option value="1925">ALL ABOUT THAT ACE (Womens Grass Quads B)</option><option value="1921">Attack Pack (Womens Grass Quads B)</option><option value="1930">Awkward High Fives (Coed Grass Quads)</option><option value="1920">Ball Busters (Womens Grass Quads B)</option><option value="1919">Block and Awe (Womens Sand Quads)</option><option value="1929">BSB (Womens Grass Quads A)</option><option value="1910">Bump n' Grind (Coed Grass Quads)</option><option value="1904">Bumptown Like Stumptown (Womens Grass Quads B)</option><option value="1932">CG Girls (Womens Sand Quads)</option><option value="1908">Crafty Monkeys (Womens Grass Quads A)</option><option value="1933">Free Agents (Coed Grass Quads)</option><option value="1917">Grass Hurts (Womens Grass Quads B)</option><option value="1900">Grass Stain (Womens Grass Quads B)</option><option value="1901">Have Balls Will Travel (Coed Grass Quads)</option><option value="1903">Hop Heads (Coed Grass Quads)</option><option value="1899">LADYBALLS! (Womens Grass Quads A)</option><option value="1905">Lollipop Girls (Womens Grass Quads A)</option><option value="1927">Net Gain  (Womens Grass Quads B)</option><option value="1909">OverServed (Womens Grass Quads A)</option><option value="1912">Pancakes (Womens Sand Quads)</option><option value="1916">Quad Damn (Womens Grass Quads A)</option><option value="1902">Rhombus (Coed Grass Quads)</option><option value="1918">Sandbags (Womens Sand Quads)</option><option value="1911">Sandy Pops (Womens Sand Quads)</option><option value="1926">Serve-ivors (Womens Sand Quads)</option><option value="1907">Shindigs (Womens Grass Quads A)</option><option value="1924">SMASH (Womens Grass Quads B)</option><option value="1906">Spike Force (Coed Grass Quads)</option><option value="1931">Team 2 (Womens Grass Quads A)</option><option value="1935">Thing 1 (Womens Sand Quads)</option><option value="1934">Thing 1 (Womens Grass Quads A)</option><option value="1913">Waffles (Womens Sand Quads)</option>	</select>
   </div>
   <div class="form-group">
 	<select class="form-control" name="leagues" onchange="document.sort.teams.selectedIndex = 0;">
 	<option value="">-- Select league --</option>
-<option value="107">Coed A Thursday</option><option value="78">Coed A Wednesday</option><option value="108">Coed B Thursday</option><option value="24">Coed B Wednesday</option><option value="25">Coed C Wednesday</option><option value="88">Womens A1 Monday</option><option value="20">Womens A2 Monday</option><option value="124">Womens AA Monday</option><option value="114">Womens AA Tuesday</option><option value="82">Womens BB</option>	</select>
+<option value="129">Coed Grass Quads</option><option value="127">Womens Grass Quads A</option><option value="128">Womens Grass Quads B</option><option value="130">Womens Sand Quads</option>	</select>
   </div>
 	<input type="submit" value="Filter" class="btn btn-default"/>
 </form>
@@ -140,207 +145,1428 @@
 	<tr>
 		<th>Date</th>
 		<th>Time</th>
+    <th>Court</th>
 		<th>Home</th>
 		<th>Visitor</th>
 		<th>Location (Ref)</th>
 		<th>League</th>
 	</tr>
 <tr class="schedule-table__row">
-  <td>4/08 (Mon)</td>
-  <td>7:00</td>
-  <td>Ball Busters</td>
-  <td>Floor Burn</td>
-  <td><a href="/gyms.php?gym=22">St. Johns Community Center</a> (Jim R.)</td>
-  <td>Womens BB</td>
+  <td>6/09 (Wed)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>Waffles</td>
+  <td>Serve-ivors</td>
+  <td><a href="/gyms.php?gym=52">Delta Park</a> </td>
+  <td>Womens Sand Quads</td>
 </tr><tr class="schedule-table__row">
-  <td>4/08 (Mon)</td>
-  <td>7:00</td>
-  <td>Hot Piece of Ace MON</td>
-  <td>Lollipop Girls</td>
-  <td><a href="/gyms.php?gym=49">Milwaukie High School Aux Gym</a> (Pam O.)</td>
-  <td>Womens A1 Monday</td>
+  <td>6/09 (Wed)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>Sandbags</td>
+  <td>Block and Awe</td>
+  <td><a href="/gyms.php?gym=52">Delta Park</a> (Cohen E.)</td>
+  <td>Womens Sand Quads</td>
 </tr><tr class="schedule-table__row">
-  <td>4/08 (Mon)</td>
-  <td>7:00</td>
-  <td>Red Hots</td>
-  <td>Diggers & Dozers</td>
-  <td><a href="/gyms.php?gym=50">Charles Jordan Community Center</a> (Marty D.)</td>
-  <td>Womens A2 Monday</td>
+  <td>6/09 (Wed)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>Sandy Pops</td>
+  <td>Thing 1</td>
+  <td><a href="/gyms.php?gym=52">Delta Park</a> (Marty D.)</td>
+  <td>Womens Sand Quads</td>
 </tr><tr class="schedule-table__row">
-  <td>4/08 (Mon)</td>
-  <td>7:00</td>
-  <td>Guidettes</td>
-  <td>How I Set Your Mother</td>
-  <td><a href="/gyms.php?gym=49">Milwaukie High School Aux Gym</a> (Karen S.)</td>
-  <td>Womens BB</td>
-</tr><tr class="schedule-table__row">
-  <td>4/08 (Mon)</td>
-  <td>7:00</td>
-  <td>LADYBALLS!</td>
-  <td>Hit This</td>
-  <td><a href="/gyms.php?gym=50">Charles Jordan Community Center</a> (Norm S.)</td>
-  <td>Womens A2 Monday</td>
-</tr><tr class="schedule-table__row">
-  <td>4/08 (Mon)</td>
-  <td>8:00</td>
-  <td>Baby Got Backset</td>
-  <td>Bumptown</td>
-  <td><a href="/gyms.php?gym=50">Charles Jordan Community Center</a> (Norm S.)</td>
-  <td>Womens A2 Monday</td>
-</tr><tr class="schedule-table__row">
-  <td>4/08 (Mon)</td>
-  <td>8:00</td>
-  <td>Floor Burn</td>
-  <td>Kiss My Pass</td>
-  <td><a href="/gyms.php?gym=22">St. Johns Community Center</a> (Jim R.)</td>
-  <td>Womens BB</td>
-</tr><tr class="schedule-table__row">
-  <td>4/08 (Mon)</td>
-  <td>8:00</td>
-  <td>Team Trash</td>
-  <td>You've Been Served</td>
-  <td><a href="/gyms.php?gym=49">Milwaukie High School Aux Gym</a> (Pam O.)</td>
-  <td>Womens A1 Monday</td>
-</tr><tr class="schedule-table__row">
-  <td>4/08 (Mon)</td>
-  <td>8:00</td>
-  <td>Just the Tip</td>
-  <td>Dig This!</td>
-  <td><a href="/gyms.php?gym=50">Charles Jordan Community Center</a> (Marty D.)</td>
-  <td>Womens A1 Monday</td>
-</tr><tr class="schedule-table__row">
-  <td>4/08 (Mon)</td>
-  <td>8:00</td>
-  <td>Spiked Punch BB</td>
-  <td>Guidettes</td>
-  <td><a href="/gyms.php?gym=49">Milwaukie High School Aux Gym</a> (Karen S.)</td>
-  <td>Womens BB</td>
-</tr><tr class="schedule-table__row">
-  <td>4/08 (Mon)</td>
-  <td>9:00</td>
-  <td>Stay Naked Mole Rats</td>
-  <td>Raptors</td>
-  <td><a href="/gyms.php?gym=50">Charles Jordan Community Center</a> (Marty D.)</td>
-  <td>Womens A1 Monday</td>
-</tr><tr class="schedule-table__row">
-  <td>4/08 (Mon)</td>
-  <td>9:00</td>
-  <td>Set for Life</td>
-  <td>Spiked Punch BB</td>
-  <td><a href="/gyms.php?gym=49">Milwaukie High School Aux Gym</a> (Karen S.)</td>
-  <td>Womens BB</td>
-</tr><tr class="schedule-table__row">
-  <td>4/08 (Mon)</td>
-  <td>9:00</td>
-  <td>Motorboat</td>
+  <td>6/09 (Wed)</td>
+  <td>6:30</td>
+  <td></td>
   <td>Pancakes</td>
-  <td><a href="/gyms.php?gym=50">Charles Jordan Community Center</a> (Norm S.)</td>
-  <td>Womens A2 Monday</td>
+  <td>CG Girls</td>
+  <td><a href="/gyms.php?gym=52">Delta Park</a> (Lisa K.)</td>
+  <td>Womens Sand Quads</td>
 </tr><tr class="schedule-table__row">
-  <td>4/08 (Mon)</td>
-  <td>9:00</td>
-  <td>Kiss My Pass</td>
-  <td>Servivors</td>
-  <td><a href="/gyms.php?gym=22">St. Johns Community Center</a> (Jim R.)</td>
-  <td>Womens BB</td>
+  <td>6/09 (Wed)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Serve-ivors</td>
+  <td>Thing 1</td>
+  <td><a href="/gyms.php?gym=52">Delta Park</a> (Lisa K.)</td>
+  <td>Womens Sand Quads</td>
 </tr><tr class="schedule-table__row">
-  <td>4/08 (Mon)</td>
-  <td>9:00</td>
-  <td>Back that Pass UP</td>
-  <td>Team North</td>
-  <td><a href="/gyms.php?gym=49">Milwaukie High School Aux Gym</a> (Pam O.)</td>
-  <td>Womens A1 Monday</td>
+  <td>6/09 (Wed)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>CG Girls</td>
+  <td>Sandy Pops</td>
+  <td><a href="/gyms.php?gym=52">Delta Park</a> (Marty D.)</td>
+  <td>Womens Sand Quads</td>
 </tr><tr class="schedule-table__row">
-  <td>4/09 (Tue)</td>
-  <td>7:00</td>
-  <td>Block Dirty to Me</td>
-  <td>Hot Spicy Ballz</td>
-  <td><a href="/gyms.php?gym=49">Milwaukie High School Aux Gym</a> (Pam O.)</td>
-  <td>Womens AA Tuesday</td>
+  <td>6/09 (Wed)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Block and Awe</td>
+  <td>Pancakes</td>
+  <td><a href="/gyms.php?gym=52">Delta Park</a> </td>
+  <td>Womens Sand Quads</td>
 </tr><tr class="schedule-table__row">
-  <td>4/09 (Tue)</td>
-  <td>7:00</td>
-  <td>Spiked Punch AA</td>
-  <td>Will Work for Sets</td>
-  <td><a href="/gyms.php?gym=49">Milwaukie High School Aux Gym</a> (Karen S.)</td>
-  <td>Womens AA Tuesday</td>
+  <td>6/09 (Wed)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Sandbags</td>
+  <td>Waffles</td>
+  <td><a href="/gyms.php?gym=52">Delta Park</a> (Cohen E.)</td>
+  <td>Womens Sand Quads</td>
 </tr><tr class="schedule-table__row">
-  <td>4/09 (Tue)</td>
-  <td>8:00</td>
-  <td>Will Work for Sets</td>
-  <td>Block Dirty to Me</td>
-  <td><a href="/gyms.php?gym=49">Milwaukie High School Aux Gym</a> (Karen S.)</td>
-  <td>Womens AA Tuesday</td>
+  <td>6/14 (Mon)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>Team 2</td>
+  <td>Quad Damn</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Lisa W.)</td>
+  <td>Womens Grass Quads A</td>
 </tr><tr class="schedule-table__row">
-  <td>4/09 (Tue)</td>
-  <td>8:00</td>
-  <td>Will Work for Sets</td>
-  <td>Block Dirty to Me</td>
-  <td><a href="/gyms.php?gym=49">Milwaukie High School Aux Gym</a> (Karen S.)</td>
-  <td>Womens AA Tuesday</td>
+  <td>6/14 (Mon)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>Thing 1</td>
+  <td>A&M's</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Kim  B.)</td>
+  <td>Womens Grass Quads A</td>
 </tr><tr class="schedule-table__row">
-  <td>4/09 (Tue)</td>
-  <td>8:00</td>
-  <td>Natural Diaster</td>
-  <td>Sneaker Wave</td>
-  <td><a href="/gyms.php?gym=49">Milwaukie High School Aux Gym</a> (Pam O.)</td>
-  <td>Womens AA Tuesday</td>
+  <td>6/14 (Mon)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>Lollipop Girls</td>
+  <td>OverServed</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Cohen E.)</td>
+  <td>Womens Grass Quads A</td>
 </tr><tr class="schedule-table__row">
-  <td>4/10 (Wed)</td>
-  <td>7:00</td>
-  <td>Becky's All-Star Jazz Hands Review</td>
-  <td>Booya</td>
-  <td><a href="/gyms.php?gym=9">East Portland Community Center</a> (Marshal R.)</td>
-  <td>Coed A Wednesday</td>
+  <td>6/14 (Mon)</td>
+  <td>6:30</td>
+  <td> (1)</td>
+  <td>Net Gain </td>
+  <td>Grass Hurts</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> </td>
+  <td>Womens Grass Quads B</td>
 </tr><tr class="schedule-table__row">
-  <td>4/10 (Wed)</td>
-  <td>7:00</td>
-  <td>Mt. Goats</td>
-  <td>Vollley Llamas Wed</td>
-  <td><a href="/gyms.php?gym=9">East Portland Community Center</a> (Marty D.)</td>
-  <td>Coed C Wednesday</td>
+  <td>6/14 (Mon)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>LADYBALLS!</td>
+  <td>BSB</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Lisa K.)</td>
+  <td>Womens Grass Quads A</td>
 </tr><tr class="schedule-table__row">
-  <td>4/10 (Wed)</td>
-  <td>7:00</td>
-  <td>A & L Bombers</td>
-  <td>G-Unit</td>
-  <td><a href="/gyms.php?gym=49">Milwaukie High School Aux Gym</a> (Pam O.)</td>
-  <td>Coed C Wednesday</td>
+  <td>6/14 (Mon)</td>
+  <td>6:30</td>
+  <td> (3)</td>
+  <td>Grass Stain</td>
+  <td>ALL ABOUT THAT ACE</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> </td>
+  <td>Womens Grass Quads B</td>
 </tr><tr class="schedule-table__row">
-  <td>4/10 (Wed)</td>
-  <td>8:00</td>
-  <td>Mudsharks</td>
-  <td>Vertically Challenged</td>
-  <td><a href="/gyms.php?gym=49">Milwaukie High School Aux Gym</a> (Pam O.)</td>
-  <td>Coed C Wednesday</td>
+  <td>6/14 (Mon)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>Shindigs</td>
+  <td>Crafty Monkeys</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Marty D.)</td>
+  <td>Womens Grass Quads A</td>
 </tr><tr class="schedule-table__row">
-  <td>4/10 (Wed)</td>
-  <td>8:00</td>
-  <td>Booya</td>
-  <td>Merda Mafia</td>
-  <td><a href="/gyms.php?gym=9">East Portland Community Center</a> (Marshal R.)</td>
-  <td>Coed A Wednesday</td>
+  <td>6/14 (Mon)</td>
+  <td>6:30</td>
+  <td> (4)</td>
+  <td>Bumptown Like Stumptown</td>
+  <td>Ball Busters</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> </td>
+  <td>Womens Grass Quads B</td>
 </tr><tr class="schedule-table__row">
-  <td>4/10 (Wed)</td>
-  <td>8:00</td>
-  <td>East of Eden</td>
-  <td>Gangsta Pair'a Dice</td>
-  <td><a href="/gyms.php?gym=9">East Portland Community Center</a> (Marty D.)</td>
-  <td>Coed B Wednesday</td>
+  <td>6/14 (Mon)</td>
+  <td>6:30</td>
+  <td> (2)</td>
+  <td>SMASH</td>
+  <td>Attack Pack</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> </td>
+  <td>Womens Grass Quads B</td>
 </tr><tr class="schedule-table__row">
-  <td>4/10 (Wed)</td>
-  <td>9:00</td>
-  <td>My Hand, your Balls</td>
-  <td>Team on Three</td>
-  <td><a href="/gyms.php?gym=9">East Portland Community Center</a> (Marty D.)</td>
-  <td>Coed B Wednesday</td>
+  <td>6/14 (Mon)</td>
+  <td>7:30</td>
+  <td> (4)</td>
+  <td>Ball Busters</td>
+  <td>SMASH</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> </td>
+  <td>Womens Grass Quads B</td>
 </tr><tr class="schedule-table__row">
-  <td>4/10 (Wed)</td>
-  <td>9:00</td>
-  <td>Merda Mafia</td>
-  <td>Hit it N Dig It</td>
-  <td><a href="/gyms.php?gym=9">East Portland Community Center</a> (Marshal R.)</td>
-  <td>Coed A Wednesday</td>
+  <td>6/14 (Mon)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Shindigs</td>
+  <td>Lollipop Girls</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Marty D.)</td>
+  <td>Womens Grass Quads A</td>
+</tr><tr class="schedule-table__row">
+  <td>6/14 (Mon)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Quad Damn</td>
+  <td>LADYBALLS!</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Lisa K.)</td>
+  <td>Womens Grass Quads A</td>
+</tr><tr class="schedule-table__row">
+  <td>6/14 (Mon)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>OverServed</td>
+  <td>Team 2</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Kim  B.)</td>
+  <td>Womens Grass Quads A</td>
+</tr><tr class="schedule-table__row">
+  <td>6/14 (Mon)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Crafty Monkeys</td>
+  <td>Thing 1</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Cohen E.)</td>
+  <td>Womens Grass Quads A</td>
+</tr><tr class="schedule-table__row">
+  <td>6/14 (Mon)</td>
+  <td>7:30</td>
+  <td> (1)</td>
+  <td>Net Gain </td>
+  <td>Bumptown Like Stumptown</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> </td>
+  <td>Womens Grass Quads B</td>
+</tr><tr class="schedule-table__row">
+  <td>6/14 (Mon)</td>
+  <td>7:30</td>
+  <td> (3)</td>
+  <td>ALL ABOUT THAT ACE</td>
+  <td>Grass Hurts</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> </td>
+  <td>Womens Grass Quads B</td>
+</tr><tr class="schedule-table__row">
+  <td>6/14 (Mon)</td>
+  <td>7:30</td>
+  <td> (2)</td>
+  <td>Attack Pack</td>
+  <td>Grass Stain</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> </td>
+  <td>Womens Grass Quads B</td>
+</tr><tr class="schedule-table__row">
+  <td>6/14 (Mon)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>A&M's</td>
+  <td>BSB</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Lisa W.)</td>
+  <td>Womens Grass Quads A</td>
+</tr><tr class="schedule-table__row">
+  <td>6/15 (Tue)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>Rhombus</td>
+  <td>Hop Heads</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Cohen E.)</td>
+  <td>Coed Grass Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>6/15 (Tue)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>Awkward High Fives</td>
+  <td>Bump n' Grind</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Lisa W.)</td>
+  <td>Coed Grass Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>6/15 (Tue)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>Free Agents</td>
+  <td>Spike Force</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Marty D.)</td>
+  <td>Coed Grass Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>6/15 (Tue)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>Have Balls Will Travel</td>
+  <td>2Legit2Hit</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Kim  B.)</td>
+  <td>Coed Grass Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>6/15 (Tue)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Hop Heads</td>
+  <td>Awkward High Fives</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Marty D.)</td>
+  <td>Coed Grass Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>6/15 (Tue)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Free Agents</td>
+  <td>Rhombus</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Cohen E.)</td>
+  <td>Coed Grass Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>6/15 (Tue)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Bump n' Grind</td>
+  <td>Have Balls Will Travel</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Kim  B.)</td>
+  <td>Coed Grass Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>6/15 (Tue)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>2Legit2Hit</td>
+  <td>Spike Force</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Lisa W.)</td>
+  <td>Coed Grass Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>6/16 (Wed)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>CG Girls</td>
+  <td>Block and Awe</td>
+  <td><a href="/gyms.php?gym=52">Delta Park</a> (Lisa W.)</td>
+  <td>Womens Sand Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>6/16 (Wed)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>Thing 1</td>
+  <td>Sandbags</td>
+  <td><a href="/gyms.php?gym=52">Delta Park</a> </td>
+  <td>Womens Sand Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>6/16 (Wed)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>Sandy Pops</td>
+  <td>Serve-ivors</td>
+  <td><a href="/gyms.php?gym=52">Delta Park</a> (Marty D.)</td>
+  <td>Womens Sand Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>6/16 (Wed)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>Pancakes</td>
+  <td>Waffles</td>
+  <td><a href="/gyms.php?gym=52">Delta Park</a> (Cohen E.)</td>
+  <td>Womens Sand Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>6/16 (Wed)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Thing 1</td>
+  <td>Pancakes</td>
+  <td><a href="/gyms.php?gym=52">Delta Park</a> (Cohen E.)</td>
+  <td>Womens Sand Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>6/16 (Wed)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Waffles</td>
+  <td>CG Girls</td>
+  <td><a href="/gyms.php?gym=52">Delta Park</a> </td>
+  <td>Womens Sand Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>6/16 (Wed)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Block and Awe</td>
+  <td>Sandy Pops</td>
+  <td><a href="/gyms.php?gym=52">Delta Park</a> (Marty D.)</td>
+  <td>Womens Sand Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>6/16 (Wed)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Serve-ivors</td>
+  <td>Sandbags</td>
+  <td><a href="/gyms.php?gym=52">Delta Park</a> (Lisa W.)</td>
+  <td>Womens Sand Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>6/21 (Mon)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>Team 2</td>
+  <td>Shindigs</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> </td>
+  <td>Womens Grass Quads A</td>
+</tr><tr class="schedule-table__row">
+  <td>6/21 (Mon)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>LADYBALLS!</td>
+  <td>A&M's</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Lisa K.)</td>
+  <td>Womens Grass Quads A</td>
+</tr><tr class="schedule-table__row">
+  <td>6/21 (Mon)</td>
+  <td>6:30</td>
+  <td> (1)</td>
+  <td>Grass Stain</td>
+  <td>Grass Hurts</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> </td>
+  <td>Womens Grass Quads B</td>
+</tr><tr class="schedule-table__row">
+  <td>6/21 (Mon)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>BSB</td>
+  <td>Crafty Monkeys</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Kim  B.)</td>
+  <td>Womens Grass Quads A</td>
+</tr><tr class="schedule-table__row">
+  <td>6/21 (Mon)</td>
+  <td>6:30</td>
+  <td> (2)</td>
+  <td>Attack Pack</td>
+  <td>Ball Busters</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> </td>
+  <td>Womens Grass Quads B</td>
+</tr><tr class="schedule-table__row">
+  <td>6/21 (Mon)</td>
+  <td>6:30</td>
+  <td> (4)</td>
+  <td>SMASH</td>
+  <td>Net Gain </td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> </td>
+  <td>Womens Grass Quads B</td>
+</tr><tr class="schedule-table__row">
+  <td>6/21 (Mon)</td>
+  <td>6:30</td>
+  <td> (3)</td>
+  <td>ALL ABOUT THAT ACE</td>
+  <td>Bumptown Like Stumptown</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> </td>
+  <td>Womens Grass Quads B</td>
+</tr><tr class="schedule-table__row">
+  <td>6/21 (Mon)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>Quad Damn</td>
+  <td>OverServed</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Lisa W.)</td>
+  <td>Womens Grass Quads A</td>
+</tr><tr class="schedule-table__row">
+  <td>6/21 (Mon)</td>
+  <td>7:30</td>
+  <td> (1)</td>
+  <td>SMASH</td>
+  <td>ALL ABOUT THAT ACE</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> </td>
+  <td>Womens Grass Quads B</td>
+</tr><tr class="schedule-table__row">
+  <td>6/21 (Mon)</td>
+  <td>7:30</td>
+  <td> (3)</td>
+  <td>Bumptown Like Stumptown</td>
+  <td>Grass Hurts</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> </td>
+  <td>Womens Grass Quads B</td>
+</tr><tr class="schedule-table__row">
+  <td>6/21 (Mon)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Shindigs</td>
+  <td>Quad Damn</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Kim  B.)</td>
+  <td>Womens Grass Quads A</td>
+</tr><tr class="schedule-table__row">
+  <td>6/21 (Mon)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Lollipop Girls</td>
+  <td>BSB</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> </td>
+  <td>Womens Grass Quads A</td>
+</tr><tr class="schedule-table__row">
+  <td>6/21 (Mon)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Thing 1</td>
+  <td>Team 2</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Marty D.)</td>
+  <td>Womens Grass Quads A</td>
+</tr><tr class="schedule-table__row">
+  <td>6/21 (Mon)</td>
+  <td>7:30</td>
+  <td> (4)</td>
+  <td>Ball Busters</td>
+  <td>Grass Stain</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> </td>
+  <td>Womens Grass Quads B</td>
+</tr><tr class="schedule-table__row">
+  <td>6/21 (Mon)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Crafty Monkeys</td>
+  <td>A&M's</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Lisa W.)</td>
+  <td>Womens Grass Quads A</td>
+</tr><tr class="schedule-table__row">
+  <td>6/21 (Mon)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>OverServed</td>
+  <td>LADYBALLS!</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Lisa K.)</td>
+  <td>Womens Grass Quads A</td>
+</tr><tr class="schedule-table__row">
+  <td>6/21 (Mon)</td>
+  <td>7:30</td>
+  <td> (2)</td>
+  <td>Net Gain </td>
+  <td>Attack Pack</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> </td>
+  <td>Womens Grass Quads B</td>
+</tr><tr class="schedule-table__row">
+  <td>6/22 (Tue)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>Awkward High Fives</td>
+  <td>Free Agents</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Cohen E.)</td>
+  <td>Coed Grass Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>6/22 (Tue)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>Have Balls Will Travel</td>
+  <td>Spike Force</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Kim  B.)</td>
+  <td>Coed Grass Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>6/22 (Tue)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>2Legit2Hit</td>
+  <td>Rhombus</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Marty D.)</td>
+  <td>Coed Grass Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>6/22 (Tue)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>Bump n' Grind</td>
+  <td>Hop Heads</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Lisa W.)</td>
+  <td>Coed Grass Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>6/22 (Tue)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Free Agents</td>
+  <td>Bump n' Grind</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Marty D.)</td>
+  <td>Coed Grass Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>6/22 (Tue)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Rhombus</td>
+  <td>Spike Force</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Lisa W.)</td>
+  <td>Coed Grass Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>6/22 (Tue)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Hop Heads</td>
+  <td>Have Balls Will Travel</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Kim  B.)</td>
+  <td>Coed Grass Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>6/22 (Tue)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Awkward High Fives</td>
+  <td>2Legit2Hit</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Cohen E.)</td>
+  <td>Coed Grass Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>6/23 (Wed)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>CG Girls</td>
+  <td>Thing 1</td>
+  <td><a href="/gyms.php?gym=52">Delta Park</a> (Cohen E.)</td>
+  <td>Womens Sand Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>6/23 (Wed)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>Block and Awe</td>
+  <td>Waffles</td>
+  <td><a href="/gyms.php?gym=52">Delta Park</a> (Lisa W.)</td>
+  <td>Womens Sand Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>6/23 (Wed)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>Serve-ivors</td>
+  <td>Pancakes</td>
+  <td><a href="/gyms.php?gym=52">Delta Park</a> </td>
+  <td>Womens Sand Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>6/23 (Wed)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>Sandy Pops</td>
+  <td>Sandbags</td>
+  <td><a href="/gyms.php?gym=52">Delta Park</a> (Marty D.)</td>
+  <td>Womens Sand Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>6/23 (Wed)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Pancakes</td>
+  <td>Sandbags</td>
+  <td><a href="/gyms.php?gym=52">Delta Park</a> (Lisa W.)</td>
+  <td>Womens Sand Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>6/23 (Wed)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Thing 1</td>
+  <td>Block and Awe</td>
+  <td><a href="/gyms.php?gym=52">Delta Park</a> </td>
+  <td>Womens Sand Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>6/23 (Wed)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Waffles</td>
+  <td>Sandy Pops</td>
+  <td><a href="/gyms.php?gym=52">Delta Park</a> (Marty D.)</td>
+  <td>Womens Sand Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>6/23 (Wed)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>CG Girls</td>
+  <td>Serve-ivors</td>
+  <td><a href="/gyms.php?gym=52">Delta Park</a> (Cohen E.)</td>
+  <td>Womens Sand Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>6/28 (Mon)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>BSB</td>
+  <td>Team 2</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Marty D.)</td>
+  <td>Womens Grass Quads A</td>
+</tr><tr class="schedule-table__row">
+  <td>6/28 (Mon)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>A&M's</td>
+  <td>Lollipop Girls</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Kim  B.)</td>
+  <td>Womens Grass Quads A</td>
+</tr><tr class="schedule-table__row">
+  <td>6/28 (Mon)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>Quad Damn</td>
+  <td>Thing 1</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Cohen E.)</td>
+  <td>Womens Grass Quads A</td>
+</tr><tr class="schedule-table__row">
+  <td>6/28 (Mon)</td>
+  <td>6:30</td>
+  <td> (2)</td>
+  <td>Grass Hurts</td>
+  <td>SMASH</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> </td>
+  <td>Womens Grass Quads B</td>
+</tr><tr class="schedule-table__row">
+  <td>6/28 (Mon)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>LADYBALLS!</td>
+  <td>Crafty Monkeys</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Lisa K.)</td>
+  <td>Womens Grass Quads A</td>
+</tr><tr class="schedule-table__row">
+  <td>6/28 (Mon)</td>
+  <td>6:30</td>
+  <td> (3)</td>
+  <td>Grass Stain</td>
+  <td>Bumptown Like Stumptown</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> </td>
+  <td>Womens Grass Quads B</td>
+</tr><tr class="schedule-table__row">
+  <td>6/28 (Mon)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>Shindigs</td>
+  <td>OverServed</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Lisa W.)</td>
+  <td>Womens Grass Quads A</td>
+</tr><tr class="schedule-table__row">
+  <td>6/28 (Mon)</td>
+  <td>6:30</td>
+  <td> (1)</td>
+  <td>Ball Busters</td>
+  <td>Net Gain </td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> </td>
+  <td>Womens Grass Quads B</td>
+</tr><tr class="schedule-table__row">
+  <td>6/28 (Mon)</td>
+  <td>6:30</td>
+  <td> (4)</td>
+  <td>Attack Pack</td>
+  <td>ALL ABOUT THAT ACE</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> </td>
+  <td>Womens Grass Quads B</td>
+</tr><tr class="schedule-table__row">
+  <td>6/28 (Mon)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Lollipop Girls</td>
+  <td>Crafty Monkeys</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Lisa W.)</td>
+  <td>Womens Grass Quads A</td>
+</tr><tr class="schedule-table__row">
+  <td>6/28 (Mon)</td>
+  <td>7:30</td>
+  <td> (1)</td>
+  <td>Ball Busters</td>
+  <td>ALL ABOUT THAT ACE</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> </td>
+  <td>Womens Grass Quads B</td>
+</tr><tr class="schedule-table__row">
+  <td>6/28 (Mon)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Team 2</td>
+  <td>A&M's</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Cohen E.)</td>
+  <td>Womens Grass Quads A</td>
+</tr><tr class="schedule-table__row">
+  <td>6/28 (Mon)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Thing 1</td>
+  <td>OverServed</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Kim  B.)</td>
+  <td>Womens Grass Quads A</td>
+</tr><tr class="schedule-table__row">
+  <td>6/28 (Mon)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Shindigs</td>
+  <td>LADYBALLS!</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Lisa K.)</td>
+  <td>Womens Grass Quads A</td>
+</tr><tr class="schedule-table__row">
+  <td>6/28 (Mon)</td>
+  <td>7:30</td>
+  <td> (2)</td>
+  <td>Grass Hurts</td>
+  <td>Attack Pack</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> </td>
+  <td>Womens Grass Quads B</td>
+</tr><tr class="schedule-table__row">
+  <td>6/28 (Mon)</td>
+  <td>7:30</td>
+  <td> (4)</td>
+  <td>Grass Stain</td>
+  <td>Net Gain </td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> </td>
+  <td>Womens Grass Quads B</td>
+</tr><tr class="schedule-table__row">
+  <td>6/28 (Mon)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>BSB</td>
+  <td>Quad Damn</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Marty D.)</td>
+  <td>Womens Grass Quads A</td>
+</tr><tr class="schedule-table__row">
+  <td>6/28 (Mon)</td>
+  <td>7:30</td>
+  <td> (3)</td>
+  <td>Bumptown Like Stumptown</td>
+  <td>SMASH</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> </td>
+  <td>Womens Grass Quads B</td>
+</tr><tr class="schedule-table__row">
+  <td>6/29 (Tue)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>Hop Heads</td>
+  <td>Free Agents</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Lisa W.)</td>
+  <td>Coed Grass Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>6/29 (Tue)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>Spike Force</td>
+  <td>Awkward High Fives</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Marty D.)</td>
+  <td>Coed Grass Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>6/29 (Tue)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>Bump n' Grind</td>
+  <td>2Legit2Hit</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Cohen E.)</td>
+  <td>Coed Grass Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>6/29 (Tue)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>Have Balls Will Travel</td>
+  <td>Rhombus</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Kim  B.)</td>
+  <td>Coed Grass Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>6/29 (Tue)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Have Balls Will Travel</td>
+  <td>Free Agents</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Kim  B.)</td>
+  <td>Coed Grass Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>6/29 (Tue)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Rhombus</td>
+  <td>Awkward High Fives</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Lisa W.)</td>
+  <td>Coed Grass Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>6/29 (Tue)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>2Legit2Hit</td>
+  <td>Hop Heads</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Marty D.)</td>
+  <td>Coed Grass Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>6/29 (Tue)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Spike Force</td>
+  <td>Bump n' Grind</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Cohen E.)</td>
+  <td>Coed Grass Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>6/30 (Wed)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>Sandbags</td>
+  <td>CG Girls</td>
+  <td><a href="/gyms.php?gym=52">Delta Park</a> </td>
+  <td>Womens Sand Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>6/30 (Wed)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>Waffles</td>
+  <td>Thing 1</td>
+  <td><a href="/gyms.php?gym=52">Delta Park</a> (Lisa W.)</td>
+  <td>Womens Sand Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>6/30 (Wed)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>Sandy Pops</td>
+  <td>Pancakes</td>
+  <td><a href="/gyms.php?gym=52">Delta Park</a> (Marty D.)</td>
+  <td>Womens Sand Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>6/30 (Wed)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>Block and Awe</td>
+  <td>Serve-ivors</td>
+  <td><a href="/gyms.php?gym=52">Delta Park</a> (Cohen E.)</td>
+  <td>Womens Sand Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>6/30 (Wed)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Pancakes</td>
+  <td>CG Girls</td>
+  <td><a href="/gyms.php?gym=52">Delta Park</a> (Lisa W.)</td>
+  <td>Womens Sand Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>6/30 (Wed)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Waffles</td>
+  <td>Serve-ivors</td>
+  <td><a href="/gyms.php?gym=52">Delta Park</a> </td>
+  <td>Womens Sand Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>6/30 (Wed)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Sandbags</td>
+  <td>Block and Awe</td>
+  <td><a href="/gyms.php?gym=52">Delta Park</a> (Cohen E.)</td>
+  <td>Womens Sand Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>6/30 (Wed)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Sandy Pops</td>
+  <td>Thing 1</td>
+  <td><a href="/gyms.php?gym=52">Delta Park</a> (Marty D.)</td>
+  <td>Womens Sand Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>7/12 (Mon)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>OverServed</td>
+  <td>BSB</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Cohen E.)</td>
+  <td>Womens Grass Quads A</td>
+</tr><tr class="schedule-table__row">
+  <td>7/12 (Mon)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>LADYBALLS!</td>
+  <td>Lollipop Girls</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Lisa K.)</td>
+  <td>Womens Grass Quads A</td>
+</tr><tr class="schedule-table__row">
+  <td>7/12 (Mon)</td>
+  <td>6:30</td>
+  <td> (2)</td>
+  <td>ALL ABOUT THAT ACE</td>
+  <td>Net Gain </td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> </td>
+  <td>Womens Grass Quads B</td>
+</tr><tr class="schedule-table__row">
+  <td>7/12 (Mon)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>Crafty Monkeys</td>
+  <td>Team 2</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Kim  B.)</td>
+  <td>Womens Grass Quads A</td>
+</tr><tr class="schedule-table__row">
+  <td>7/12 (Mon)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>Thing 1</td>
+  <td>Shindigs</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Lisa W.)</td>
+  <td>Womens Grass Quads A</td>
+</tr><tr class="schedule-table__row">
+  <td>7/12 (Mon)</td>
+  <td>6:30</td>
+  <td> (1)</td>
+  <td>Grass Hurts</td>
+  <td>Ball Busters</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> </td>
+  <td>Womens Grass Quads B</td>
+</tr><tr class="schedule-table__row">
+  <td>7/12 (Mon)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>A&M's</td>
+  <td>Quad Damn</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Marty D.)</td>
+  <td>Womens Grass Quads A</td>
+</tr><tr class="schedule-table__row">
+  <td>7/12 (Mon)</td>
+  <td>6:30</td>
+  <td> (4)</td>
+  <td>SMASH</td>
+  <td>Grass Stain</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> </td>
+  <td>Womens Grass Quads B</td>
+</tr><tr class="schedule-table__row">
+  <td>7/12 (Mon)</td>
+  <td>6:30</td>
+  <td> (3)</td>
+  <td>Attack Pack</td>
+  <td>Bumptown Like Stumptown</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> </td>
+  <td>Womens Grass Quads B</td>
+</tr><tr class="schedule-table__row">
+  <td>7/12 (Mon)</td>
+  <td>7:30</td>
+  <td> (4)</td>
+  <td>SMASH</td>
+  <td>Attack Pack</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> </td>
+  <td>Womens Grass Quads B</td>
+</tr><tr class="schedule-table__row">
+  <td>7/12 (Mon)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Shindigs</td>
+  <td>BSB</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Kim  B.)</td>
+  <td>Womens Grass Quads A</td>
+</tr><tr class="schedule-table__row">
+  <td>7/12 (Mon)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>OverServed</td>
+  <td>A&M's</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Marty D.)</td>
+  <td>Womens Grass Quads A</td>
+</tr><tr class="schedule-table__row">
+  <td>7/12 (Mon)</td>
+  <td>7:30</td>
+  <td> (2)</td>
+  <td>Net Gain </td>
+  <td>Grass Hurts</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> </td>
+  <td>Womens Grass Quads B</td>
+</tr><tr class="schedule-table__row">
+  <td>7/12 (Mon)</td>
+  <td>7:30</td>
+  <td> (3)</td>
+  <td>Grass Stain</td>
+  <td>ALL ABOUT THAT ACE</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> </td>
+  <td>Womens Grass Quads B</td>
+</tr><tr class="schedule-table__row">
+  <td>7/12 (Mon)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Lollipop Girls</td>
+  <td>Team 2</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Lisa W.)</td>
+  <td>Womens Grass Quads A</td>
+</tr><tr class="schedule-table__row">
+  <td>7/12 (Mon)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Crafty Monkeys</td>
+  <td>Quad Damn</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Cohen E.)</td>
+  <td>Womens Grass Quads A</td>
+</tr><tr class="schedule-table__row">
+  <td>7/12 (Mon)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>LADYBALLS!</td>
+  <td>Thing 1</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Lisa K.)</td>
+  <td>Womens Grass Quads A</td>
+</tr><tr class="schedule-table__row">
+  <td>7/12 (Mon)</td>
+  <td>7:30</td>
+  <td> (1)</td>
+  <td>Bumptown Like Stumptown</td>
+  <td>Ball Busters</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> </td>
+  <td>Womens Grass Quads B</td>
+</tr><tr class="schedule-table__row">
+  <td>7/13 (Tue)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>Awkward High Fives</td>
+  <td>Have Balls Will Travel</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Kim  B.)</td>
+  <td>Coed Grass Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>7/13 (Tue)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>Spike Force</td>
+  <td>Hop Heads</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Cohen E.)</td>
+  <td>Coed Grass Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>7/13 (Tue)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>2Legit2Hit</td>
+  <td>Free Agents</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Lisa W.)</td>
+  <td>Coed Grass Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>7/13 (Tue)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>Bump n' Grind</td>
+  <td>Rhombus</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Marty D.)</td>
+  <td>Coed Grass Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>7/13 (Tue)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Awkward High Fives</td>
+  <td>Bump n' Grind</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Lisa W.)</td>
+  <td>Coed Grass Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>7/13 (Tue)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Rhombus</td>
+  <td>Hop Heads</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Cohen E.)</td>
+  <td>Coed Grass Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>7/13 (Tue)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Have Balls Will Travel</td>
+  <td>2Legit2Hit</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Kim  B.)</td>
+  <td>Coed Grass Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>7/13 (Tue)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Free Agents</td>
+  <td>Spike Force</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Marty D.)</td>
+  <td>Coed Grass Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>7/14 (Wed)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>Block and Awe</td>
+  <td>Pancakes</td>
+  <td><a href="/gyms.php?gym=52">Delta Park</a> </td>
+  <td>Womens Sand Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>7/14 (Wed)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>Serve-ivors</td>
+  <td>Thing 1</td>
+  <td><a href="/gyms.php?gym=52">Delta Park</a> (Lisa W.)</td>
+  <td>Womens Sand Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>7/14 (Wed)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>Sandbags</td>
+  <td>Waffles</td>
+  <td><a href="/gyms.php?gym=52">Delta Park</a> </td>
+  <td>Womens Sand Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>7/14 (Wed)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>CG Girls</td>
+  <td>Sandy Pops</td>
+  <td><a href="/gyms.php?gym=52">Delta Park</a> (Marty D.)</td>
+  <td>Womens Sand Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>7/14 (Wed)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Sandy Pops</td>
+  <td>Serve-ivors</td>
+  <td><a href="/gyms.php?gym=52">Delta Park</a> (Marty D.)</td>
+  <td>Womens Sand Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>7/14 (Wed)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>CG Girls</td>
+  <td>Block and Awe</td>
+  <td><a href="/gyms.php?gym=52">Delta Park</a> (Lisa W.)</td>
+  <td>Womens Sand Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>7/14 (Wed)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Thing 1</td>
+  <td>Sandbags</td>
+  <td><a href="/gyms.php?gym=52">Delta Park</a> </td>
+  <td>Womens Sand Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>7/14 (Wed)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Pancakes</td>
+  <td>Waffles</td>
+  <td><a href="/gyms.php?gym=52">Delta Park</a> </td>
+  <td>Womens Sand Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>7/19 (Mon)</td>
+  <td>6:30</td>
+  <td> (2)</td>
+  <td>Net Gain </td>
+  <td>Bumptown Like Stumptown</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> </td>
+  <td>Womens Grass Quads B</td>
+</tr><tr class="schedule-table__row">
+  <td>7/19 (Mon)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>A&M's</td>
+  <td>Shindigs</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Cohen E.)</td>
+  <td>Womens Grass Quads A</td>
+</tr><tr class="schedule-table__row">
+  <td>7/19 (Mon)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>Team 2</td>
+  <td>LADYBALLS!</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Lisa K.)</td>
+  <td>Womens Grass Quads A</td>
+</tr><tr class="schedule-table__row">
+  <td>7/19 (Mon)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>Quad Damn</td>
+  <td>LADYBALLS!</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Kim  B.)</td>
+  <td>Womens Grass Quads A</td>
+</tr><tr class="schedule-table__row">
+  <td>7/19 (Mon)</td>
+  <td>6:30</td>
+  <td> (1)</td>
+  <td>ALL ABOUT THAT ACE</td>
+  <td>Grass Hurts</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> </td>
+  <td>Womens Grass Quads B</td>
+</tr><tr class="schedule-table__row">
+  <td>7/19 (Mon)</td>
+  <td>6:30</td>
+  <td> (4)</td>
+  <td>Ball Busters</td>
+  <td>SMASH</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> </td>
+  <td>Womens Grass Quads B</td>
+</tr><tr class="schedule-table__row">
+  <td>7/19 (Mon)</td>
+  <td>6:30</td>
+  <td> (3)</td>
+  <td>Attack Pack</td>
+  <td>Grass Stain</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> </td>
+  <td>Womens Grass Quads B</td>
+</tr><tr class="schedule-table__row">
+  <td>7/19 (Mon)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>OverServed</td>
+  <td>Crafty Monkeys</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Marty D.)</td>
+  <td>Womens Grass Quads A</td>
+</tr><tr class="schedule-table__row">
+  <td>7/19 (Mon)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>BSB</td>
+  <td>Thing 1</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Lisa W.)</td>
+  <td>Womens Grass Quads A</td>
+</tr><tr class="schedule-table__row">
+  <td>7/19 (Mon)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Thing 1</td>
+  <td>A&M's</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Kim  B.)</td>
+  <td>Womens Grass Quads A</td>
+</tr><tr class="schedule-table__row">
+  <td>7/19 (Mon)</td>
+  <td>7:30</td>
+  <td> (4)</td>
+  <td>ALL ABOUT THAT ACE</td>
+  <td>Bumptown Like Stumptown</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> </td>
+  <td>Womens Grass Quads B</td>
+</tr><tr class="schedule-table__row">
+  <td>7/19 (Mon)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Shindigs</td>
+  <td>Crafty Monkeys</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Marty D.)</td>
+  <td>Womens Grass Quads A</td>
+</tr><tr class="schedule-table__row">
+  <td>7/19 (Mon)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Lollipop Girls</td>
+  <td>OverServed</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Cohen E.)</td>
+  <td>Womens Grass Quads A</td>
+</tr><tr class="schedule-table__row">
+  <td>7/19 (Mon)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>LADYBALLS!</td>
+  <td>BSB</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Lisa K.)</td>
+  <td>Womens Grass Quads A</td>
+</tr><tr class="schedule-table__row">
+  <td>7/19 (Mon)</td>
+  <td>7:30</td>
+  <td> (2)</td>
+  <td>Grass Stain</td>
+  <td>Grass Hurts</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> </td>
+  <td>Womens Grass Quads B</td>
+</tr><tr class="schedule-table__row">
+  <td>7/19 (Mon)</td>
+  <td>7:30</td>
+  <td> (3)</td>
+  <td>SMASH</td>
+  <td>Net Gain </td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> </td>
+  <td>Womens Grass Quads B</td>
+</tr><tr class="schedule-table__row">
+  <td>7/19 (Mon)</td>
+  <td>7:30</td>
+  <td> (1)</td>
+  <td>Attack Pack</td>
+  <td>Ball Busters</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> </td>
+  <td>Womens Grass Quads B</td>
+</tr><tr class="schedule-table__row">
+  <td>7/19 (Mon)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Team 2</td>
+  <td>Quad Damn</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Lisa W.)</td>
+  <td>Womens Grass Quads A</td>
+</tr><tr class="schedule-table__row">
+  <td>7/20 (Tue)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>Hop Heads</td>
+  <td>Awkward High Fives</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Marty D.)</td>
+  <td>Coed Grass Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>7/20 (Tue)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>Bump n' Grind</td>
+  <td>Have Balls Will Travel</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Kim  B.)</td>
+  <td>Coed Grass Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>7/20 (Tue)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>Free Agents</td>
+  <td>Rhombus</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Cohen E.)</td>
+  <td>Coed Grass Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>7/20 (Tue)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>2Legit2Hit</td>
+  <td>Spike Force</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Lisa W.)</td>
+  <td>Coed Grass Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>7/20 (Tue)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Have Balls Will Travel</td>
+  <td>Spike Force</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Kim  B.)</td>
+  <td>Coed Grass Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>7/20 (Tue)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>2Legit2Hit</td>
+  <td>Rhombus</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Marty D.)</td>
+  <td>Coed Grass Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>7/20 (Tue)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Awkward High Fives</td>
+  <td>Free Agents</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Cohen E.)</td>
+  <td>Coed Grass Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>7/20 (Tue)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Bump n' Grind</td>
+  <td>Hop Heads</td>
+  <td><a href="/gyms.php?gym=24">Brentwood Park</a> (Lisa W.)</td>
+  <td>Coed Grass Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>7/21 (Wed)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>Waffles</td>
+  <td>CG Girls</td>
+  <td><a href="/gyms.php?gym=52">Delta Park</a> </td>
+  <td>Womens Sand Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>7/21 (Wed)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>Block and Awe</td>
+  <td>Sandy Pops</td>
+  <td><a href="/gyms.php?gym=52">Delta Park</a> (Marty D.)</td>
+  <td>Womens Sand Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>7/21 (Wed)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>Thing 1</td>
+  <td>Pancakes</td>
+  <td><a href="/gyms.php?gym=52">Delta Park</a> (Cohen E.)</td>
+  <td>Womens Sand Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>7/21 (Wed)</td>
+  <td>6:30</td>
+  <td></td>
+  <td>Serve-ivors</td>
+  <td>Sandbags</td>
+  <td><a href="/gyms.php?gym=52">Delta Park</a> (Lisa W.)</td>
+  <td>Womens Sand Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>7/21 (Wed)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Block and Awe</td>
+  <td>Waffles</td>
+  <td><a href="/gyms.php?gym=52">Delta Park</a> (Lisa W.)</td>
+  <td>Womens Sand Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>7/21 (Wed)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>CG Girls</td>
+  <td>Thing 1</td>
+  <td><a href="/gyms.php?gym=52">Delta Park</a> (Cohen E.)</td>
+  <td>Womens Sand Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>7/21 (Wed)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Sandy Pops</td>
+  <td>Sandbags</td>
+  <td><a href="/gyms.php?gym=52">Delta Park</a> (Marty D.)</td>
+  <td>Womens Sand Quads</td>
+</tr><tr class="schedule-table__row">
+  <td>7/21 (Wed)</td>
+  <td>7:30</td>
+  <td></td>
+  <td>Serve-ivors</td>
+  <td>Pancakes</td>
+  <td><a href="/gyms.php?gym=52">Delta Park</a> </td>
+  <td>Womens Sand Quads</td>
 </tr></table>
 </div>
 </div>
@@ -351,6 +1577,6 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-  
+
 </body>
 </html>

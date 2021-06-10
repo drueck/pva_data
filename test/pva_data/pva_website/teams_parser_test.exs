@@ -15,27 +15,27 @@ defmodule PVAData.TeamsScraperTest do
                |> File.read!()
                |> TeamsParser.get_teams_by_division()
 
-      expected_division_count = 8
+      expected_division_count = 4
 
-      first_division = Division.new(name: "Coed A Thursday", slug: "coed-a-thursday")
+      first_division = Division.new(name: "Coed Grass Quads", slug: "coed-grass-quads")
 
       teams = [
-        Team.new(division_id: first_division.id, name: "Chewblocka", slug: "chewblocka"),
-        Team.new(division_id: first_division.id, name: "Court Jesters", slug: "court-jesters"),
+        Team.new(division_id: first_division.id, name: "2Legit2Hit", slug: "2legit2hit"),
         Team.new(
           division_id: first_division.id,
-          name: "Empire Spikes Back",
-          slug: "empire-spikes-back"
+          name: "Awkward High Fives",
+          slug: "awkward-high-fives"
         ),
-        Team.new(division_id: first_division.id, name: "Group Sets", slug: "group-sets"),
+        Team.new(division_id: first_division.id, name: "Bump n' Grind", slug: "bump-n-grind"),
+        Team.new(division_id: first_division.id, name: "Free Agents", slug: "free-agents"),
         Team.new(
           division_id: first_division.id,
-          name: "Other People's Spouses",
-          slug: "other-peoples-spouses"
+          name: "Have Balls Will Travel",
+          slug: "have-balls-will-travel"
         ),
-        Team.new(division_id: first_division.id, name: "Pokéballs", slug: "pokeballs"),
-        Team.new(division_id: first_division.id, name: "Pound Town", slug: "pound-town"),
-        Team.new(division_id: first_division.id, name: "Whatever", slug: "whatever")
+        Team.new(division_id: first_division.id, name: "Hop Heads", slug: "hop-heads"),
+        Team.new(division_id: first_division.id, name: "Rhombus", slug: "rhombus"),
+        Team.new(division_id: first_division.id, name: "Spike Force", slug: "spike-force")
       ]
 
       expected_first_division = %{first_division | teams: teams}

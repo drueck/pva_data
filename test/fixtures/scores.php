@@ -74,6 +74,9 @@
           <li>
             <a href="/contact.php">Contact</a>
           </li>
+          <li>
+            <a href="/checkin.php">COVID Check-In</a>
+          </li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More <span class="caret"></span></a>
             <ul class="dropdown-menu">
@@ -105,11 +108,11 @@
   <div class="form-group">
 	<select class="form-control" name="teams" onchange="document.sort.leagues.selectedIndex = 0;">
 	<option value="">-- Select team --</option>
-<option value="1865">2Legit2Hit (Coed A Thursday)</option><option value="1699">A & L Bombers (Coed C Wednesday)</option><option value="1785">Baby Got Backset (Womens A2 Monday)</option><option value="1828">Back that Pass UP (Womens A1 Monday)</option><option value="1783">Ball Busters (Womens BB)</option><option value="1844">Becky's All-Star Jazz Hands Review (Coed A Wednesday)</option><option value="1712">Block Dirty to Me (Womens AA Tuesday)</option><option value="1845">Booya (Coed A Wednesday)</option><option value="1726">Bumptown (Womens A2 Monday)</option><option value="1837">Chewblocka (Coed A Thursday)</option><option value="1788">Court Jesters (Coed A Thursday)</option><option value="1742">Dig This! (Womens A1 Monday)</option><option value="1740">Diggers & Dozers (Womens A2 Monday)</option><option value="1833">East of Eden (Coed B Wednesday)</option><option value="1727">Floor Burn (Womens BB)</option><option value="1847">G-Unit (Coed C Wednesday)</option><option value="1846">Gangsta Pair'a Dice (Coed B Wednesday)</option><option value="1733">Guidettes (Womens BB)</option><option value="1831">Hit it N Dig It (Coed A Wednesday)</option><option value="1744">Hit This (Womens A2 Monday)</option><option value="1779">Hot Piece of Ace MON (Womens A1 Monday)</option><option value="1747">Hot Spicy Ballz (Womens AA Tuesday)</option><option value="1784">How I Set Your Mother (Womens BB)</option><option value="1848">Just the Tip (Womens A1 Monday)</option><option value="1854">Kiss My Pass (Womens BB)</option><option value="1655">LADYBALLS! (Womens A2 Monday)</option><option value="1849">Lollipop Girls (Womens A1 Monday)</option><option value="1862">Merder Mafia (Coed A Wednesday)</option><option value="1851">Motorboat (Womens A2 Monday)</option><option value="1778">Mt. Goats (Coed C Wednesday)</option><option value="1703">Mudsharks (Coed C Wednesday)</option><option value="1832">My Hand, your Balls (Coed B Wednesday)</option><option value="1858">Natural Diaster (Womens AA Tuesday)</option><option value="1840">Other People's Spouses (Coed A Thursday)</option><option value="1793">Pancakes (Womens A2 Monday)</option><option value="1841">Pound Town (Coed A Thursday)</option><option value="1661">Raptors (Womens A1 Monday)</option><option value="1746">Red Hots (Womens A2 Monday)</option><option value="1855">Servivors (Womens BB)</option><option value="1853">Set for Life (Womens BB)</option><option value="1715">Sneaker Wave (Womens AA Tuesday)</option><option value="1864">Spike Tysons (Womens BB)</option><option value="1836">Spiked Punch AA (Womens AA Tuesday)</option><option value="1732">Spiked Punch BB (Womens BB)</option><option value="1829">Stay Naked Mole Rats (Womens A1 Monday)</option><option value="1866">TBD (Coed A Thursday)</option><option value="1722">Team North (Womens A1 Monday)</option><option value="1856">Team on Three (Coed B Wednesday)</option><option value="1724">Team Trash (Womens A1 Monday)</option><option value="1867">Tip City (Coed A Thursday)</option><option value="1707">Vertically Challenged (Coed C Wednesday)</option><option value="1863">Vollley Llamas Wed (Coed C Wednesday)</option><option value="1843">Whatever (Coed A Thursday)</option><option value="1716">Will Work for Sets (Womens AA Tuesday)</option><option value="1850">You've Been Served (Womens A1 Monday)</option></select>
+<option value="1928">2Legit2Hit (Coed Grass Quads)</option><option value="1914">A&M's (Womens Grass Quads A)</option><option value="1925">ALL ABOUT THAT ACE (Womens Grass Quads B)</option><option value="1921">Attack Pack (Womens Grass Quads B)</option><option value="1930">Awkward High Fives (Coed Grass Quads)</option><option value="1920">Ball Busters (Womens Grass Quads B)</option><option value="1919">Block and Awe (Womens Sand Quads)</option><option value="1929">BSB (Womens Grass Quads A)</option><option value="1910">Bump n' Grind (Coed Grass Quads)</option><option value="1904">Bumptown Like Stumptown (Womens Grass Quads B)</option><option value="1932">CG Girls (Womens Sand Quads)</option><option value="1908">Crafty Monkeys (Womens Grass Quads A)</option><option value="1933">Free Agents (Coed Grass Quads)</option><option value="1917">Grass Hurts (Womens Grass Quads B)</option><option value="1900">Grass Stain (Womens Grass Quads B)</option><option value="1901">Have Balls Will Travel (Coed Grass Quads)</option><option value="1903">Hop Heads (Coed Grass Quads)</option><option value="1899">LADYBALLS! (Womens Grass Quads A)</option><option value="1905">Lollipop Girls (Womens Grass Quads A)</option><option value="1927">Net Gain  (Womens Grass Quads B)</option><option value="1909">OverServed (Womens Grass Quads A)</option><option value="1912">Pancakes (Womens Sand Quads)</option><option value="1916">Quad Damn (Womens Grass Quads A)</option><option value="1902">Rhombus (Coed Grass Quads)</option><option value="1918">Sandbags (Womens Sand Quads)</option><option value="1911">Sandy Pops (Womens Sand Quads)</option><option value="1926">Serve-ivors (Womens Sand Quads)</option><option value="1907">Shindigs (Womens Grass Quads A)</option><option value="1924">SMASH (Womens Grass Quads B)</option><option value="1906">Spike Force (Coed Grass Quads)</option><option value="1931">Team 2 (Womens Grass Quads A)</option><option value="1935">Thing 1 (Womens Sand Quads)</option><option value="1934">Thing 1 (Womens Grass Quads A)</option><option value="1913">Waffles (Womens Sand Quads)</option></select>
 </div>
 <div class="form-group">
 <select class="form-control" name="leagues" onchange="document.sort.teams.selectedIndex = 0;">
-<option value="">-- Select league --</option><option value="107">Coed A Thursday</option><option value="78">Coed A Wednesday</option><option value="108">Coed B Thursday</option><option value="24">Coed B Wednesday</option><option value="25">Coed C Wednesday</option><option value="88">Womens A1 Monday</option><option value="20">Womens A2 Monday</option><option value="124">Womens AA Monday</option><option value="114">Womens AA Tuesday</option><option value="82">Womens BB</option></select>
+<option value="">-- Select league --</option><option value="129">Coed Grass Quads</option><option value="127">Womens Grass Quads A</option><option value="128">Womens Grass Quads B</option><option value="130">Womens Sand Quads</option></select>
 </div>
 <input type="submit" value="Filter" class="btn btn-default" />
 </form>
@@ -135,76 +138,238 @@
 </tr>
 
 <tr>
-<td>4/08 (Mon)</td><td>7:00</td>
-<td>Womens A1 Monday</td>
-<td><span class="scores-table__team--winning-team">Hot Piece of Ace MON</span></td>
-<td><span class="">Lollipop Girls</span></td>
-<td class="scores-table__game-score">25 - 11</td>
-<td class="scores-table__game-score">27 - 25</td>
-<td class="scores-table__game-score">15 - 11</td>
+<td>6/07 (Mon)</td><td>6:30</td>
+<td>Womens Grass Quads B</td>
+<td><span class="">Grass Hurts</span></td>
+<td><span class="scores-table__team--winning-team">Attack Pack</span></td>
+<td class="scores-table__game-score">8 - 21</td>
+<td class="scores-table__game-score">21 - 19</td>
+<td class="scores-table__game-score">8 - 15</td>
 </tr>
 <tr>
-<td>4/08 (Mon)</td><td>7:00</td>
-<td>Womens BB</td>
-<td><span class="">Ball Busters</span></td>
-<td><span class="scores-table__team--winning-team">Floor Burn</span></td>
-<td class="scores-table__game-score">23 - 25</td>
-<td class="scores-table__game-score">25 - 15</td>
-<td class="scores-table__game-score">12 - 15</td>
-</tr>
-<tr>
-<td>4/08 (Mon)</td><td>8:00</td>
-<td>Womens A1 Monday</td>
-<td><span class="scores-table__team--winning-team">Team Trash</span></td>
-<td><span class="">You've Been Served</span></td>
-<td class="scores-table__game-score">21 - 25</td>
-<td class="scores-table__game-score">25 - 23</td>
-<td class="scores-table__game-score">17 - 15</td>
-</tr>
-<tr>
-<td>4/08 (Mon)</td><td>8:00</td>
-<td>Womens BB</td>
-<td><span class="scores-table__team--winning-team">Floor Burn</span></td>
-<td><span class="">Kiss My Pass</span></td>
-<td class="scores-table__game-score">25 - 14</td>
-<td class="scores-table__game-score">25 - 22</td>
-<td class="scores-table__game-score">15 - 6</td>
-</tr>
-<tr>
-<td>4/08 (Mon)</td><td>9:00</td>
-<td>Womens A1 Monday</td>
-<td><span class="scores-table__team--winning-team">Back that Pass UP</span></td>
-<td><span class="">Team North</span></td>
-<td class="scores-table__game-score">25 - 15</td>
-<td class="scores-table__game-score">25 - 20</td>
+<td>6/07 (Mon)</td><td>6:30</td>
+<td>Womens Grass Quads A</td>
+<td><span class="">Crafty Monkeys</span></td>
+<td><span class="scores-table__team--winning-team">Quad Damn</span></td>
+<td class="scores-table__game-score">21 - 13</td>
+<td class="scores-table__game-score">17 - 21</td>
 <td class="scores-table__game-score">7 - 15</td>
 </tr>
 <tr>
-<td>4/08 (Mon)</td><td>9:00</td>
-<td>Womens BB</td>
-<td><span class="scores-table__team--winning-team">Kiss My Pass</span></td>
-<td><span class="">Servivors</span></td>
-<td class="scores-table__game-score">25 - 21</td>
-<td class="scores-table__game-score">25 - 15</td>
-<td class="scores-table__game-score">9 - 15</td>
+<td>6/07 (Mon)</td><td>6:30</td>
+<td>Womens Grass Quads A</td>
+<td><span class="">OverServed</span></td>
+<td><span class="scores-table__team--winning-team">A&M's</span></td>
+<td class="scores-table__game-score">11 - 21</td>
+<td class="scores-table__game-score">12 - 21</td>
+<td class="scores-table__game-score">12 - 15</td>
 </tr>
 <tr>
-<td>4/09 (Tue)</td><td>7:00</td>
-<td>Womens AA Tuesday</td>
-<td><span class="scores-table__team--winning-team">Block Dirty to Me</span></td>
-<td><span class="">Hot Spicy Ballz</span></td>
-<td class="scores-table__game-score">23 - 25</td>
-<td class="scores-table__game-score">25 - 23</td>
+<td>6/07 (Mon)</td><td>6:30</td>
+<td>Womens Grass Quads A</td>
+<td><span class="scores-table__team--winning-team">Lollipop Girls</span></td>
+<td><span class="">Team 2</span></td>
+<td class="scores-table__game-score">21 - 18</td>
+<td class="scores-table__game-score">21 - 14</td>
 <td class="scores-table__game-score">15 - 9</td>
 </tr>
 <tr>
-<td>4/09 (Tue)</td><td>8:00</td>
-<td>Womens AA Tuesday</td>
-<td><span class="scores-table__team--winning-team">Natural Diaster</span></td>
-<td><span class="">Sneaker Wave</span></td>
-<td class="scores-table__game-score">25 - 21</td>
-<td class="scores-table__game-score">15 - 25</td>
+<td>6/07 (Mon)</td><td>6:30</td>
+<td>Womens Grass Quads A</td>
+<td><span class="scores-table__team--winning-team">LADYBALLS!</span></td>
+<td><span class="">Thing 1</span></td>
+<td class="scores-table__game-score">21 - 19</td>
+<td class="scores-table__game-score">21 - 16</td>
+<td class="scores-table__game-score">13 - 15</td>
+</tr>
+<tr>
+<td>6/07 (Mon)</td><td>6:30</td>
+<td>Womens Grass Quads B</td>
+<td><span class="">Ball Busters</span></td>
+<td><span class="scores-table__team--winning-team">ALL ABOUT THAT ACE</span></td>
+<td class="scores-table__game-score">5 - 21</td>
+<td class="scores-table__game-score">21 - 7</td>
+<td class="scores-table__game-score">6 - 15</td>
+</tr>
+<tr>
+<td>6/07 (Mon)</td><td>6:30</td>
+<td>Womens Grass Quads B</td>
+<td><span class="scores-table__team--winning-team">Grass Stain</span></td>
+<td><span class="">Net Gain </span></td>
+<td class="scores-table__game-score">21 - 18</td>
+<td class="scores-table__game-score">21 - 15</td>
+<td class="scores-table__game-score">15 - 13</td>
+</tr>
+<tr>
+<td>6/07 (Mon)</td><td>6:30</td>
+<td>Womens Grass Quads B</td>
+<td><span class="">Bumptown Like Stumptown</span></td>
+<td><span class="scores-table__team--winning-team">SMASH</span></td>
+<td class="scores-table__game-score">19 - 21</td>
+<td class="scores-table__game-score">15 - 21</td>
 <td class="scores-table__game-score">15 - 11</td>
+</tr>
+<tr>
+<td>6/07 (Mon)</td><td>7:30</td>
+<td>Womens Grass Quads B</td>
+<td><span class="scores-table__team--winning-team">Grass Hurts</span></td>
+<td><span class="">Ball Busters</span></td>
+<td class="scores-table__game-score">21 - 19</td>
+<td class="scores-table__game-score">21 - 14</td>
+<td class="scores-table__game-score">15 - 9</td>
+</tr>
+<tr>
+<td>6/07 (Mon)</td><td>7:30</td>
+<td>Womens Grass Quads B</td>
+<td><span class="">SMASH</span></td>
+<td><span class="scores-table__team--winning-team">Grass Stain</span></td>
+<td class="scores-table__game-score">21 - 10</td>
+<td class="scores-table__game-score">20 - 22</td>
+<td class="scores-table__game-score">9 - 15</td>
+</tr>
+<tr>
+<td>6/07 (Mon)</td><td>7:30</td>
+<td>Womens Grass Quads B</td>
+<td><span class="">Attack Pack</span></td>
+<td><span class="scores-table__team--winning-team">Bumptown Like Stumptown</span></td>
+<td class="scores-table__game-score">19 - 21</td>
+<td class="scores-table__game-score">10 - 21</td>
+<td class="scores-table__game-score">15 - 11</td>
+</tr>
+<tr>
+<td>6/07 (Mon)</td><td>7:30</td>
+<td>Womens Grass Quads A</td>
+<td><span class="">BSB</span></td>
+<td><span class="scores-table__team--winning-team">Thing 1</span></td>
+<td class="scores-table__game-score">21 - 11</td>
+<td class="scores-table__game-score">19 - 21</td>
+<td class="scores-table__game-score">12 - 15</td>
+</tr>
+<tr>
+<td>6/07 (Mon)</td><td>7:30</td>
+<td>Womens Grass Quads A</td>
+<td><span class="">OverServed</span></td>
+<td><span class="scores-table__team--winning-team">Crafty Monkeys</span></td>
+<td class="scores-table__game-score">23 - 25</td>
+<td class="scores-table__game-score">17 - 21</td>
+<td class="scores-table__game-score">11 - 15</td>
+</tr>
+<tr>
+<td>6/07 (Mon)</td><td>7:30</td>
+<td>Womens Grass Quads B</td>
+<td><span class="scores-table__team--winning-team">ALL ABOUT THAT ACE</span></td>
+<td><span class="">Net Gain </span></td>
+<td class="scores-table__game-score">21 - 15</td>
+<td class="scores-table__game-score">21 - 11</td>
+<td class="scores-table__game-score">15 - 10</td>
+</tr>
+<tr>
+<td>6/07 (Mon)</td><td>7:30</td>
+<td>Womens Grass Quads A</td>
+<td><span class="">Team 2</span></td>
+<td><span class="scores-table__team--winning-team">LADYBALLS!</span></td>
+<td class="scores-table__game-score">16 - 21</td>
+<td class="scores-table__game-score">10 - 21</td>
+<td class="scores-table__game-score">11 - 15</td>
+</tr>
+<tr>
+<td>6/07 (Mon)</td><td>7:30</td>
+<td>Womens Grass Quads A</td>
+<td><span class="scores-table__team--winning-team">A&M's</span></td>
+<td><span class="">Shindigs</span></td>
+<td class="scores-table__game-score">18 - 21</td>
+<td class="scores-table__game-score">21 - 10</td>
+<td class="scores-table__game-score">15 - 8</td>
+</tr>
+<tr>
+<td>6/08 (Tue)</td><td>6:30</td>
+<td>Coed Grass Quads</td>
+<td><span class="scores-table__team--winning-team">Spike Force</span></td>
+<td><span class="">Bump n' Grind</span></td>
+<td class="scores-table__game-score">21 - 7</td>
+<td class="scores-table__game-score">21 - 7</td>
+<td class="scores-table__game-score">15 - 8</td>
+</tr>
+<tr>
+<td>6/08 (Tue)</td><td>6:30</td>
+<td>Coed Grass Quads</td>
+<td><span class="">Rhombus</span></td>
+<td><span class="scores-table__team--winning-team">Awkward High Fives</span></td>
+<td class="scores-table__game-score">21 - 13</td>
+<td class="scores-table__game-score">16 - 21</td>
+<td class="scores-table__game-score">11 - 15</td>
+</tr>
+<tr>
+<td>6/08 (Tue)</td><td>6:30</td>
+<td>Coed Grass Quads</td>
+<td><span class="scores-table__team--winning-team">Have Balls Will Travel</span></td>
+<td><span class="">Free Agents</span></td>
+<td class="scores-table__game-score">21 - 7</td>
+<td class="scores-table__game-score">21 - 10</td>
+<td class="scores-table__game-score">15 - 6</td>
+</tr>
+<tr>
+<td>6/08 (Tue)</td><td>6:30</td>
+<td>Coed Grass Quads</td>
+<td><span class="scores-table__team--winning-team">Hop Heads</span></td>
+<td><span class="">2Legit2Hit</span></td>
+<td class="scores-table__game-score">21 - 15</td>
+<td class="scores-table__game-score">21 - 10</td>
+<td class="scores-table__game-score">15 - 11</td>
+</tr>
+<tr>
+<td>6/08 (Tue)</td><td>7:30</td>
+<td>Coed Grass Quads</td>
+<td><span class="">Spike Force</span></td>
+<td><span class="scores-table__team--winning-team">Hop Heads</span></td>
+<td class="scores-table__game-score">23 - 21</td>
+<td class="scores-table__game-score">16 - 21</td>
+<td class="scores-table__game-score">12 - 15</td>
+</tr>
+<tr>
+<td>6/08 (Tue)</td><td>7:30</td>
+<td>Coed Grass Quads</td>
+<td><span class="scores-table__team--winning-team">2Legit2Hit</span></td>
+<td><span class="">Free Agents</span></td>
+<td class="scores-table__game-score">21 - 15</td>
+<td class="scores-table__game-score">21 - 16</td>
+<td class="scores-table__game-score">15 - 6</td>
+</tr>
+<tr>
+<td>6/08 (Tue)</td><td>7:30</td>
+<td>Coed Grass Quads</td>
+<td><span class="">Awkward High Fives</span></td>
+<td><span class="scores-table__team--winning-team">Have Balls Will Travel</span></td>
+<td class="scores-table__game-score">18 - 21</td>
+<td class="scores-table__game-score">21 - 19</td>
+<td class="scores-table__game-score">8 - 15</td>
+</tr>
+<tr>
+<td>6/08 (Tue)</td><td>7:30</td>
+<td>Coed Grass Quads</td>
+<td><span class="">Bump n' Grind</span></td>
+<td><span class="scores-table__team--winning-team">Rhombus</span></td>
+<td class="scores-table__game-score">3 - 21</td>
+<td class="scores-table__game-score">5 - 21</td>
+<td class="scores-table__game-score">3 - 15</td>
+</tr>
+<tr>
+<td>6/09 (Wed)</td><td>6:30</td>
+<td>Womens Sand Quads</td>
+<td><span class="">Sandbags</span></td>
+<td><span class="scores-table__team--winning-team">Block and Awe</span></td>
+<td class="scores-table__game-score">6 - 21</td>
+<td class="scores-table__game-score">24 - 22</td>
+<td class="scores-table__game-score">10 - 15</td>
+</tr>
+<tr>
+<td>6/09 (Wed)</td><td>7:30</td>
+<td>Womens Sand Quads</td>
+<td><span class="">Sandbags</span></td>
+<td><span class="scores-table__team--winning-team">Waffles</span></td>
+<td class="scores-table__game-score">21 - 16</td>
+<td class="scores-table__game-score">14 - 21</td>
+<td class="scores-table__game-score">14 - 16</td>
 </tr>
 
 </table>
@@ -216,6 +381,6 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-  
+
 </body>
 </html>

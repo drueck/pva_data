@@ -17,27 +17,27 @@ defmodule PVAData.PVAWebsite.ScoresParserTest do
                |> File.read!()
                |> ScoresParser.get_completed_matches()
 
-      expected_match_count = 8
+      expected_match_count = 26
       current_year = Date.utc_today().year
 
-      {:ok, first_match_date} = Date.new(current_year, 4, 8)
+      {:ok, first_match_date} = Date.new(current_year, 6, 7)
 
-      first_match_division = Division.new(name: "Womens A1 Monday")
+      first_match_division = Division.new(name: "Womens Grass Quads B")
 
-      first_match_home_team =
-        Team.new(name: "Hot Piece of Ace MON", division_id: first_match_division.id)
+      first_match_home_team = Team.new(name: "Grass Hurts", division_id: first_match_division.id)
 
       first_match_visiting_team =
-        Team.new(name: "Lollipop Girls", division_id: first_match_division.id)
+        Team.new(name: "Attack Pack", division_id: first_match_division.id)
 
       expected_first_match =
         Match.new(
           date: first_match_date,
-          time: ~T[19:00:00],
+          time: ~T[18:30:00],
           division_id: first_match_division.id,
           home_team_id: first_match_home_team.id,
           visiting_team_id: first_match_visiting_team.id,
           location: nil,
+          court: nil,
           ref: nil
         )
 
@@ -49,43 +49,42 @@ defmodule PVAData.PVAWebsite.ScoresParserTest do
             SetResult.new(
               match_id: expected_first_match.id,
               set_number: 1,
-              home_team_score: 25,
-              visiting_team_score: 11
+              home_team_score: 8,
+              visiting_team_score: 21
             ),
             SetResult.new(
               match_id: expected_first_match.id,
               set_number: 2,
-              home_team_score: 27,
-              visiting_team_score: 25
+              home_team_score: 21,
+              visiting_team_score: 19
             ),
             SetResult.new(
               match_id: expected_first_match.id,
               set_number: 3,
-              home_team_score: 15,
-              visiting_team_score: 11
+              home_team_score: 8,
+              visiting_team_score: 15
             )
           ]
         )
 
-      {:ok, last_match_date} = Date.new(current_year, 4, 9)
+      {:ok, last_match_date} = Date.new(current_year, 6, 9)
 
-      last_match_division = Division.new(name: "Womens AA Tuesday")
+      last_match_division = Division.new(name: "Womens Sand Quads")
 
-      last_match_home_team =
-        Team.new(name: "Natural Diaster", division_id: last_match_division.id)
+      last_match_home_team = Team.new(name: "Sandbags", division_id: last_match_division.id)
 
-      last_match_visiting_team =
-        Team.new(name: "Sneaker Wave", division_id: last_match_division.id)
+      last_match_visiting_team = Team.new(name: "Waffles", division_id: last_match_division.id)
 
       expected_last_match =
         Match.new(
           date: last_match_date,
-          time: ~T[20:00:00],
+          time: ~T[19:30:00],
           division_id: last_match_division.id,
           home_team_id: last_match_home_team.id,
           visiting_team_id: last_match_visiting_team.id,
           location: nil,
           ref: nil,
+          court: nil,
           set_results: []
         )
 
@@ -97,20 +96,20 @@ defmodule PVAData.PVAWebsite.ScoresParserTest do
             SetResult.new(
               match_id: expected_last_match.id,
               set_number: 1,
-              home_team_score: 25,
-              visiting_team_score: 21
+              home_team_score: 21,
+              visiting_team_score: 16
             ),
             SetResult.new(
               match_id: expected_last_match.id,
               set_number: 2,
-              home_team_score: 15,
-              visiting_team_score: 25
+              home_team_score: 14,
+              visiting_team_score: 21
             ),
             SetResult.new(
               match_id: expected_last_match.id,
               set_number: 3,
-              home_team_score: 15,
-              visiting_team_score: 11
+              home_team_score: 14,
+              visiting_team_score: 16
             )
           ]
         )

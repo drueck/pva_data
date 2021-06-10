@@ -16,46 +16,46 @@ defmodule PVAData.PVAWebsite.SchedulesParserTest do
                |> File.read!()
                |> SchedulesParser.get_scheduled_matches()
 
-      expected_match_count = 28
+      expected_match_count = 177
       current_year = Date.utc_today().year
 
-      {:ok, first_match_date} = Date.new(current_year, 4, 8)
+      {:ok, first_match_date} = Date.new(current_year, 6, 9)
 
-      first_match_division = Division.new(name: "Womens BB")
-      first_match_home_team = Team.new(name: "Ball Busters", division_id: first_match_division.id)
+      first_match_division = Division.new(name: "Womens Sand Quads")
+      first_match_home_team = Team.new(name: "Waffles", division_id: first_match_division.id)
 
       first_match_visiting_team =
-        Team.new(name: "Floor Burn", division_id: first_match_division.id)
+        Team.new(name: "Serve-ivors", division_id: first_match_division.id)
 
       expected_first_match =
         Match.new(
           date: first_match_date,
-          time: ~T[19:00:00],
+          time: ~T[18:30:00],
           division_id: first_match_division.id,
           home_team_id: first_match_home_team.id,
           visiting_team_id: first_match_visiting_team.id,
-          location: "St. Johns Community Center",
-          ref: "Jim R.",
+          location: "Delta Park",
+          court: nil,
+          ref: nil,
           set_results: []
         )
 
-      {:ok, last_match_date} = Date.new(current_year, 4, 10)
+      {:ok, last_match_date} = Date.new(current_year, 7, 21)
 
-      last_match_division = Division.new(name: "Coed A Wednesday")
-      last_match_home_team = Team.new(name: "Merda Mafia", division_id: last_match_division.id)
-
-      last_match_visiting_team =
-        Team.new(name: "Hit it N Dig It", division_id: last_match_division.id)
+      last_match_division = Division.new(name: "Womens Sand Quads")
+      last_match_home_team = Team.new(name: "Serve-ivors", division_id: last_match_division.id)
+      last_match_visiting_team = Team.new(name: "Pancakes", division_id: last_match_division.id)
 
       expected_last_match =
         Match.new(
           date: last_match_date,
-          time: ~T[21:00:00],
+          time: ~T[19:30:00],
           division_id: last_match_division.id,
           home_team_id: last_match_home_team.id,
           visiting_team_id: last_match_visiting_team.id,
-          location: "East Portland Community Center",
-          ref: "Marshal R.",
+          location: "Delta Park",
+          court: nil,
+          ref: nil,
           set_results: []
         )
 

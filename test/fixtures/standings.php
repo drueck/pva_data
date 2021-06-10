@@ -74,6 +74,9 @@
           <li>
             <a href="/contact.php">Contact</a>
           </li>
+          <li>
+            <a href="/checkin.php">COVID Check-In</a>
+          </li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More <span class="caret"></span></a>
             <ul class="dropdown-menu">
@@ -103,15 +106,11 @@
 <p>Standings will fluctuate and may not be representative as teams will have played different numbers of games.</p>
 <p>Go to the <a href="scores.php">scores page</a> to see game results.</p>
 
-<p style="text-align: center;"><a class="btn btn-default" style="margin: 5px;" href="#Coed A Thursday">Coed A Thursday</a>
-<a class="btn btn-default" style="margin: 5px;" href="#Coed A Wednesday">Coed A Wednesday</a>
-<a class="btn btn-default" style="margin: 5px;" href="#Coed B Wednesday">Coed B Wednesday</a>
-<a class="btn btn-default" style="margin: 5px;" href="#Coed C Wednesday">Coed C Wednesday</a>
-<a class="btn btn-default" style="margin: 5px;" href="#Womens A1 Monday">Womens A1 Monday</a>
-<a class="btn btn-default" style="margin: 5px;" href="#Womens A2 Monday">Womens A2 Monday</a>
-<a class="btn btn-default" style="margin: 5px;" href="#Womens AA Tuesday">Womens AA Tuesday</a>
-<a class="btn btn-default" style="margin: 5px;" href="#Womens BB">Womens BB</a>
-</p><h3><a name="Coed A Thursday">Coed A Thursday</a></h3>
+<p style="text-align: center;"><a class="btn btn-default" style="margin: 5px;" href="#Coed Grass Quads">Coed Grass Quads</a>
+<a class="btn btn-default" style="margin: 5px;" href="#Womens Grass Quads A">Womens Grass Quads A</a>
+<a class="btn btn-default" style="margin: 5px;" href="#Womens Grass Quads B">Womens Grass Quads B</a>
+<a class="btn btn-default" style="margin: 5px;" href="#Womens Sand Quads">Womens Sand Quads</a>
+</p><h3><a name="Coed Grass Quads">Coed Grass Quads</a></h3>
 <div class="table-responsive">
 <table class="table table-striped">
 <tr>
@@ -125,78 +124,78 @@
   <th align=center></th>
 </tr>
 <tr>
-  <td>Pound Town</td>
+  <td>Have Balls Will Travel</td>
+  <td align=center>2</td>
   <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td>tie</td>
+  <td align=center>100.00</td>
+  <td align=center>8.5</td>
+  <td align=center>9</td>
+  <td align=center>94.44</td>
+  <td></td>
 </tr><tr>
-  <td>Group Sets</td>
+  <td>Hop Heads</td>
+  <td align=center>2</td>
   <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td>tie</td>
+  <td align=center>100.00</td>
+  <td align=center>8.5</td>
+  <td align=center>9</td>
+  <td align=center>94.44</td>
+  <td></td>
 </tr><tr>
-  <td>Court Jesters</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td>tie</td>
+  <td>Rhombus</td>
+  <td align=center>1</td>
+  <td align=center>1</td>
+  <td align=center>50.00</td>
+  <td align=center>5</td>
+  <td align=center>9</td>
+  <td align=center>55.56</td>
+  <td></td>
 </tr><tr>
-  <td>Other People's Spouses</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td>tie</td>
+  <td>Spike Force</td>
+  <td align=center>1</td>
+  <td align=center>1</td>
+  <td align=center>50.00</td>
+  <td align=center>5</td>
+  <td align=center>9</td>
+  <td align=center>55.56</td>
+  <td></td>
 </tr><tr>
-  <td>Chewblocka</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td>tie</td>
+  <td>Awkward High Fives</td>
+  <td align=center>1</td>
+  <td align=center>1</td>
+  <td align=center>50.00</td>
+  <td align=center>4.5</td>
+  <td align=center>9</td>
+  <td align=center>50.00</td>
+  <td></td>
 </tr><tr>
-  <td>Whatever</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td>tie</td>
+  <td>2Legit2Hit</td>
+  <td align=center>1</td>
+  <td align=center>1</td>
+  <td align=center>50.00</td>
+  <td align=center>4.5</td>
+  <td align=center>9</td>
+  <td align=center>50.00</td>
+  <td></td>
 </tr><tr>
-  <td>Pokéballs</td>
+  <td>Bump n' Grind</td>
   <td align=center>0</td>
-  <td align=center>0</td>
+  <td align=center>2</td>
   <td align=center>0.00</td>
   <td align=center>0</td>
-  <td align=center>0</td>
+  <td align=center>9</td>
   <td align=center>0.00</td>
-  <td>tie</td>
+  <td></td>
 </tr><tr>
-  <td>Empire Spikes Back</td>
+  <td>Free Agents</td>
   <td align=center>0</td>
-  <td align=center>0</td>
+  <td align=center>2</td>
   <td align=center>0.00</td>
   <td align=center>0</td>
-  <td align=center>0</td>
+  <td align=center>9</td>
   <td align=center>0.00</td>
-  <td>tie</td>
-</tr></table></div><h3><a name="Coed A Wednesday">Coed A Wednesday</a></h3>
+  <td></td>
+</tr></table></div><h3><a name="Womens Grass Quads A">Womens Grass Quads A</a></h3>
 <div class="table-responsive">
 <table class="table table-striped">
 <tr>
@@ -210,261 +209,96 @@
   <th align=center></th>
 </tr>
 <tr>
-  <td>Merda Mafia</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td>tie</td>
-</tr><tr>
-  <td>Booya</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td>tie</td>
-</tr><tr>
-  <td>Becky's All-Star Jazz Hands Review</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td>tie</td>
-</tr><tr>
-  <td>Hit it N Dig It</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td>tie</td>
-</tr></table></div><h3><a name="Coed B Wednesday">Coed B Wednesday</a></h3>
-<div class="table-responsive">
-<table class="table table-striped">
-<tr>
-  <th align=center>Team</th>
-  <th align=center>Wins</th>
-  <th align=center>Losses</th>
-  <th align=center>Winning<br />Percentage</th>
-  <th align=center>Match<br />Points</th>
-  <th align=center>Match<br />Points<br />Possible</th>
-  <th align=center>Match<br />Point<br />Percentage</th>
-  <th align=center></th>
-</tr>
-<tr>
-  <td>Team on Three</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td>tie</td>
-</tr><tr>
-  <td>Gangsta Pair'a Dice</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td>tie</td>
-</tr><tr>
-  <td>East of Eden</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td>tie</td>
-</tr><tr>
-  <td>My Hand, your Balls</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td>tie</td>
-</tr></table></div><h3><a name="Coed C Wednesday">Coed C Wednesday</a></h3>
-<div class="table-responsive">
-<table class="table table-striped">
-<tr>
-  <th align=center>Team</th>
-  <th align=center>Wins</th>
-  <th align=center>Losses</th>
-  <th align=center>Winning<br />Percentage</th>
-  <th align=center>Match<br />Points</th>
-  <th align=center>Match<br />Points<br />Possible</th>
-  <th align=center>Match<br />Point<br />Percentage</th>
-  <th align=center></th>
-</tr>
-<tr>
-  <td>A & L Bombers</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td>tie</td>
-</tr><tr>
-  <td>Vollley Llamas Wed</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td>tie</td>
-</tr><tr>
-  <td>Mudsharks</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td>tie</td>
-</tr><tr>
-  <td>Mt. Goats</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td>tie</td>
-</tr><tr>
-  <td>G-Unit</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td>tie</td>
-</tr><tr>
-  <td>Vertically Challenged</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td>tie</td>
-</tr></table></div><h3><a name="Womens A1 Monday">Womens A1 Monday</a></h3>
-<div class="table-responsive">
-<table class="table table-striped">
-<tr>
-  <th align=center>Team</th>
-  <th align=center>Wins</th>
-  <th align=center>Losses</th>
-  <th align=center>Winning<br />Percentage</th>
-  <th align=center>Match<br />Points</th>
-  <th align=center>Match<br />Points<br />Possible</th>
-  <th align=center>Match<br />Point<br />Percentage</th>
-  <th align=center></th>
-</tr>
-<tr>
-  <td>Back that Pass UP</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td>tie</td>
-</tr><tr>
-  <td>Raptors</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td>tie</td>
-</tr><tr>
-  <td>Team Trash</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td>tie</td>
-</tr><tr>
-  <td>Team North</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td>tie</td>
-</tr><tr>
-  <td>Hot Piece of Ace MON</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td>tie</td>
-</tr><tr>
-  <td>Just the Tip</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td>tie</td>
-</tr><tr>
-  <td>Stay Naked Mole Rats</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td>tie</td>
-</tr><tr>
-  <td>Dig This!</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td>tie</td>
-</tr><tr>
-  <td>You've Been Served</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td>tie</td>
-</tr><tr>
   <td>Lollipop Girls</td>
+  <td align=center>1</td>
   <td align=center>0</td>
+  <td align=center>100.00</td>
+  <td align=center>4.5</td>
+  <td align=center>4.5</td>
+  <td align=center>100.00</td>
+  <td></td>
+</tr><tr>
+  <td>A&M's</td>
+  <td align=center>2</td>
   <td align=center>0</td>
+  <td align=center>100.00</td>
+  <td align=center>8.5</td>
+  <td align=center>9</td>
+  <td align=center>94.44</td>
+  <td></td>
+</tr><tr>
+  <td>LADYBALLS!</td>
+  <td align=center>2</td>
+  <td align=center>0</td>
+  <td align=center>100.00</td>
+  <td align=center>8.5</td>
+  <td align=center>9</td>
+  <td align=center>94.44</td>
+  <td></td>
+</tr><tr>
+  <td>Quad Damn</td>
+  <td align=center>1</td>
+  <td align=center>0</td>
+  <td align=center>100.00</td>
+  <td align=center>4</td>
+  <td align=center>4.5</td>
+  <td align=center>88.89</td>
+  <td></td>
+</tr><tr>
+  <td>Crafty Monkeys</td>
+  <td align=center>1</td>
+  <td align=center>1</td>
+  <td align=center>50.00</td>
+  <td align=center>5</td>
+  <td align=center>9</td>
+  <td align=center>55.56</td>
+  <td></td>
+</tr><tr>
+  <td>Thing 1</td>
+  <td align=center>1</td>
+  <td align=center>1</td>
+  <td align=center>50.00</td>
+  <td align=center>3.5</td>
+  <td align=center>9</td>
+  <td align=center>38.89</td>
+  <td></td>
+</tr><tr>
+  <td>BSB</td>
+  <td align=center>0</td>
+  <td align=center>1</td>
+  <td align=center>0.00</td>
+  <td align=center>1.5</td>
+  <td align=center>4.5</td>
+  <td align=center>33.33</td>
+  <td></td>
+</tr><tr>
+  <td>Shindigs</td>
+  <td align=center>0</td>
+  <td align=center>1</td>
+  <td align=center>0.00</td>
+  <td align=center>0.5</td>
+  <td align=center>4.5</td>
+  <td align=center>11.11</td>
+  <td></td>
+</tr><tr>
+  <td>Team 2</td>
+  <td align=center>0</td>
+  <td align=center>2</td>
   <td align=center>0.00</td>
   <td align=center>0</td>
-  <td align=center>0</td>
+  <td align=center>9</td>
   <td align=center>0.00</td>
-  <td>tie</td>
-</tr></table></div><h3><a name="Womens A2 Monday">Womens A2 Monday</a></h3>
+  <td></td>
+</tr><tr>
+  <td>OverServed</td>
+  <td align=center>0</td>
+  <td align=center>2</td>
+  <td align=center>0.00</td>
+  <td align=center>0</td>
+  <td align=center>9</td>
+  <td align=center>0.00</td>
+  <td></td>
+</tr></table></div><h3><a name="Womens Grass Quads B">Womens Grass Quads B</a></h3>
 <div class="table-responsive">
 <table class="table table-striped">
 <tr>
@@ -478,7 +312,128 @@
   <th align=center></th>
 </tr>
 <tr>
-  <td>LADYBALLS!</td>
+  <td>ALL ABOUT THAT ACE</td>
+  <td align=center>2</td>
+  <td align=center>0</td>
+  <td align=center>100.00</td>
+  <td align=center>8.5</td>
+  <td align=center>9</td>
+  <td align=center>94.44</td>
+  <td></td>
+</tr><tr>
+  <td>Grass Stain</td>
+  <td align=center>2</td>
+  <td align=center>0</td>
+  <td align=center>100.00</td>
+  <td align=center>7.5</td>
+  <td align=center>9</td>
+  <td align=center>83.33</td>
+  <td></td>
+</tr><tr>
+  <td>SMASH</td>
+  <td align=center>1</td>
+  <td align=center>1</td>
+  <td align=center>50.00</td>
+  <td align=center>5.5</td>
+  <td align=center>9</td>
+  <td align=center>61.11</td>
+  <td></td>
+</tr><tr>
+  <td>Grass Hurts</td>
+  <td align=center>1</td>
+  <td align=center>1</td>
+  <td align=center>50.00</td>
+  <td align=center>5</td>
+  <td align=center>9</td>
+  <td align=center>55.56</td>
+  <td></td>
+</tr><tr>
+  <td>Bumptown Like Stumptown</td>
+  <td align=center>1</td>
+  <td align=center>1</td>
+  <td align=center>50.00</td>
+  <td align=center>4.5</td>
+  <td align=center>9</td>
+  <td align=center>50.00</td>
+  <td></td>
+</tr><tr>
+  <td>Attack Pack</td>
+  <td align=center>1</td>
+  <td align=center>1</td>
+  <td align=center>50.00</td>
+  <td align=center>4.5</td>
+  <td align=center>9</td>
+  <td align=center>50.00</td>
+  <td></td>
+</tr><tr>
+  <td>Ball Busters</td>
+  <td align=center>0</td>
+  <td align=center>2</td>
+  <td align=center>0.00</td>
+  <td align=center>0.5</td>
+  <td align=center>9</td>
+  <td align=center>5.56</td>
+  <td></td>
+</tr><tr>
+  <td>Net Gain </td>
+  <td align=center>0</td>
+  <td align=center>2</td>
+  <td align=center>0.00</td>
+  <td align=center>0</td>
+  <td align=center>9</td>
+  <td align=center>0.00</td>
+  <td></td>
+</tr></table></div><h3><a name="Womens Sand Quads">Womens Sand Quads</a></h3>
+<div class="table-responsive">
+<table class="table table-striped">
+<tr>
+  <th align=center>Team</th>
+  <th align=center>Wins</th>
+  <th align=center>Losses</th>
+  <th align=center>Winning<br />Percentage</th>
+  <th align=center>Match<br />Points</th>
+  <th align=center>Match<br />Points<br />Possible</th>
+  <th align=center>Match<br />Point<br />Percentage</th>
+  <th align=center></th>
+</tr>
+<tr>
+  <td>CG Girls</td>
+  <td align=center>1</td>
+  <td align=center>0</td>
+  <td align=center>100.00</td>
+  <td align=center>4.5</td>
+  <td align=center>4.5</td>
+  <td align=center>100.00</td>
+  <td></td>
+</tr><tr>
+  <td>Waffles</td>
+  <td align=center>1</td>
+  <td align=center>0</td>
+  <td align=center>100.00</td>
+  <td align=center>4</td>
+  <td align=center>4.5</td>
+  <td align=center>88.89</td>
+  <td></td>
+</tr><tr>
+  <td>Block and Awe</td>
+  <td align=center>1</td>
+  <td align=center>0</td>
+  <td align=center>100.00</td>
+  <td align=center>4</td>
+  <td align=center>4.5</td>
+  <td align=center>88.89</td>
+  <td></td>
+</tr><tr>
+  <td>Sandbags</td>
+  <td align=center>0</td>
+  <td align=center>2</td>
+  <td align=center>0.00</td>
+  <td align=center>1</td>
+  <td align=center>9</td>
+  <td align=center>11.11</td>
+  <td></td>
+</tr><tr>
+  <td>Sandy Pops</td>
   <td align=center>0</td>
   <td align=center>0</td>
   <td align=center>0.00</td>
@@ -487,7 +442,7 @@
   <td align=center>0.00</td>
   <td>tie</td>
 </tr><tr>
-  <td>Motorboat</td>
+  <td>Serve-ivors</td>
   <td align=center>0</td>
   <td align=center>0</td>
   <td align=center>0.00</td>
@@ -496,34 +451,7 @@
   <td align=center>0.00</td>
   <td>tie</td>
 </tr><tr>
-  <td>Baby Got Backset</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td>tie</td>
-</tr><tr>
-  <td>Bumptown</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td>tie</td>
-</tr><tr>
-  <td>Red Hots</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td>tie</td>
-</tr><tr>
-  <td>Hit This</td>
+  <td>Thing 1</td>
   <td align=center>0</td>
   <td align=center>0</td>
   <td align=center>0.00</td>
@@ -534,173 +462,12 @@
 </tr><tr>
   <td>Pancakes</td>
   <td align=center>0</td>
-  <td align=center>0</td>
+  <td align=center>1</td>
   <td align=center>0.00</td>
   <td align=center>0</td>
-  <td align=center>0</td>
+  <td align=center>4.5</td>
   <td align=center>0.00</td>
-  <td>tie</td>
-</tr><tr>
-  <td>Diggers & Dozers</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td>tie</td>
-</tr></table></div><h3><a name="Womens AA Tuesday">Womens AA Tuesday</a></h3>
-<div class="table-responsive">
-<table class="table table-striped">
-<tr>
-  <th align=center>Team</th>
-  <th align=center>Wins</th>
-  <th align=center>Losses</th>
-  <th align=center>Winning<br />Percentage</th>
-  <th align=center>Match<br />Points</th>
-  <th align=center>Match<br />Points<br />Possible</th>
-  <th align=center>Match<br />Point<br />Percentage</th>
-  <th align=center></th>
-</tr>
-<tr>
-  <td>Spiked Punch AA</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td>tie</td>
-</tr><tr>
-  <td>Hot Spicy Ballz</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td>tie</td>
-</tr><tr>
-  <td>Natural Diaster</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td>tie</td>
-</tr><tr>
-  <td>Block Dirty to Me</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td>tie</td>
-</tr><tr>
-  <td>Will Work for Sets</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td>tie</td>
-</tr><tr>
-  <td>Sneaker Wave</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td>tie</td>
-</tr></table></div><h3><a name="Womens BB">Womens BB</a></h3>
-<div class="table-responsive">
-<table class="table table-striped">
-<tr>
-  <th align=center>Team</th>
-  <th align=center>Wins</th>
-  <th align=center>Losses</th>
-  <th align=center>Winning<br />Percentage</th>
-  <th align=center>Match<br />Points</th>
-  <th align=center>Match<br />Points<br />Possible</th>
-  <th align=center>Match<br />Point<br />Percentage</th>
-  <th align=center></th>
-</tr>
-<tr>
-  <td>Servivors</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td>tie</td>
-</tr><tr>
-  <td>Set for Life</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td>tie</td>
-</tr><tr>
-  <td>Floor Burn</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td>tie</td>
-</tr><tr>
-  <td>Spiked Punch BB</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td>tie</td>
-</tr><tr>
-  <td>Guidettes</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td>tie</td>
-</tr><tr>
-  <td>Kiss My Pass</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td>tie</td>
-</tr><tr>
-  <td>How I Set Your Mother</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td>tie</td>
-</tr><tr>
-  <td>Ball Busters</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td align=center>0</td>
-  <td align=center>0</td>
-  <td align=center>0.00</td>
-  <td>tie</td>
+  <td></td>
 </tr></table></div></div>
 
 <br>
@@ -709,6 +476,6 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-  
+
 </body>
 </html>
