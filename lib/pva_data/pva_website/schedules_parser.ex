@@ -13,7 +13,7 @@ defmodule PVAData.PVAWebsite.SchedulesParser do
     schedules_html
     |> Meeseeks.all(css("tr.schedule-table__row"))
     |> Enum.map(fn row ->
-      [date_string, time_string, home, visitor, location_and_ref, division_name] =
+      [date_string, time_string, _court, home, visitor, location_and_ref, division_name] =
         row
         |> Meeseeks.all(css("td"))
         |> Enum.map(&Meeseeks.text/1)
