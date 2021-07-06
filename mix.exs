@@ -28,10 +28,12 @@ defmodule PVAData.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:absinthe_plug, "~> 1.4.7"},
+      {:absinthe_plug, "~> 1.5.8"},
       {:cors_plug, "~> 2.0.2"},
       {:cowboy, "~> 2.7.0"},
       {:httpoison, "~> 1.6.2"},
+      {:jason, "~> 1.1"},
+      {:joken, "~> 2.0"},
       {:meeseeks, "~> 0.15.0"},
       {:plug, "~> 1.10.0"},
       {:plug_cowboy, "~> 2.1.2"},
