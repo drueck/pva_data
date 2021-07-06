@@ -7,6 +7,7 @@ alias PVAData.{
 
 config :pva_data,
   port: String.to_integer(System.fetch_env!("PORT")),
+  pva_password: System.fetch_env!("PVA_PASSWORD"),
   other_children: [
     {Redix,
      [
