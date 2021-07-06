@@ -96,4 +96,8 @@ defmodule PVADataWeb.Schema.Types do
     field :home_team_score, :integer
     field :visiting_team_score, :integer
   end
+
+  object :session do
+    field :token, :string
+  end
 end

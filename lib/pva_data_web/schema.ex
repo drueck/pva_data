@@ -6,6 +6,12 @@ defmodule PVADataWeb.Schema do
   alias PVADataWeb.Resolvers
 
   query do
+    field :login, type: :session do
+      arg :password, non_null(:string)
+
+      resolve &Resolvers.Authentication.login/2
+    end
+
     field :divisions, list_of(:division) do
       resolve &Resolvers.Division.all/2
     end
