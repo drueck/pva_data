@@ -10,6 +10,8 @@ defmodule PVAData.Router do
     pass: ["*/*"],
     json_decoder: Poison
 
+  plug PVADataWeb.Context
+
   plug :dispatch
 
   forward "/api",
