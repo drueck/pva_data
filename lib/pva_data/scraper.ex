@@ -1,11 +1,13 @@
 defmodule PVAData.Scraper do
   @pva_website Application.get_env(:pva_data, :pva_website_client)
+  @pva_password Application.get_env(:pva_data, :pva_password)
 
   def scrape do
-    with {:ok, divisions} <- @pva_website.get_teams_by_division(),
-         {:ok, scheduled_matches} <- @pva_website.get_scheduled_matches(),
-         {:ok, completed_matches} <- @pva_website.get_completed_matches(),
-         {:ok, division_standings} <- @pva_website.get_division_standings() do
+    with {:ok, cookies} <- @pva_website.login(@pva_password),
+         {:ok, divisions} <- @pva_website.get_teams_by_division(cookies),
+         {:ok, scheduled_matches} <- @pva_website.get_scheduled_matches(cookies),
+         {:ok, completed_matches} <- @pva_website.get_completed_matches(cookies),
+         {:ok, division_standings} <- @pva_website.get_division_standings(cookies) do
       divisions
       |> Enum.map(fn division ->
         division
