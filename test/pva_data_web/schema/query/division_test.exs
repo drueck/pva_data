@@ -8,6 +8,8 @@ defmodule PVADataWeb.Schema.Query.DivisionTest do
     Division
   }
 
+  alias PVADataWeb.Token
+
   @opts Router.init([])
 
   setup do
@@ -29,9 +31,12 @@ defmodule PVADataWeb.Schema.Query.DivisionTest do
 
     Data.put_division(division)
 
+    {:ok, token, _} = Token.generate_and_sign()
+
     conn =
       conn(:post, "/api", query: query, variables: %{"slug" => "coed-a-thursday"})
       |> put_req_header("content-type", "application/json")
+      |> put_req_header("authorization", "Bearer " <> token)
       |> Router.call(@opts)
 
     returned_division =
