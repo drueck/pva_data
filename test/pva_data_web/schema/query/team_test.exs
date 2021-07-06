@@ -12,14 +12,17 @@ defmodule PVADataWeb.Schema.Query.TeamTest do
     SetResult
   }
 
+  alias PVADataWeb.Token
+
   @opts Router.init([])
 
   setup do
     server = start_supervised!({Data, [name: Data]})
-    {:ok, server: server}
+    {:ok, token, _} = Token.generate_and_sign()
+    {:ok, server: server, token: token}
   end
 
-  test "can request a team by division slug and team slug" do
+  test "can request a team by division slug and team slug", %{token: token} do
     query = """
     query($divisionSlug: String!, $teamSlug: String!) {
       team(divisionSlug: $divisionSlug, teamSlug: $teamSlug) {
@@ -59,6 +62,7 @@ defmodule PVADataWeb.Schema.Query.TeamTest do
     conn =
       conn(:post, "/api", query: query, variables: variables)
       |> put_req_header("content-type", "application/json")
+      |> put_req_header("authorization", "Bearer " <> token)
       |> Router.call(@opts)
 
     returned_team =
@@ -70,7 +74,7 @@ defmodule PVADataWeb.Schema.Query.TeamTest do
     assert returned_team == Map.take(court_jesters, [:id, :name, :slug])
   end
 
-  test "can request a team's division" do
+  test "can request a team's division", %{token: token} do
     query = """
     query($divisionSlug: String!, $teamSlug: String!) {
       team(divisionSlug: $divisionSlug, teamSlug: $teamSlug) {
@@ -101,6 +105,7 @@ defmodule PVADataWeb.Schema.Query.TeamTest do
     conn =
       conn(:post, "/api", query: query, variables: variables)
       |> put_req_header("content-type", "application/json")
+      |> put_req_header("authorization", "Bearer " <> token)
       |> Router.call(@opts)
 
     returned_team =
@@ -121,7 +126,7 @@ defmodule PVADataWeb.Schema.Query.TeamTest do
     assert returned_team == expected_team
   end
 
-  test "can request a team's record (standing)" do
+  test "can request a team's record (standing)", %{token: token} do
     query = """
     query($divisionSlug: String!, $teamSlug: String!) {
       team(divisionSlug: $divisionSlug, teamSlug: $teamSlug) {
@@ -169,6 +174,7 @@ defmodule PVADataWeb.Schema.Query.TeamTest do
     conn =
       conn(:post, "/api", query: query, variables: variables)
       |> put_req_header("content-type", "application/json")
+      |> put_req_header("authorization", "Bearer " <> token)
       |> Router.call(@opts)
 
     returned_team =
@@ -196,7 +202,7 @@ defmodule PVADataWeb.Schema.Query.TeamTest do
     assert returned_team == expected_team
   end
 
-  test "can request a team's scheduled and completed matches" do
+  test "can request a team's scheduled and completed matches", %{token: token} do
     query = """
     query($divisionSlug: String!, $teamSlug: String!) {
       team(divisionSlug: $divisionSlug, teamSlug: $teamSlug) {
@@ -308,6 +314,7 @@ defmodule PVADataWeb.Schema.Query.TeamTest do
     conn =
       conn(:post, "/api", query: query, variables: variables)
       |> put_req_header("content-type", "application/json")
+      |> put_req_header("authorization", "Bearer " <> token)
       |> Router.call(@opts)
 
     returned_team =
