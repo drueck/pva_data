@@ -1,9 +1,8 @@
 defmodule PVAData.Scraper do
   @pva_website Application.get_env(:pva_data, :pva_website_client)
-  @pva_password Application.get_env(:pva_data, :pva_password)
 
   def scrape do
-    with {:ok, cookies} <- @pva_website.login(@pva_password),
+    with {:ok, cookies} <- @pva_website.login(Application.get_env(:pva_data, :pva_password)),
          {:ok, divisions} <- @pva_website.get_teams_by_division(cookies),
          {:ok, scheduled_matches} <- @pva_website.get_scheduled_matches(cookies),
          {:ok, completed_matches} <- @pva_website.get_completed_matches(cookies),
