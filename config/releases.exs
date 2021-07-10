@@ -25,5 +25,5 @@ config :rollbax,
   environment: "production",
   enable_crash_reports: true
 
-config, :joken,
+config :joken,
   default_signer: System.fetch_env!("JWT_SECRET")
