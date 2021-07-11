@@ -5,7 +5,8 @@ defmodule PVAData.DataManager do
 
   alias PVAData.{
     Data,
-    Scraper
+    Scraper,
+    Division
   }
 
   @initial_update_delay_ms 10
@@ -33,7 +34,10 @@ defmodule PVAData.DataManager do
     Scraper.scrape()
     |> case do
       {:ok, divisions} ->
-        Data.update_divisions(divisions)
+        divisions
+        |> Enum.map(&Division.add_ranks/1)
+        |> Data.update_divisions()
+
         Data.save_state()
 
       {:error, message} ->
