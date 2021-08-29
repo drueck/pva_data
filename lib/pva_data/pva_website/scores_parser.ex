@@ -15,10 +15,13 @@ defmodule PVAData.PVAWebsite.ScoresParser do
     |> Meeseeks.all(css("tr"))
     |> Enum.slice(2..-1)
     |> Enum.map(fn row ->
-      [date_string, time_string, division_name, home, visitor | set_results_strings] =
-        row
-        |> Meeseeks.all(css("td"))
-        |> Enum.map(&Meeseeks.text/1)
+      row
+      |> Meeseeks.all(css("td"))
+      |> Enum.map(&Meeseeks.text/1)
+    end)
+    |> Enum.filter(fn cells -> Enum.count(cells) == 8 end)
+    |> Enum.map(fn cells ->
+      [date_string, time_string, division_name, home, visitor | set_results_strings] = cells
 
       division = Division.new(name: division_name)
       home_team = Team.new(name: home, division_id: division.id)
