@@ -52,6 +52,6 @@ defmodule PVAData.Division do
         Map.put(rank_map, team_id, rank)
       end)
 
-    {rank + 1, new_rank_map}
+    {rank + Enum.count(standings), new_rank_map}
   end
 end

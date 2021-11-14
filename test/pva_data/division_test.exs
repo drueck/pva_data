@@ -156,12 +156,12 @@ defmodule PVAData.DivisionTest do
       expected_ranks = %{
         hop_heads.id => 1,
         rhombus.id => 1,
-        have_balls_will_travel.id => 2,
-        spike_force.id => 3,
-        awkward_high_fives.id => 4,
-        too_legit_to_hit.id => 5,
-        free_agents.id => 6,
-        bump_n_grind.id => 7
+        have_balls_will_travel.id => 3,
+        spike_force.id => 4,
+        awkward_high_fives.id => 5,
+        too_legit_to_hit.id => 6,
+        free_agents.id => 7,
+        bump_n_grind.id => 8
       }
 
       division_with_ranks.teams
