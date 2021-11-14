@@ -6,17 +6,28 @@ defmodule PVAData.Persistence.Redis do
   def save_state(state) do
     Redix.command(:redix, ["SET", @state_key, :erlang.term_to_binary(state)])
     |> case do
-      {:ok, "OK"} -> :ok
-      error -> error
+      {:ok, "OK"} ->
+        :ok
+
+      error ->
+        Rollbax.report_message(:error, "Failed to save state to redis", %{error: error})
+        raise "Failed to save state to redis"
     end
   end
 
   def read_state do
     Redix.command(:redix, ["GET", @state_key])
     |> case do
-      {:ok, nil} -> {:error, "no state available"}
-      {:ok, serialized_state} -> {:ok, :erlang.binary_to_term(serialized_state)}
-      error -> error
+      {:ok, nil} ->
+        Rollbax.report_message(:warning, "No state was found in redis.", %{state_key: @state_key})
+        {:error, "no state available"}
+
+      {:ok, serialized_state} ->
+        {:ok, :erlang.binary_to_term(serialized_state)}
+
+      error ->
+        Rollbax.report_message(:error, "Failed to read state from redis", %{error: error})
+        raise "Failed to read state from redis"
     end
   end
 end

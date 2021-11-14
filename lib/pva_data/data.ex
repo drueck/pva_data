@@ -27,6 +27,14 @@ defmodule PVAData.Data do
     GenServer.call(pid, {:get_division_by_slug, slug})
   end
 
+  def set_checked_at(pid \\ __MODULE__, checked_at \\ DateTime.utc_now()) do
+    GenServer.cast(pid, {:set_checked_at, checked_at})
+  end
+
+  def get_checked_at(pid \\ __MODULE__) do
+    GenServer.call(pid, :get_checked_at)
+  end
+
   def get_updated_at(pid \\ __MODULE__) do
     GenServer.call(pid, :get_updated_at)
   end
@@ -43,6 +51,10 @@ defmodule PVAData.Data do
     GenServer.cast(pid, :load_state)
   end
 
+  def handle_cast({:set_checked_at, checked_at}, state) do
+    {:noreply, %{state | checked_at: checked_at}}
+  end
+
   def handle_cast({:update_divisions, divisions}, state) do
     divisions_map =
       divisions
@@ -52,6 +64,7 @@ defmodule PVAData.Data do
     new_state =
       state
       |> Map.put(:divisions, divisions_map)
+      |> Map.put(:updated_at, DateTime.utc_now())
 
     {:noreply, new_state}
   end
@@ -82,6 +95,10 @@ defmodule PVAData.Data do
       {:ok, persisted_state} -> {:noreply, persisted_state}
       _ -> {:noreply, state}
     end
+  end
+
+  def handle_call(:get_checked_at, _from, %{checked_at: checked_at} = state) do
+    {:reply, checked_at, state}
   end
 
   def handle_call({:get_division, id}, _from, %{divisions: divisions} = state) do

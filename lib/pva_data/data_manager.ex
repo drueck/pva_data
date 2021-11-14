@@ -31,6 +31,11 @@ defmodule PVAData.DataManager do
   end
 
   defp do_update_data do
+    Data.set_checked_at()
+    Data.save_state()
+
+    Rollbax.report_message(:info, "Attempting to update data from PVA website")
+
     Scraper.scrape()
     |> case do
       {:ok, divisions} ->
@@ -47,7 +52,7 @@ defmodule PVAData.DataManager do
   end
 
   defp schedule_initial_update do
-    delay = Data.get_updated_at() |> initial_update_delay()
+    delay = Data.get_checked_at() |> initial_update_delay()
 
     Process.send_after(self(), :time_to_update, delay)
   end
@@ -56,9 +61,9 @@ defmodule PVAData.DataManager do
     Process.send_after(self(), :time_to_update, @update_interval_ms)
   end
 
-  def initial_update_delay(%DateTime{} = updated_at) do
+  def initial_update_delay(%DateTime{} = last_checked_at) do
     ms_until_next_update =
-      updated_at
+      last_checked_at
       |> DateTime.add(@update_interval_ms, :millisecond)
       |> DateTime.diff(DateTime.utc_now(), :millisecond)
 
