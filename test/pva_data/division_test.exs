@@ -155,7 +155,7 @@ defmodule PVAData.DivisionTest do
 
       expected_ranks = %{
         hop_heads.id => 1,
-        rhombus.id => 1,
+        rhombus.id => 2,
         have_balls_will_travel.id => 3,
         spike_force.id => 4,
         awkward_high_fives.id => 5,

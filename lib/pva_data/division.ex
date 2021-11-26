@@ -17,12 +17,14 @@ defmodule PVAData.Division do
   ]
 
   def add_ranks(%Division{standings: standings, teams: teams} = division) do
+    # just use the order from the pva website for now,
+    # since it implements the tie-breakers
     rank_map =
       standings
-      |> Enum.group_by(&rank_points/1)
-      |> Enum.sort(&(elem(&1, 0) > elem(&2, 0)))
-      |> Enum.reduce({1, %{}}, &build_rank_map_reducer/2)
-      |> elem(1)
+      |> Enum.with_index(1)
+      |> Enum.reduce(%{}, fn {%Standing{team_id: team_id}, rank}, rank_map ->
+        Map.put(rank_map, team_id, rank)
+      end)
 
     teams =
       teams
@@ -37,21 +39,5 @@ defmodule PVAData.Division do
       end)
 
     %{division | teams: teams, standings: standings}
-  end
-
-  defp rank_points(%Standing{
-         winning_percentage: winning_percentage,
-         match_points_percentage: match_points_percentage
-       }) do
-    winning_percentage * 10 + match_points_percentage
-  end
-
-  defp build_rank_map_reducer({_rank_points, standings}, {rank, rank_map}) do
-    new_rank_map =
-      Enum.reduce(standings, rank_map, fn %Standing{team_id: team_id}, rank_map ->
-        Map.put(rank_map, team_id, rank)
-      end)
-
-    {rank + Enum.count(standings), new_rank_map}
   end
 end
