@@ -29,7 +29,8 @@ defmodule PVAData.Division do
     comparison_functions = [
       &compare_win_percentage/3,
       &compare_match_points_percentage/3,
-      &compare_head_to_head/3
+      &compare_head_to_head/3,
+      &compare_points_differential/3
     ]
 
     Enum.reduce(comparison_functions, 0, fn fun, result ->
@@ -67,6 +68,31 @@ defmodule PVAData.Division do
     team_b_wins = Enum.count(matches, &(Match.result(&1, b) == :win))
 
     team_a_wins - team_b_wins
+  end
+
+  def compare_points_differential(%Division{} = division, %Team{} = a, %Team{} = b) do
+    team_a_points_differential =
+      completed_matches_involving_team(division, a)
+      |> Enum.map(&Match.point_differential(&1, a))
+      |> Enum.sum()
+
+    team_b_points_differential =
+      completed_matches_involving_team(division, b)
+      |> Enum.map(&Match.point_differential(&1, b))
+      |> Enum.sum()
+
+    cond do
+      team_a_points_differential > team_b_points_differential -> 1
+      team_a_points_differential < team_b_points_differential -> -1
+      true -> 0
+    end
+  end
+
+  defp completed_matches_involving_team(%Division{} = division, %Team{} = team) do
+    division.completed_matches
+    |> Enum.filter(fn match ->
+      match.home_team_id == team.id || match.visiting_team_id == team.id
+    end)
   end
 
   def add_ranks(%Division{standings: standings, teams: teams} = division) do

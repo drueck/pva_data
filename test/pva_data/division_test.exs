@@ -292,6 +292,132 @@ defmodule PVAData.DivisionTest do
     end
   end
 
+  describe "compare_points_differential/3" do
+    test "compares based on point differential for all sets for each team" do
+      division =
+        Division.new(
+          name: "Coed A Wednesday",
+          slug: "coed-a-wednesday"
+        )
+
+      court_jesters =
+        Team.new(
+          name: "Court Jesters",
+          slug: "court-jesters",
+          division_id: division.id
+        )
+
+      hop_heads =
+        Team.new(
+          name: "HopHeads",
+          slug: "hopheads",
+          division_id: division.id
+        )
+
+      teams = [court_jesters, hop_heads]
+
+      match_1 =
+        Match.new(
+          date: Date.new(2021, 9, 22),
+          time: Time.new(20, 0, 0),
+          division_id: division.id,
+          home_team_id: hop_heads.id,
+          visiting_team_id: court_jesters.id
+        )
+
+      match_1_results = [
+        SetResult.new(
+          match_id: match_1.id,
+          set_number: 1,
+          home_team_score: 21,
+          visiting_team_score: 25
+        ),
+        SetResult.new(
+          match_id: match_1.id,
+          set_number: 1,
+          home_team_score: 25,
+          visiting_team_score: 18
+        ),
+        SetResult.new(
+          match_id: match_1.id,
+          set_number: 1,
+          home_team_score: 15,
+          visiting_team_score: 4
+        )
+      ]
+
+      match_1 = %{match_1 | set_results: match_1_results}
+
+      match_2 =
+        Match.new(
+          date: Date.new(2021, 11, 3),
+          time: Time.new(20, 0, 0),
+          division_id: division.id,
+          home_team_id: hop_heads.id,
+          visiting_team_id: court_jesters.id
+        )
+
+      match_2_results = [
+        SetResult.new(
+          match_id: match_2.id,
+          set_number: 1,
+          home_team_score: 25,
+          visiting_team_score: 21
+        ),
+        SetResult.new(
+          match_id: match_2.id,
+          set_number: 1,
+          home_team_score: 18,
+          visiting_team_score: 25
+        ),
+        SetResult.new(
+          match_id: match_2.id,
+          set_number: 1,
+          home_team_score: 9,
+          visiting_team_score: 15
+        )
+      ]
+
+      match_2 = %{match_2 | set_results: match_2_results}
+
+      completed_matches = [match_1, match_2]
+
+      division = %{division | teams: teams, completed_matches: completed_matches}
+
+      assert Division.compare_points_differential(division, court_jesters, hop_heads) < 0
+      assert Division.compare_points_differential(division, hop_heads, court_jesters) > 0
+
+      mirror_image_results = [
+        SetResult.new(
+          match_id: match_2.id,
+          set_number: 1,
+          home_team_score: 25,
+          visiting_team_score: 21
+        ),
+        SetResult.new(
+          match_id: match_2.id,
+          set_number: 1,
+          home_team_score: 18,
+          visiting_team_score: 25
+        ),
+        SetResult.new(
+          match_id: match_2.id,
+          set_number: 1,
+          home_team_score: 4,
+          visiting_team_score: 15
+        )
+      ]
+
+      mirror_image_match = %{match_2 | set_results: mirror_image_results}
+      mirror_images_matches = [match_1, mirror_image_match]
+
+      division = %{division | completed_matches: mirror_images_matches}
+
+      assert Division.compare_points_differential(division, court_jesters, hop_heads) == 0
+      assert Division.compare_points_differential(division, hop_heads, court_jesters) == 0
+    end
+  end
+
   describe "add_ranks/2" do
     test "adds ranks to each standing and team" do
       division =
