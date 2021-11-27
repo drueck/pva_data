@@ -30,7 +30,8 @@ defmodule PVAData.Division do
       &compare_win_percentage/3,
       &compare_match_points_percentage/3,
       &compare_head_to_head/3,
-      &compare_points_differential/3
+      &compare_points_differential/3,
+      &compare_points_allowed_head_to_head/3
     ]
 
     Enum.reduce(comparison_functions, 0, fn fun, result ->
@@ -57,12 +58,7 @@ defmodule PVAData.Division do
   end
 
   def compare_head_to_head(%Division{} = division, %Team{} = a, %Team{} = b) do
-    team_ids = MapSet.new([a.id, b.id])
-
-    matches =
-      Enum.filter(division.completed_matches, fn match ->
-        team_ids == MapSet.new([match.home_team_id, match.visiting_team_id])
-      end)
+    matches = completed_matches_between_teams(division, a, b)
 
     team_a_wins = Enum.count(matches, &(Match.result(&1, a) == :win))
     team_b_wins = Enum.count(matches, &(Match.result(&1, b) == :win))
@@ -88,10 +84,39 @@ defmodule PVAData.Division do
     end
   end
 
+  def compare_points_allowed_head_to_head(%Division{} = division, %Team{} = a, %Team{} = b) do
+    matches = completed_matches_between_teams(division, a, b)
+
+    points_allowed_by_team_a =
+      matches
+      |> Enum.map(&Match.points_allowed(&1, a))
+      |> Enum.sum()
+
+    points_allowed_by_team_b =
+      matches
+      |> Enum.map(&Match.points_allowed(&1, b))
+      |> Enum.sum()
+
+    cond do
+      points_allowed_by_team_a < points_allowed_by_team_b -> 1
+      points_allowed_by_team_a > points_allowed_by_team_b -> -1
+      true -> 0
+    end
+  end
+
   defp completed_matches_involving_team(%Division{} = division, %Team{} = team) do
     division.completed_matches
     |> Enum.filter(fn match ->
       match.home_team_id == team.id || match.visiting_team_id == team.id
+    end)
+  end
+
+  defp completed_matches_between_teams(%Division{} = division, %Team{} = a, %Team{} = b) do
+    team_ids = MapSet.new([a.id, b.id])
+
+    division.completed_matches
+    |> Enum.filter(fn match ->
+      team_ids == MapSet.new([match.home_team_id, match.visiting_team_id])
     end)
   end
 
