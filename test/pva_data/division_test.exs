@@ -19,14 +19,14 @@ defmodule PVAData.DivisionTest do
     test "compares by win percentage in standings" do
       division = Division.build("Coed A Wednesday")
 
-      court_jesters = Team.build(division, "Court Jesters")
+      cjs = Team.build(division, "Court Jesters")
       pound_town = Team.build(division, "Pound Town")
 
-      teams = [court_jesters, pound_town]
+      teams = [cjs, pound_town]
 
       standings = [
         Standing.new(
-          team_id: court_jesters.id,
+          team_id: cjs.id,
           division_id: division.id,
           wins: 8,
           losses: 2,
@@ -45,12 +45,12 @@ defmodule PVAData.DivisionTest do
 
       division = %{division | teams: teams, standings: standings}
 
-      assert Division.compare_win_percentage(division, court_jesters, pound_town) < 0
-      assert Division.compare_win_percentage(division, pound_town, court_jesters) > 0
+      assert Division.compare_win_percentage(division, cjs, pound_town) == false
+      assert Division.compare_win_percentage(division, pound_town, cjs) == true
 
       tied_standings = [
         Standing.new(
-          team_id: court_jesters.id,
+          team_id: cjs.id,
           division_id: division.id,
           wins: 8,
           losses: 2,
@@ -69,7 +69,7 @@ defmodule PVAData.DivisionTest do
 
       division = %{division | standings: tied_standings}
 
-      assert Division.compare_win_percentage(division, court_jesters, pound_town) == 0
+      assert Division.compare_win_percentage(division, cjs, pound_town) == true
     end
   end
 
@@ -103,8 +103,8 @@ defmodule PVAData.DivisionTest do
 
       division = %{division | teams: teams, standings: standings}
 
-      assert Division.compare_match_points_percentage(division, jump_feet, newcomers) < 0
-      assert Division.compare_match_points_percentage(division, newcomers, jump_feet) > 0
+      assert Division.compare_match_points_percentage(division, jump_feet, newcomers) == false
+      assert Division.compare_match_points_percentage(division, newcomers, jump_feet) == true
 
       tied_standings = [
         Standing.new(
@@ -127,7 +127,7 @@ defmodule PVAData.DivisionTest do
 
       division = %{division | standings: tied_standings}
 
-      assert Division.compare_match_points_percentage(division, newcomers, jump_feet) == 0
+      assert Division.compare_match_points_percentage(division, newcomers, jump_feet) == true
     end
   end
 
@@ -135,11 +135,11 @@ defmodule PVAData.DivisionTest do
     test "compares teams by their head to head record" do
       division = Division.build("Coed A Wednesday")
 
-      court_jesters = Team.build(division, "Court Jesters")
+      cjs = Team.build(division, "Court Jesters")
       pound_town = Team.build(division, "Pound Town")
       hop_heads = Team.build(division, "HopHeads")
 
-      teams = [court_jesters, pound_town, hop_heads]
+      teams = [cjs, pound_town, hop_heads]
 
       match_1 =
         Match.new(
@@ -147,7 +147,7 @@ defmodule PVAData.DivisionTest do
           time: Time.new(20, 0, 0),
           division_id: division.id,
           home_team_id: hop_heads.id,
-          visiting_team_id: court_jesters.id
+          visiting_team_id: cjs.id
         )
         |> Match.add_set_results([{21, 25}, {25, 18}, {15, 4}])
 
@@ -157,7 +157,7 @@ defmodule PVAData.DivisionTest do
           time: Time.new(19, 0, 0),
           division_id: division.id,
           home_team_id: pound_town.id,
-          visiting_team_id: court_jesters.id
+          visiting_team_id: cjs.id
         )
         |> Match.add_set_results([{25, 17}, {25, 19}, {15, 10}])
 
@@ -167,7 +167,7 @@ defmodule PVAData.DivisionTest do
           time: Time.new(20, 0, 0),
           division_id: division.id,
           home_team_id: hop_heads.id,
-          visiting_team_id: court_jesters.id
+          visiting_team_id: cjs.id
         )
         |> Match.add_set_results([{25, 21}, {18, 25}, {9, 15}])
 
@@ -175,9 +175,9 @@ defmodule PVAData.DivisionTest do
 
       division = %{division | teams: teams, completed_matches: completed_matches}
 
-      assert Division.compare_head_to_head(division, court_jesters, pound_town) < 0
-      assert Division.compare_head_to_head(division, pound_town, court_jesters) > 0
-      assert Division.compare_head_to_head(division, court_jesters, hop_heads) == 0
+      assert Division.compare_head_to_head(division, cjs, pound_town) == false
+      assert Division.compare_head_to_head(division, pound_town, cjs) == true
+      assert Division.compare_head_to_head(division, cjs, hop_heads) == true
     end
   end
 
@@ -185,11 +185,11 @@ defmodule PVAData.DivisionTest do
     test "compares based on point differential for all sets for each team" do
       division = Division.build("Coed A Wednesday")
 
-      court_jesters = Team.build(division, "Court Jesters")
+      cjs = Team.build(division, "Court Jesters")
       hop_heads = Team.build(division, "Hop Heads")
       wip = Team.build(division, "Work In Progress")
 
-      teams = [court_jesters, hop_heads, wip]
+      teams = [cjs, hop_heads, wip]
 
       match_1 =
         Match.new(
@@ -197,7 +197,7 @@ defmodule PVAData.DivisionTest do
           time: Time.new(20, 0, 0),
           division_id: division.id,
           home_team_id: hop_heads.id,
-          visiting_team_id: court_jesters.id
+          visiting_team_id: cjs.id
         )
         |> Match.add_set_results([{21, 25}, {25, 18}, {15, 4}])
 
@@ -207,7 +207,7 @@ defmodule PVAData.DivisionTest do
           time: Time.new(20, 0, 0),
           division_id: division.id,
           home_team_id: hop_heads.id,
-          visiting_team_id: court_jesters.id
+          visiting_team_id: cjs.id
         )
         |> Match.add_set_results([{25, 21}, {18, 25}, {9, 15}])
 
@@ -216,7 +216,7 @@ defmodule PVAData.DivisionTest do
           date: Date.new(2021, 11, 3),
           time: Time.new(19, 0, 0),
           division_id: division.id,
-          home_team_id: court_jesters.id,
+          home_team_id: cjs.id,
           visiting_team_id: wip.id
         )
         |> Match.add_set_results([{25, 5}, {25, 20}, {15, 3}])
@@ -235,8 +235,8 @@ defmodule PVAData.DivisionTest do
 
       division = %{division | teams: teams, completed_matches: completed_matches}
 
-      assert Division.compare_points_differential(division, court_jesters, hop_heads) > 0
-      assert Division.compare_points_differential(division, hop_heads, court_jesters) < 0
+      assert Division.compare_points_differential(division, cjs, hop_heads) == true
+      assert Division.compare_points_differential(division, hop_heads, cjs) == false
 
       mirror_image_match =
         match_2
@@ -246,8 +246,8 @@ defmodule PVAData.DivisionTest do
 
       division = %{division | completed_matches: mirror_images_matches}
 
-      assert Division.compare_points_differential(division, court_jesters, hop_heads) == 0
-      assert Division.compare_points_differential(division, hop_heads, court_jesters) == 0
+      assert Division.compare_points_differential(division, cjs, hop_heads) == true
+      assert Division.compare_points_differential(division, hop_heads, cjs) == true
     end
   end
 
@@ -255,10 +255,10 @@ defmodule PVAData.DivisionTest do
     test "compares by points allowed in head to head matches" do
       division = Division.build("Coed A Wednesday")
 
-      court_jesters = Team.build(division, "Court Jesters")
+      cjs = Team.build(division, "Court Jesters")
       hop_heads = Team.build(division, "Hop Heads")
 
-      teams = [court_jesters, hop_heads]
+      teams = [cjs, hop_heads]
 
       match_1 =
         Match.new(
@@ -266,7 +266,7 @@ defmodule PVAData.DivisionTest do
           time: Time.new(20, 0, 0),
           division_id: division.id,
           home_team_id: hop_heads.id,
-          visiting_team_id: court_jesters.id
+          visiting_team_id: cjs.id
         )
         |> Match.add_set_results([{21, 25}, {25, 18}, {15, 4}])
 
@@ -276,7 +276,7 @@ defmodule PVAData.DivisionTest do
           time: Time.new(20, 0, 0),
           division_id: division.id,
           home_team_id: hop_heads.id,
-          visiting_team_id: court_jesters.id
+          visiting_team_id: cjs.id
         )
         |> Match.add_set_results([{25, 21}, {18, 25}, {9, 15}])
 
@@ -284,8 +284,8 @@ defmodule PVAData.DivisionTest do
 
       division = %{division | teams: teams, completed_matches: completed_matches}
 
-      assert Division.compare_points_allowed_head_to_head(division, court_jesters, hop_heads) < 0
-      assert Division.compare_points_allowed_head_to_head(division, hop_heads, court_jesters) > 0
+      assert Division.compare_points_allowed_head_to_head(division, cjs, hop_heads) == false
+      assert Division.compare_points_allowed_head_to_head(division, hop_heads, cjs) == true
 
       match_2_mirror =
         match_2
@@ -295,8 +295,8 @@ defmodule PVAData.DivisionTest do
 
       division = %{division | completed_matches: mirror_image_matches}
 
-      assert Division.compare_points_allowed_head_to_head(division, court_jesters, hop_heads) == 0
-      assert Division.compare_points_allowed_head_to_head(division, hop_heads, court_jesters) == 0
+      assert Division.compare_points_allowed_head_to_head(division, cjs, hop_heads) == true
+      assert Division.compare_points_allowed_head_to_head(division, hop_heads, cjs) == true
     end
   end
 
