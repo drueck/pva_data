@@ -5,10 +5,8 @@ defmodule PVAData.DivisionTest do
     Division,
     Team,
     Standing,
-    Match,
-    SetResult
+    Match
   }
-
 
   describe "build/1" do
     test "builds a division given the division name" do
@@ -19,25 +17,10 @@ defmodule PVAData.DivisionTest do
 
   describe "compare_win_percentage/3" do
     test "compares by win percentage in standings" do
-      division =
-        Division.new(
-          name: "Coed A Wednesday",
-          slug: "coed-a-wednesday"
-        )
+      division = Division.build("Coed A Wednesday")
 
-      court_jesters =
-        Team.new(
-          name: "Court Jesters",
-          slug: "court-jesters",
-          division_id: division.id
-        )
-
-      pound_town =
-        Team.new(
-          name: "Pound Town",
-          slug: "pound-town",
-          division_id: division.id
-        )
+      court_jesters = Team.build(division, "Court Jesters")
+      pound_town = Team.build(division, "Pound Town")
 
       teams = [court_jesters, pound_town]
 
@@ -92,25 +75,10 @@ defmodule PVAData.DivisionTest do
 
   describe "compare_match_points_percentage/3" do
     test "compares by match points percentage in standings" do
-      division =
-        Division.new(
-          name: "Coed A Wednesday",
-          slug: "coed-a-wednesday"
-        )
+      division = Division.build("Coed A Wednesday")
 
-      newcomers =
-        Team.new(
-          name: "The Newcomers",
-          slug: "the-newcomers",
-          division_id: division.id
-        )
-
-      jump_feet =
-        Team.new(
-          name: "21JumpFeet",
-          slug: "21jumpfeet",
-          division_id: division.id
-        )
+      newcomers = Team.build(division, "The Newcomers")
+      jump_feet = Team.build(division, "21JumpFeet")
 
       teams = [newcomers, jump_feet]
 
@@ -165,34 +133,13 @@ defmodule PVAData.DivisionTest do
 
   describe "compare_head_to_head/3" do
     test "compares teams by their head to head record" do
-      division =
-        Division.new(
-          name: "Coed A Wednesday",
-          slug: "coed-a-wednesday"
-        )
+      division = Division.build("Coed A Wednesday")
 
-      court_jesters =
-        Team.new(
-          name: "Court Jesters",
-          slug: "court-jesters",
-          division_id: division.id
-        )
+      court_jesters = Team.build(division, "Court Jesters")
+      pound_town = Team.build(division, "Pound Town")
+      hop_heads = Team.build(division, "HopHeads")
 
-      pound_town =
-        Team.new(
-          name: "Pound Town",
-          slug: "pound-town",
-          division_id: division.id
-        )
-
-      hop_heads =
-        Team.new(
-          name: "HopHeads",
-          slug: "hopheads",
-          division_id: division.id
-        )
-
-      teams = [court_jesters, pound_town]
+      teams = [court_jesters, pound_town, hop_heads]
 
       match_1 =
         Match.new(
@@ -202,29 +149,7 @@ defmodule PVAData.DivisionTest do
           home_team_id: hop_heads.id,
           visiting_team_id: court_jesters.id
         )
-
-      match_1_results = [
-        SetResult.new(
-          match_id: match_1.id,
-          set_number: 1,
-          home_team_score: 21,
-          visiting_team_score: 25
-        ),
-        SetResult.new(
-          match_id: match_1.id,
-          set_number: 1,
-          home_team_score: 25,
-          visiting_team_score: 18
-        ),
-        SetResult.new(
-          match_id: match_1.id,
-          set_number: 1,
-          home_team_score: 15,
-          visiting_team_score: 4
-        )
-      ]
-
-      match_1 = %{match_1 | set_results: match_1_results}
+        |> Match.add_set_results([{21, 25}, {25, 18}, {15, 4}])
 
       match_2 =
         Match.new(
@@ -234,29 +159,7 @@ defmodule PVAData.DivisionTest do
           home_team_id: pound_town.id,
           visiting_team_id: court_jesters.id
         )
-
-      match_2_results = [
-        SetResult.new(
-          match_id: match_2.id,
-          set_number: 1,
-          home_team_score: 25,
-          visiting_team_score: 17
-        ),
-        SetResult.new(
-          match_id: match_2.id,
-          set_number: 1,
-          home_team_score: 25,
-          visiting_team_score: 19
-        ),
-        SetResult.new(
-          match_id: match_2.id,
-          set_number: 1,
-          home_team_score: 15,
-          visiting_team_score: 10
-        )
-      ]
-
-      match_2 = %{match_2 | set_results: match_2_results}
+        |> Match.add_set_results([{25, 17}, {25, 19}, {15, 10}])
 
       match_3 =
         Match.new(
@@ -266,29 +169,7 @@ defmodule PVAData.DivisionTest do
           home_team_id: hop_heads.id,
           visiting_team_id: court_jesters.id
         )
-
-      match_3_results = [
-        SetResult.new(
-          match_id: match_1.id,
-          set_number: 1,
-          home_team_score: 21,
-          visiting_team_score: 25
-        ),
-        SetResult.new(
-          match_id: match_1.id,
-          set_number: 1,
-          home_team_score: 21,
-          visiting_team_score: 25
-        ),
-        SetResult.new(
-          match_id: match_1.id,
-          set_number: 1,
-          home_team_score: 21,
-          visiting_team_score: 25
-        )
-      ]
-
-      match_3 = %{match_3 | set_results: match_3_results}
+        |> Match.add_set_results([{25, 21}, {18, 25}, {9, 15}])
 
       completed_matches = [match_1, match_2, match_3]
 
@@ -302,34 +183,13 @@ defmodule PVAData.DivisionTest do
 
   describe "compare_points_differential/3" do
     test "compares based on point differential for all sets for each team" do
-      division =
-        Division.new(
-          name: "Coed A Wednesday",
-          slug: "coed-a-wednesday"
-        )
+      division = Division.build("Coed A Wednesday")
 
-      court_jesters =
-        Team.new(
-          name: "Court Jesters",
-          slug: "court-jesters",
-          division_id: division.id
-        )
+      court_jesters = Team.build(division, "Court Jesters")
+      hop_heads = Team.build(division, "Hop Heads")
+      wip = Team.build(division, "Work In Progress")
 
-      hop_heads =
-        Team.new(
-          name: "HopHeads",
-          slug: "hopheads",
-          division_id: division.id
-        )
-
-      wip =
-        Team.new(
-          name: "Work In Progress",
-          slug: "work-in-progress",
-          division_id: division.id
-        )
-
-      teams = [court_jesters, hop_heads]
+      teams = [court_jesters, hop_heads, wip]
 
       match_1 =
         Match.new(
@@ -339,29 +199,7 @@ defmodule PVAData.DivisionTest do
           home_team_id: hop_heads.id,
           visiting_team_id: court_jesters.id
         )
-
-      match_1_results = [
-        SetResult.new(
-          match_id: match_1.id,
-          set_number: 1,
-          home_team_score: 21,
-          visiting_team_score: 25
-        ),
-        SetResult.new(
-          match_id: match_1.id,
-          set_number: 1,
-          home_team_score: 25,
-          visiting_team_score: 18
-        ),
-        SetResult.new(
-          match_id: match_1.id,
-          set_number: 1,
-          home_team_score: 15,
-          visiting_team_score: 4
-        )
-      ]
-
-      match_1 = %{match_1 | set_results: match_1_results}
+        |> Match.add_set_results([{21, 25}, {25, 18}, {15, 4}])
 
       match_2 =
         Match.new(
@@ -371,29 +209,7 @@ defmodule PVAData.DivisionTest do
           home_team_id: hop_heads.id,
           visiting_team_id: court_jesters.id
         )
-
-      match_2_results = [
-        SetResult.new(
-          match_id: match_2.id,
-          set_number: 1,
-          home_team_score: 25,
-          visiting_team_score: 21
-        ),
-        SetResult.new(
-          match_id: match_2.id,
-          set_number: 1,
-          home_team_score: 18,
-          visiting_team_score: 25
-        ),
-        SetResult.new(
-          match_id: match_2.id,
-          set_number: 1,
-          home_team_score: 9,
-          visiting_team_score: 15
-        )
-      ]
-
-      match_2 = %{match_2 | set_results: match_2_results}
+        |> Match.add_set_results([{25, 21}, {18, 25}, {9, 15}])
 
       cjs_v_wip =
         Match.new(
@@ -403,29 +219,7 @@ defmodule PVAData.DivisionTest do
           home_team_id: court_jesters.id,
           visiting_team_id: wip.id
         )
-
-      cjs_v_wip_results = [
-        SetResult.new(
-          match_id: cjs_v_wip.id,
-          set_number: 1,
-          home_team_score: 25,
-          visiting_team_score: 5
-        ),
-        SetResult.new(
-          match_id: cjs_v_wip.id,
-          set_number: 2,
-          home_team_score: 25,
-          visiting_team_score: 20
-        ),
-        SetResult.new(
-          match_id: cjs_v_wip.id,
-          set_number: 3,
-          home_team_score: 15,
-          visiting_team_score: 3
-        )
-      ]
-
-      cjs_v_wip = %{cjs_v_wip | set_results: cjs_v_wip_results}
+        |> Match.add_set_results([{25, 5}, {25, 20}, {15, 3}])
 
       fake_hhs_v_wip =
         Match.new(
@@ -435,29 +229,7 @@ defmodule PVAData.DivisionTest do
           home_team_id: hop_heads.id,
           visiting_team_id: wip.id
         )
-
-      fake_hhs_v_wip_results = [
-        SetResult.new(
-          match_id: fake_hhs_v_wip.id,
-          set_number: 1,
-          home_team_score: 25,
-          visiting_team_score: 23
-        ),
-        SetResult.new(
-          match_id: fake_hhs_v_wip.id,
-          set_number: 1,
-          home_team_score: 25,
-          visiting_team_score: 23
-        ),
-        SetResult.new(
-          match_id: fake_hhs_v_wip.id,
-          set_number: 1,
-          home_team_score: 15,
-          visiting_team_score: 13
-        )
-      ]
-
-      fake_hhs_v_wip = %{fake_hhs_v_wip | set_results: fake_hhs_v_wip_results}
+        |> Match.add_set_results([{25, 23}, {25, 23}, {15, 13}])
 
       completed_matches = [match_1, match_2, cjs_v_wip, fake_hhs_v_wip]
 
@@ -466,28 +238,10 @@ defmodule PVAData.DivisionTest do
       assert Division.compare_points_differential(division, court_jesters, hop_heads) > 0
       assert Division.compare_points_differential(division, hop_heads, court_jesters) < 0
 
-      mirror_image_results = [
-        SetResult.new(
-          match_id: match_2.id,
-          set_number: 1,
-          home_team_score: 25,
-          visiting_team_score: 21
-        ),
-        SetResult.new(
-          match_id: match_2.id,
-          set_number: 1,
-          home_team_score: 18,
-          visiting_team_score: 25
-        ),
-        SetResult.new(
-          match_id: match_2.id,
-          set_number: 1,
-          home_team_score: 4,
-          visiting_team_score: 15
-        )
-      ]
+      mirror_image_match =
+        match_2
+        |> Match.add_set_results([{25, 21}, {18, 25}, {4, 15}])
 
-      mirror_image_match = %{match_2 | set_results: mirror_image_results}
       mirror_images_matches = [match_1, mirror_image_match]
 
       division = %{division | completed_matches: mirror_images_matches}
@@ -499,25 +253,10 @@ defmodule PVAData.DivisionTest do
 
   describe "compare_points_allowed_head_to_head/3" do
     test "compares by points allowed in head to head matches" do
-      division =
-        Division.new(
-          name: "Coed A Wednesday",
-          slug: "coed-a-wednesday"
-        )
+      division = Division.build("Coed A Wednesday")
 
-      court_jesters =
-        Team.new(
-          name: "Court Jesters",
-          slug: "court-jesters",
-          division_id: division.id
-        )
-
-      hop_heads =
-        Team.new(
-          name: "HopHeads",
-          slug: "hopheads",
-          division_id: division.id
-        )
+      court_jesters = Team.build(division, "Court Jesters")
+      hop_heads = Team.build(division, "Hop Heads")
 
       teams = [court_jesters, hop_heads]
 
@@ -529,29 +268,7 @@ defmodule PVAData.DivisionTest do
           home_team_id: hop_heads.id,
           visiting_team_id: court_jesters.id
         )
-
-      match_1_results = [
-        SetResult.new(
-          match_id: match_1.id,
-          set_number: 1,
-          home_team_score: 21,
-          visiting_team_score: 25
-        ),
-        SetResult.new(
-          match_id: match_1.id,
-          set_number: 1,
-          home_team_score: 25,
-          visiting_team_score: 18
-        ),
-        SetResult.new(
-          match_id: match_1.id,
-          set_number: 1,
-          home_team_score: 15,
-          visiting_team_score: 4
-        )
-      ]
-
-      match_1 = %{match_1 | set_results: match_1_results}
+        |> Match.add_set_results([{21, 25}, {25, 18}, {15, 4}])
 
       match_2 =
         Match.new(
@@ -561,29 +278,7 @@ defmodule PVAData.DivisionTest do
           home_team_id: hop_heads.id,
           visiting_team_id: court_jesters.id
         )
-
-      match_2_results = [
-        SetResult.new(
-          match_id: match_2.id,
-          set_number: 1,
-          home_team_score: 25,
-          visiting_team_score: 21
-        ),
-        SetResult.new(
-          match_id: match_2.id,
-          set_number: 1,
-          home_team_score: 18,
-          visiting_team_score: 25
-        ),
-        SetResult.new(
-          match_id: match_2.id,
-          set_number: 1,
-          home_team_score: 9,
-          visiting_team_score: 15
-        )
-      ]
-
-      match_2 = %{match_2 | set_results: match_2_results}
+        |> Match.add_set_results([{25, 21}, {18, 25}, {9, 15}])
 
       completed_matches = [match_1, match_2]
 
@@ -592,28 +287,9 @@ defmodule PVAData.DivisionTest do
       assert Division.compare_points_allowed_head_to_head(division, court_jesters, hop_heads) < 0
       assert Division.compare_points_allowed_head_to_head(division, hop_heads, court_jesters) > 0
 
-      mirror_image_results = [
-        SetResult.new(
-          match_id: match_2.id,
-          set_number: 1,
-          home_team_score: 25,
-          visiting_team_score: 21
-        ),
-        SetResult.new(
-          match_id: match_2.id,
-          set_number: 1,
-          home_team_score: 18,
-          visiting_team_score: 25
-        ),
-        SetResult.new(
-          match_id: match_2.id,
-          set_number: 1,
-          home_team_score: 4,
-          visiting_team_score: 15
-        )
-      ]
-
-      match_2_mirror = %{match_2 | set_results: mirror_image_results}
+      match_2_mirror =
+        match_2
+        |> Match.add_set_results([{25, 21}, {18, 25}, {4, 15}])
 
       mirror_image_matches = [match_1, match_2_mirror]
 
