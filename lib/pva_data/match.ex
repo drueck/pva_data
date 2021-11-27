@@ -1,8 +1,11 @@
 defmodule PVAData.Match do
   use PVAData.ComputedId, keys: [:date, :time, :division_id, :home_team_id, :visiting_team_id]
 
-  alias __MODULE__
-  alias PVAData.Team
+  alias PVAData.{
+    Team,
+    Match,
+    SetResult
+  }
 
   defstruct [
     :id,
@@ -16,6 +19,22 @@ defmodule PVAData.Match do
     :ref,
     set_results: []
   ]
+
+  def add_set_results(%Match{} = match, scores) do
+    set_results =
+      scores
+      |> Enum.with_index(1)
+      |> Enum.map(fn {{home_team_score, visiting_team_score}, set_number} ->
+        SetResult.new(
+          match_id: match.id,
+          set_number: set_number,
+          home_team_score: home_team_score,
+          visiting_team_score: visiting_team_score
+        )
+      end)
+
+    %{match | set_results: set_results}
+  end
 
   def sets_won(%Match{} = match, %Team{id: team_id}) do
     sets_won(match, team_id)

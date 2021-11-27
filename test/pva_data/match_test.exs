@@ -8,6 +8,48 @@ defmodule PVAData.MatchTest do
     SetResult
   }
 
+  describe "add_set_results/2" do
+    test "generates set results from the list of scores and adds them to the match" do
+      division = Division.build("Coed A Wednesday")
+      court_jesters = Team.build(division, "Court Jesters")
+      hop_heads = Team.build(division, "Hop Heads")
+
+      match =
+        Match.new(
+          date: Date.new(2021, 1, 1),
+          time: Time.new(20, 0, 0),
+          division_id: division.id,
+          home_team_id: court_jesters.id,
+          visiting_team_id: hop_heads.id
+        )
+
+      expected_set_results = [
+        SetResult.new(
+          match_id: match.id,
+          set_number: 1,
+          home_team_score: 25,
+          visiting_team_score: 21
+        ),
+        SetResult.new(
+          match_id: match.id,
+          set_number: 2,
+          home_team_score: 18,
+          visiting_team_score: 25
+        ),
+        SetResult.new(
+          match_id: match.id,
+          set_number: 3,
+          home_team_score: 15,
+          visiting_team_score: 9
+        )
+      ]
+
+      match = Match.add_set_results(match, [{25, 21}, {18, 25}, {15, 9}])
+
+      assert match.set_results == expected_set_results
+    end
+  end
+
   describe "sets_won/2" do
     test "returns number of sets the given team won in the given match" do
       division =
