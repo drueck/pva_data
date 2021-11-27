@@ -9,6 +9,14 @@ defmodule PVAData.DivisionTest do
     SetResult
   }
 
+
+  describe "build/1" do
+    test "builds a division given the division name" do
+      expected_division = Division.new(name: "Court Jesters", slug: "court-jesters")
+      assert Division.build("Court Jesters") == expected_division
+    end
+  end
+
   describe "compare_win_percentage/3" do
     test "compares by win percentage in standings" do
       division =

@@ -18,6 +18,13 @@ defmodule PVAData.Division do
     completed_matches: []
   ]
 
+  def build(name) do
+    Division.new(
+      name: name,
+      slug: Slugger.slugify_downcase(name)
+    )
+  end
+
   # what the pva website says about how teams are ranked
   # 1. Win percentage
   # 2. Percentage of possible match points
