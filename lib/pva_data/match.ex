@@ -61,6 +61,18 @@ defmodule PVAData.Match do
     |> Enum.sum()
   end
 
+  def points_allowed(%Match{} = match, %Team{id: team_id}) do
+    points_allowed(match, team_id)
+  end
+
+  def points_allowed(%Match{set_results: set_results} = match, team_id) do
+    set_results
+    |> Enum.map(fn set_result ->
+      Map.get(set_result, oppononent_score_key(match, team_id))
+    end)
+    |> Enum.sum()
+  end
+
   def result(%Match{} = match, %Team{id: team_id}) do
     result(match, team_id)
   end
