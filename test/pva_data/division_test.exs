@@ -5,7 +5,8 @@ defmodule PVAData.DivisionTest do
     Division,
     Team,
     Standing,
-    Match
+    Match,
+    Scraper
   }
 
   describe "build/1" do
@@ -297,6 +298,32 @@ defmodule PVAData.DivisionTest do
 
       assert Division.compare_points_allowed_head_to_head(division, cjs, hop_heads) == 0
       assert Division.compare_points_allowed_head_to_head(division, hop_heads, cjs) == 0
+    end
+  end
+
+  describe "compare_teams/2" do
+    test "works" do
+      {:ok, divisions} = Scraper.scrape("test/fixtures/tie-breaker")
+
+      division = Enum.find(divisions, &(&1.name == "Coed A Wednesday"))
+
+      expected_sorted_names = [
+        "Pound Town",
+        "HopHeads",
+        "Court Jesters",
+        "The Newcomers",
+        "21JumpFeet",
+        "Last Minute Ballers",
+        "Spiked Punch",
+        "Work In Progress"
+      ]
+
+      sorted_names =
+        division.teams
+        |> Enum.sort(fn a, b -> Division.compare_teams(division, a, b) end)
+        |> Enum.map(& &1.name)
+
+      assert sorted_names == expected_sorted_names
     end
   end
 
