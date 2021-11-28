@@ -5,8 +5,8 @@ defmodule PVAData.PVAWebsite.ClientBehaviour do
     DivisionStanding
   }
 
-  @callback get_teams_by_division() :: list(Division.t())
-  @callback get_scheduled_matches() :: list(Match.t())
-  @callback get_completed_matches() :: list(Match.t())
-  @callback get_division_standings() :: list(DivisionStanding.t())
+  @callback get_teams_by_division(String.t()) :: list(Division.t())
+  @callback get_scheduled_matches(String.t()) :: list(Match.t())
+  @callback get_completed_matches(String.t()) :: list(Match.t())
+  @callback get_division_standings(String.t()) :: list(DivisionStanding.t())
 end
