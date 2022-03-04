@@ -29,6 +29,7 @@ defmodule PVADataWeb.Schema.Types do
     field :name, :string
     field :slug, :string
     field :rank, :integer
+    field :rank_reason, :rank_reason
 
     field :division, :division do
       resolve &Resolvers.Division.from_team/3
@@ -65,6 +66,27 @@ defmodule PVADataWeb.Schema.Types do
     field :match_points_possible, :float
     field :match_points_percentage, :float
     field :rank, :integer
+    field :rank_reason, :rank_reason
+  end
+
+  object :rank_reason do
+    field :id, :string
+
+    field :division, :division do
+      resolve &Resolvers.Division.from_rank_reason/3
+    end
+
+    field :team, :team do
+      resolve &Resolvers.Team.team_from_rank_reason/3
+    end
+
+    field :lower_team, :team do
+      resolve &Resolvers.Team.lower_team_from_rank_reason/3
+    end
+
+    field :statistic, :string
+    field :team_value, :float
+    field :lower_team_value, :float
   end
 
   object :match do

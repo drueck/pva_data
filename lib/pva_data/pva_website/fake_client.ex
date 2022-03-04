@@ -8,26 +8,28 @@ defmodule PVAData.PVAWebsite.FakeClient do
 
   @behaviour PVAData.PVAWebsite.ClientBehaviour
 
-  def get_teams_by_division() do
-    "test/fixtures/schedules.php"
+  @base_path "test/fixtures"
+
+  def get_teams_by_division(base_path \\ nil) do
+    "#{base_path || @base_path}/schedules.php"
     |> File.read!()
     |> TeamsParser.get_teams_by_division()
   end
 
-  def get_scheduled_matches() do
-    "test/fixtures/schedules.php"
+  def get_scheduled_matches(base_path \\ nil) do
+    "#{base_path || @base_path}/schedules.php"
     |> File.read!()
     |> SchedulesParser.get_scheduled_matches()
   end
 
-  def get_completed_matches() do
-    "test/fixtures/scores.php"
+  def get_completed_matches(base_path \\ nil) do
+    "#{base_path || @base_path}/scores.php"
     |> File.read!()
     |> ScoresParser.get_completed_matches()
   end
 
-  def get_division_standings() do
-    "test/fixtures/standings.php"
+  def get_division_standings(base_path \\ nil) do
+    "#{base_path || @base_path}/standings.php"
     |> File.read!()
     |> StandingsParser.get_divisions_standings()
   end
