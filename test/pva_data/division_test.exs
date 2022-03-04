@@ -46,8 +46,10 @@ defmodule PVAData.DivisionTest do
 
       division = %{division | teams: teams, standings: standings}
 
-      assert Division.compare_win_percentage(division, cjs, pound_town) < 0
-      assert Division.compare_win_percentage(division, pound_town, cjs) > 0
+      {result, _} = Division.compare_win_percentage(division, cjs, pound_town)
+      assert result < 0
+      {result, _} = Division.compare_win_percentage(division, pound_town, cjs)
+      assert result > 0
 
       tied_standings = [
         Standing.new(
@@ -70,7 +72,7 @@ defmodule PVAData.DivisionTest do
 
       division = %{division | standings: tied_standings}
 
-      assert Division.compare_win_percentage(division, cjs, pound_town) == 0
+      assert {0, _} = Division.compare_win_percentage(division, cjs, pound_town)
     end
   end
 
@@ -104,8 +106,10 @@ defmodule PVAData.DivisionTest do
 
       division = %{division | teams: teams, standings: standings}
 
-      assert Division.compare_match_points_percentage(division, jump_feet, newcomers) < 0
-      assert Division.compare_match_points_percentage(division, newcomers, jump_feet) > 0
+      {result, _} = Division.compare_match_points_percentage(division, jump_feet, newcomers)
+      assert result < 0
+      {result, _} = Division.compare_match_points_percentage(division, newcomers, jump_feet)
+      assert result > 0
 
       tied_standings = [
         Standing.new(
@@ -128,11 +132,11 @@ defmodule PVAData.DivisionTest do
 
       division = %{division | standings: tied_standings}
 
-      assert Division.compare_match_points_percentage(division, newcomers, jump_feet) == 0
+      assert {0, _} = Division.compare_match_points_percentage(division, newcomers, jump_feet)
     end
   end
 
-  describe "compare_head_to_head/3" do
+  describe "compare_head_to_head_match_points/3" do
     test "compares teams by their head to head record" do
       division = Division.build("Coed A Wednesday")
 
@@ -176,9 +180,12 @@ defmodule PVAData.DivisionTest do
 
       division = %{division | teams: teams, completed_matches: completed_matches}
 
-      assert Division.compare_head_to_head(division, cjs, pound_town) < 0
-      assert Division.compare_head_to_head(division, pound_town, cjs) > 0
-      assert Division.compare_head_to_head(division, cjs, hop_heads) == 0
+      {result, _} = Division.compare_head_to_head_match_points(division, cjs, pound_town)
+      assert result < 0
+      {result, _} = Division.compare_head_to_head_match_points(division, pound_town, cjs)
+      assert result > 0
+
+      assert {0.0, _} = Division.compare_head_to_head_match_points(division, cjs, hop_heads)
     end
   end
 
@@ -236,8 +243,10 @@ defmodule PVAData.DivisionTest do
 
       division = %{division | teams: teams, completed_matches: completed_matches}
 
-      assert Division.compare_points_differential(division, cjs, hop_heads) > 0
-      assert Division.compare_points_differential(division, hop_heads, cjs) < 0
+      {result, _} = Division.compare_points_differential(division, cjs, hop_heads)
+      assert result > 0
+      {result, _} = Division.compare_points_differential(division, hop_heads, cjs)
+      assert result < 0
 
       mirror_image_match =
         match_2
@@ -247,8 +256,8 @@ defmodule PVAData.DivisionTest do
 
       division = %{division | completed_matches: mirror_images_matches}
 
-      assert Division.compare_points_differential(division, cjs, hop_heads) == 0
-      assert Division.compare_points_differential(division, hop_heads, cjs) == 0
+      assert {0, _} = Division.compare_points_differential(division, cjs, hop_heads)
+      assert {0, _} = Division.compare_points_differential(division, hop_heads, cjs)
     end
   end
 
@@ -285,8 +294,10 @@ defmodule PVAData.DivisionTest do
 
       division = %{division | teams: teams, completed_matches: completed_matches}
 
-      assert Division.compare_points_allowed_head_to_head(division, cjs, hop_heads) < 0
-      assert Division.compare_points_allowed_head_to_head(division, hop_heads, cjs) > 0
+      {result, _} = Division.compare_points_allowed_head_to_head(division, cjs, hop_heads)
+      assert result < 0
+      {result, _} = Division.compare_points_allowed_head_to_head(division, hop_heads, cjs)
+      assert result > 0
 
       match_2_mirror =
         match_2
@@ -296,8 +307,8 @@ defmodule PVAData.DivisionTest do
 
       division = %{division | completed_matches: mirror_image_matches}
 
-      assert Division.compare_points_allowed_head_to_head(division, cjs, hop_heads) == 0
-      assert Division.compare_points_allowed_head_to_head(division, hop_heads, cjs) == 0
+      assert {0, _} = Division.compare_points_allowed_head_to_head(division, cjs, hop_heads)
+      assert {0, _} = Division.compare_points_allowed_head_to_head(division, hop_heads, cjs)
     end
   end
 
@@ -324,6 +335,9 @@ defmodule PVAData.DivisionTest do
         |> Enum.map(& &1.name)
 
       assert sorted_names == expected_sorted_names
+
+      division
+      |> Division.add_ranks()
     end
   end
 

@@ -3,7 +3,8 @@ defmodule PVADataWeb.Resolvers.Division do
     Data,
     Team,
     Match,
-    Standing
+    Standing,
+    RankReason
   }
 
   def all(_, _) do
@@ -19,6 +20,10 @@ defmodule PVADataWeb.Resolvers.Division do
   end
 
   def from_standing(%Standing{division_id: division_id}, _, _) do
+    get(division_id)
+  end
+
+  def from_rank_reason(%RankReason{division_id: division_id}, _, _) do
     get(division_id)
   end
 

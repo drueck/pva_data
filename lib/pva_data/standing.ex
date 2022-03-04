@@ -5,6 +5,7 @@ defmodule PVAData.Standing do
     :id,
     :team_id,
     :division_id,
+    :rank_reason,
     wins: 0,
     losses: 0,
     winning_percentage: 0.0,
