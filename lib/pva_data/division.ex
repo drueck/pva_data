@@ -45,7 +45,8 @@ defmodule PVAData.Division do
       &compare_head_to_head_match_points/3,
       &compare_head_to_head_points_differential/3,
       &compare_points_differential/3,
-      &compare_points_allowed_head_to_head/3
+      &compare_points_allowed_head_to_head/3,
+      &compare_names/3
     ]
     |> Enum.reduce({0, nil}, fn fun, {result, rank_data} ->
       if result == 0 do
@@ -190,6 +191,24 @@ defmodule PVAData.Division do
     {points_allowed_by_team_b - points_allowed_by_team_a, rank_data}
   end
 
+  def compare_names(_, %Team{} = a, %Team{} = b) do
+    stat = "team name"
+
+    result =
+      cond do
+        b.name > a.name -> 1
+        b.name < a.name -> -1
+        true -> 0
+      end
+
+    rank_data = %{
+      a.id => {stat, a.name},
+      b.id => {stat, b.name}
+    }
+
+    {result, rank_data}
+  end
+
   defp completed_matches_involving_team(%Division{} = division, %Team{} = team) do
     division.completed_matches
     |> Enum.filter(fn match ->
@@ -217,11 +236,25 @@ defmodule PVAData.Division do
       teams
       |> Enum.sort(fn a, b -> compare_teams(division, a, b, save_rank_data) end)
 
+    [top_team | _] = sorted_teams
+
+    rank_map = %{top_team.id => 1}
+
     rank_map =
       sorted_teams
-      |> Enum.with_index(1)
-      |> Enum.reduce(%{}, fn {%Team{id: team_id}, rank}, rank_map ->
-        Map.put(rank_map, team_id, rank)
+      |> Enum.chunk_every(2, 1, :discard)
+      |> Enum.reduce(rank_map, fn [%Team{id: up_team_id}, %Team{id: down_team_id}], rank_map ->
+        up_team_rank = Map.get(rank_map, up_team_id)
+
+        case TeamRankData.get(team_rank_data, {up_team_id, down_team_id}) do
+          # if the rank data statistic is "team name", that means the only tie breaker is
+          # an alphabetical sort, so we should rank this team the same as the previous team
+          %{^down_team_id => {"team name", _}} ->
+            Map.put(rank_map, down_team_id, up_team_rank)
+
+          _ ->
+            Map.put(rank_map, down_team_id, up_team_rank + 1)
+        end
       end)
 
     rank_reason_map =
@@ -248,7 +281,7 @@ defmodule PVAData.Division do
       end)
 
     teams =
-      teams
+      sorted_teams
       |> Enum.map(fn team ->
         team
         |> Map.put(:rank, Map.get(rank_map, team.id))

@@ -6,6 +6,7 @@ defmodule PVAData.DivisionTest do
     Team,
     Standing,
     Match,
+    RankReason,
     Scraper
   }
 
@@ -312,6 +313,21 @@ defmodule PVAData.DivisionTest do
     end
   end
 
+  describe "compare_names/3" do
+    test "compares team names alphabetically" do
+      division = Division.build("Coed A Wednesday")
+      court_jesters = Team.build(division, "Court Jesters")
+      hop_heads = Team.build(division, "Hop Heads")
+
+      {result, _} = Division.compare_names(division, court_jesters, hop_heads)
+      assert result > 0
+      {result, _} = Division.compare_names(division, hop_heads, court_jesters)
+      assert result < 0
+      {result, _} = Division.compare_names(division, court_jesters, court_jesters)
+      assert result == 0
+    end
+  end
+
   describe "compare_teams/2" do
     test "works" do
       {:ok, divisions} = Scraper.scrape("test/fixtures/tie-breaker")
@@ -335,178 +351,159 @@ defmodule PVAData.DivisionTest do
         |> Enum.map(& &1.name)
 
       assert sorted_names == expected_sorted_names
-
-      division
-      |> Division.add_ranks()
     end
   end
 
   describe "add_ranks/2" do
-    test "adds ranks to each standing and team" do
+    test "when nobody has played yet, every team should get rank 1" do
+      {:ok, divisions} = Scraper.scrape("test/fixtures/new-season")
+
       division =
-        Division.new(
-          name: "Coed Grass Quads",
-          slug: "coed-grass-quads"
-        )
+        Enum.find(divisions, &(&1.name == "Coed A Wednesday"))
+        |> Division.add_ranks()
 
-      hop_heads =
-        Team.new(
-          name: "Hop Heads",
-          slug: "hop-heads",
-          division_id: division.id
-        )
+      for team <- division.teams do
+        assert team.rank == 1
+      end
 
-      rhombus =
-        Team.new(
-          name: "Rhombus",
-          slug: "rhombus",
-          division_id: division.id
-        )
+      for standing <- division.standings do
+        assert standing.rank == 1
+      end
+    end
 
-      have_balls_will_travel =
-        Team.new(
-          name: "Have Balls Will Travel",
-          slug: "have-balls-will-travel",
-          division_id: division.id
-        )
+    test "when there is data, ranks should be added accurately" do
+      {:ok, divisions} = Scraper.scrape("test/fixtures/tie-breaker")
 
-      spike_force =
-        Team.new(
-          name: "Spike Force",
-          slug: "spike-force",
-          division_id: division.id
-        )
+      division =
+        Enum.find(divisions, &(&1.name == "Coed A Wednesday"))
+        |> Division.add_ranks()
 
-      awkward_high_fives =
-        Team.new(
-          name: "Awkward High Fives",
-          slug: "awkward-high-fives",
-          division_id: division.id
-        )
+      assert [
+               %Team{
+                 name: "Pound Town",
+                 rank: 1,
+                 rank_reason: %RankReason{
+                   statistic: "win percentage",
+                   team_value: 90.0,
+                   lower_team_value: 80.0
+                 }
+               },
+               %Team{
+                 name: "HopHeads",
+                 rank: 2,
+                 rank_reason: %RankReason{
+                   statistic: "head to head record (points differential)",
+                   team_value: 11,
+                   lower_team_value: -11
+                 }
+               },
+               %Team{
+                 name: "Court Jesters",
+                 rank: 3,
+                 rank_reason: %RankReason{
+                   statistic: "win percentage",
+                   team_value: 80.0,
+                   lower_team_value: 50.0
+                 }
+               },
+               %Team{
+                 name: "The Newcomers",
+                 rank: 4,
+                 rank_reason: %RankReason{
+                   statistic: "percentage of possible match points",
+                   team_value: 53.33,
+                   lower_team_value: 46.67
+                 }
+               },
+               %Team{
+                 name: "21JumpFeet",
+                 rank: 5,
+                 rank_reason: %RankReason{
+                   statistic: "win percentage",
+                   team_value: 50.0,
+                   lower_team_value: 30.0
+                 }
+               },
+               %Team{
+                 name: "Last Minute Ballers",
+                 rank: 6,
+                 rank_reason: %RankReason{
+                   statistic: "win percentage",
+                   team_value: 30.0,
+                   lower_team_value: 10.0
+                 }
+               },
+               %Team{
+                 name: "Spiked Punch",
+                 rank: 7,
+                 rank_reason: %RankReason{
+                   statistic: "percentage of possible match points",
+                   team_value: 17.78,
+                   lower_team_value: 11.11
+                 }
+               },
+               %Team{name: "Work In Progress", rank: 8, rank_reason: nil}
+             ] = division.teams
 
-      too_legit_to_hit =
-        Team.new(
-          name: "2Legit2Hit",
-          slug: "2legit2hit",
-          division_id: division.id
-        )
-
-      free_agents =
-        Team.new(
-          name: "Free Agents",
-          slug: "free-agents",
-          division_id: division.id
-        )
-
-      bump_n_grind =
-        Team.new(
-          name: "Bump n' Grind",
-          slug: "bump-n-grind",
-          division_id: division.id
-        )
-
-      teams = [
-        hop_heads,
-        rhombus,
-        have_balls_will_travel,
-        spike_force,
-        awkward_high_fives,
-        too_legit_to_hit,
-        free_agents,
-        bump_n_grind
-      ]
-
-      standings = [
-        Standing.new(
-          team_id: hop_heads.id,
-          division_id: division.id,
-          wins: 5,
-          losses: 1,
-          winning_percentage: 83.33,
-          match_points_percentage: 83.33
-        ),
-        Standing.new(
-          team_id: rhombus.id,
-          division_id: division.id,
-          wins: 5,
-          losses: 1,
-          winning_percentage: 83.33,
-          match_points_percentage: 83.33
-        ),
-        Standing.new(
-          team_id: have_balls_will_travel.id,
-          division_id: division.id,
-          wins: 5,
-          losses: 1,
-          winning_percentage: 83.33,
-          match_points_percentage: 77.78
-        ),
-        Standing.new(
-          team_id: spike_force.id,
-          division_id: division.id,
-          wins: 3,
-          losses: 3,
-          winning_percentage: 50.00,
-          match_points_percentage: 53.70
-        ),
-        Standing.new(
-          team_id: awkward_high_fives.id,
-          division_id: division.id,
-          wins: 3,
-          losses: 3,
-          winning_percentage: 50.00,
-          match_points_percentage: 48.15
-        ),
-        Standing.new(
-          team_id: too_legit_to_hit.id,
-          division_id: division.id,
-          wins: 2,
-          losses: 4,
-          winning_percentage: 33.33,
-          match_points_percentage: 35.19
-        ),
-        Standing.new(
-          team_id: free_agents.id,
-          division_id: division.id,
-          wins: 1,
-          losses: 5,
-          winning_percentage: 16.67,
-          match_points_percentage: 16.67
-        ),
-        Standing.new(
-          team_id: bump_n_grind.id,
-          division_id: division.id,
-          wins: 1,
-          losses: 5,
-          winning_percentage: 0.00,
-          match_points_percentage: 1.85
-        )
-      ]
-
-      division = %{division | teams: teams, standings: standings}
-
-      division_with_ranks = division |> Division.add_ranks()
-
-      expected_ranks = %{
-        hop_heads.id => 1,
-        rhombus.id => 2,
-        have_balls_will_travel.id => 3,
-        spike_force.id => 4,
-        awkward_high_fives.id => 5,
-        too_legit_to_hit.id => 6,
-        free_agents.id => 7,
-        bump_n_grind.id => 8
-      }
-
-      division_with_ranks.teams
-      |> Enum.each(fn %{rank: rank, id: id} ->
-        assert rank == Map.get(expected_ranks, id)
-      end)
-
-      division_with_ranks.standings
-      |> Enum.each(fn %{rank: rank, team_id: id} ->
-        assert rank == Map.get(expected_ranks, id)
-      end)
+             assert [
+               %Standing{
+                 rank: 1,
+                 rank_reason: %RankReason{
+                   statistic: "win percentage",
+                   team_value: 90.0,
+                   lower_team_value: 80.0
+                 }
+               },
+               %Standing{
+                 rank: 2,
+                 rank_reason: %RankReason{
+                   statistic: "head to head record (points differential)",
+                   team_value: 11,
+                   lower_team_value: -11
+                 }
+               },
+               %Standing{
+                 rank: 3,
+                 rank_reason: %RankReason{
+                   statistic: "win percentage",
+                   team_value: 80.0,
+                   lower_team_value: 50.0
+                 }
+               },
+               %Standing{
+                 rank: 4,
+                 rank_reason: %RankReason{
+                   statistic: "percentage of possible match points",
+                   team_value: 53.33,
+                   lower_team_value: 46.67
+                 }
+               },
+               %Standing{
+                 rank: 5,
+                 rank_reason: %RankReason{
+                   statistic: "win percentage",
+                   team_value: 50.0,
+                   lower_team_value: 30.0
+                 }
+               },
+               %Standing{
+                 rank: 6,
+                 rank_reason: %RankReason{
+                   statistic: "win percentage",
+                   team_value: 30.0,
+                   lower_team_value: 10.0
+                 }
+               },
+               %Standing{
+                 rank: 7,
+                 rank_reason: %RankReason{
+                   statistic: "percentage of possible match points",
+                   team_value: 17.78,
+                   lower_team_value: 11.11
+                 }
+               },
+               %Standing{rank: 8, rank_reason: nil}
+             ] = division.standings
     end
   end
 end
