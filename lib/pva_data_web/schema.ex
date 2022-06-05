@@ -6,6 +6,12 @@ defmodule PVADataWeb.Schema do
   alias PVADataWeb.Resolvers
 
   query do
+    field :login_required, type: :boolean do
+      resolve fn _, _ ->
+        {:ok, Application.get_env(:pva_data, :password_required)}
+      end
+    end
+
     field :login, type: :session do
       arg :password, non_null(:string)
 
