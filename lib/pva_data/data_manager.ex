@@ -23,9 +23,19 @@ defmodule PVAData.DataManager do
     {:ok, %{last_checked_at: nil}}
   end
 
+  def update_once() do
+    GenServer.cast(__MODULE__, :update_once)
+  end
+
   def handle_info(:time_to_update, _state) do
     do_update_data()
     schedule_next_update()
+
+    {:noreply, %{last_checked_at: DateTime.utc_now()}}
+  end
+
+  def handle_cast(:update_once, _state) do
+    do_update_data()
 
     {:noreply, %{last_checked_at: DateTime.utc_now()}}
   end
