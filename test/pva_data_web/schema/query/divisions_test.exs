@@ -12,14 +12,17 @@ defmodule PVADataWeb.Schema.Query.DivisionsTest do
     SetResult
   }
 
+  alias PVADataWeb.Token
+
   @opts Router.init([])
 
   setup do
     server = start_supervised!({Data, [name: Data]})
-    {:ok, server: server}
+    {:ok, token, _} = Token.generate_and_sign()
+    {:ok, server: server, token: token}
   end
 
-  test "can request list of divisions" do
+  test "can request list of divisions", %{token: token} do
     query = """
     query {
       divisions {
@@ -41,6 +44,7 @@ defmodule PVADataWeb.Schema.Query.DivisionsTest do
     conn =
       conn(:post, "/api", query: query)
       |> put_req_header("content-type", "application/json")
+      |> put_req_header("authorization", "Bearer " <> token)
       |> Router.call(@opts)
 
     returned_divisions =
@@ -56,7 +60,7 @@ defmodule PVADataWeb.Schema.Query.DivisionsTest do
     assert sort_by_name(returned_divisions) == sort_by_name(expected_divisions)
   end
 
-  test "can get the list of teams in each division" do
+  test "can get the list of teams in each division", %{token: token} do
     query = """
     query {
       divisions {
@@ -84,6 +88,7 @@ defmodule PVADataWeb.Schema.Query.DivisionsTest do
     conn =
       conn(:post, "/api", query: query)
       |> put_req_header("content-type", "application/json")
+      |> put_req_header("authorization", "Bearer " <> token)
       |> Router.call(@opts)
 
     returned_divisions =
@@ -105,7 +110,7 @@ defmodule PVADataWeb.Schema.Query.DivisionsTest do
     assert sort_by_name(actual_teams_data) == sort_by_name(expected_teams_data)
   end
 
-  test "can get standings for each division" do
+  test "can get standings for each division", %{token: token} do
     query = """
     query {
       divisions {
@@ -156,6 +161,7 @@ defmodule PVADataWeb.Schema.Query.DivisionsTest do
     conn =
       conn(:post, "/api", query: query)
       |> put_req_header("content-type", "application/json")
+      |> put_req_header("authorization", "Bearer " <> token)
       |> Router.call(@opts)
 
     returned_divisions =
@@ -195,7 +201,7 @@ defmodule PVADataWeb.Schema.Query.DivisionsTest do
     assert sort_by_id(actual_standings) == sort_by_id(expected_standings)
   end
 
-  test "can get schedules for each division" do
+  test "can get schedules for each division", %{token: token} do
     query = """
     query {
       divisions {
@@ -264,6 +270,7 @@ defmodule PVADataWeb.Schema.Query.DivisionsTest do
     conn =
       conn(:post, "/api", query: query)
       |> put_req_header("content-type", "application/json")
+      |> put_req_header("authorization", "Bearer " <> token)
       |> Router.call(@opts)
 
     returned_divisions =
@@ -327,7 +334,7 @@ defmodule PVADataWeb.Schema.Query.DivisionsTest do
     assert sort_by_id(actual_schedules) == sort_by_id(expected_schedules)
   end
 
-  test "it can get scores for each division" do
+  test "it can get scores for each division", %{token: token} do
     query = """
     query {
       divisions {
@@ -448,6 +455,7 @@ defmodule PVADataWeb.Schema.Query.DivisionsTest do
     conn =
       conn(:post, "/api", query: query)
       |> put_req_header("content-type", "application/json")
+      |> put_req_header("authorization", "Bearer " <> token)
       |> Router.call(@opts)
 
     returned_divisions =

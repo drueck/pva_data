@@ -2,10 +2,11 @@ defmodule PVAData.Scraper do
   @pva_website Application.get_env(:pva_data, :pva_website_client)
 
   def scrape(base_path \\ nil) do
-    with {:ok, divisions} <- @pva_website.get_teams_by_division(base_path),
-         {:ok, scheduled_matches} <- @pva_website.get_scheduled_matches(base_path),
-         {:ok, completed_matches} <- @pva_website.get_completed_matches(base_path),
-         {:ok, division_standings} <- @pva_website.get_division_standings(base_path) do
+    with {:ok, cookies} <- login_if_password_required(base_path),
+         {:ok, divisions} <- @pva_website.get_teams_by_division(base_path, cookies),
+         {:ok, scheduled_matches} <- @pva_website.get_scheduled_matches(base_path, cookies),
+         {:ok, completed_matches} <- @pva_website.get_completed_matches(base_path, cookies),
+         {:ok, division_standings} <- @pva_website.get_division_standings(base_path, cookies) do
       divisions
       |> Enum.map(fn division ->
         division
@@ -16,6 +17,14 @@ defmodule PVAData.Scraper do
       |> (fn divisions -> {:ok, divisions} end).()
     else
       error -> error
+    end
+  end
+
+  defp login_if_password_required(base_path) do
+    if Application.get_env(:pva_data, :password_required) do
+      @pva_website.login(Application.get_env(:pva_data, :pva_password), base_path)
+    else
+      {:ok, []}
     end
   end
 
