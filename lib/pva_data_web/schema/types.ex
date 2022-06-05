@@ -85,8 +85,8 @@ defmodule PVADataWeb.Schema.Types do
     end
 
     field :statistic, :string
-    field :team_value, :float
-    field :lower_team_value, :float
+    field :team_value, :string
+    field :lower_team_value, :string
   end
 
   object :match do
