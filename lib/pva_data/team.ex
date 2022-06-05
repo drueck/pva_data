@@ -9,9 +9,11 @@ defmodule PVAData.Team do
   defstruct [:id, :name, :division_id, :slug, :rank_reason, rank: 0]
 
   def build(%Division{id: division_id}, name) do
+    trimmed_name = String.trim(name)
+
     Team.new(
-      name: name,
-      slug: Slugger.slugify_downcase(name),
+      name: trimmed_name,
+      slug: Slugger.slugify_downcase(trimmed_name),
       division_id: division_id
     )
   end

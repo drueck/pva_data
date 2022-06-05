@@ -20,9 +20,11 @@ defmodule PVAData.Division do
   ]
 
   def build(name) do
+    trimmed_name = String.trim(name)
+
     Division.new(
-      name: name,
-      slug: Slugger.slugify_downcase(name)
+      name: trimmed_name,
+      slug: Slugger.slugify_downcase(trimmed_name)
     )
   end
 
