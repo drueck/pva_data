@@ -1,7 +1,7 @@
 defmodule PVAData.Persistence.FlatFile do
   @behaviour PVAData.Persistence.PersistenceBehaviour
 
-  @state_file Application.get_env(:pva_data, :persistence_state_file)
+  @state_file Application.compile_env(:pva_data, :persistence_state_file)
 
   def save_state(state) do
     @state_file

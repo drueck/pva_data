@@ -1,5 +1,5 @@
 defmodule PVAData.Scraper do
-  @pva_website Application.get_env(:pva_data, :pva_website_client)
+  @pva_website Application.compile_env(:pva_data, :pva_website_client)
 
   def scrape(base_path \\ nil) do
     with {:ok, cookies} <- login_if_password_required(base_path),
