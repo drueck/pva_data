@@ -55,8 +55,7 @@ defmodule PVAData.DataManager do
 
         Data.save_state()
 
-      {:error, message} ->
-        Rollbax.report_message(:error, "Scraper returned an error", %{message: message})
+      _ ->
         nil
     end
   end
