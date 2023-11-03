@@ -48,9 +48,18 @@ defmodule PVAData.PVAWebsite.Client do
   end
 
   defp fetch_and_parse(url, parse, cookies) do
-    with {:ok, %HTTPoison.Response{body: body}} <-
-           HTTPoison.get(url, %{}, hackney: [cookie: [cookies]]) do
-      parse.(body)
+    HTTPoison.get(url, %{}, hackney: [cookie: [cookies]])
+    |> case do
+      {:ok, %HTTPoison.Response{body: body}} ->
+        parse.(body)
+
+      {:error, error = %HTTPoison.Error{}} ->
+        Rollbax.report_message(:error, "pva website request failed", %{
+          url: url,
+          message: Exception.message(error)
+        })
+
+        {:error, "pva website request failed"}
     end
   end
 
