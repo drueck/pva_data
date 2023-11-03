@@ -1,4 +1,4 @@
-use Mix.Config
+import Config
 
 config :pva_data,
   port: 9001,

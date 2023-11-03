@@ -1,4 +1,4 @@
-use Mix.Config
+import Config
 
 # compile time configuration goes here
 # see config/releases.exs for runtime config
