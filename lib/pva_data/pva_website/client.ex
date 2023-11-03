@@ -14,8 +14,15 @@ defmodule PVAData.PVAWebsite.Client do
     "#{base_path || @base_path}/schedules.php"
     |> HTTPoison.post({:form, [{"pass", password}]})
     |> case do
-      {:ok, %HTTPoison.Response{status_code: 302, headers: headers}} -> headers
-      _ -> []
+      {:ok, %HTTPoison.Response{status_code: 302, headers: headers}} ->
+        headers
+
+      {:error, error = %HTTPoison.Error{}} ->
+        Rollbax.report_message(:error, "login failed", %{message: Exception.message(error)})
+        []
+
+      _ ->
+        []
     end
     |> get_cookies()
   end
