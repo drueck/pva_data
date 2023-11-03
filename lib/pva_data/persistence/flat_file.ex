@@ -23,7 +23,7 @@ defmodule PVAData.Persistence.FlatFile do
         {:ok, :erlang.binary_to_term(binary)}
 
       _ ->
-        raise "Failed to read state from file"
+        {:error, "no state available"}
     end
   end
 end
