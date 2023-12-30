@@ -361,4 +361,66 @@ defmodule PVADataWeb.Schema.Query.TeamTest do
 
     assert returned_team == expected_team
   end
+
+  test "returns nil if division is not found", %{token: token} do
+    query = """
+    query($divisionSlug: String!, $teamSlug: String!) {
+      team(divisionSlug: $divisionSlug, teamSlug: $teamSlug) {
+        id
+        name
+        slug
+      }
+    }
+    """
+
+    variables = %{
+      "divisionSlug" => "invalid",
+      "teamSlug" => "invalid"
+    }
+
+    conn =
+      conn(:post, "/api", query: query, variables: variables)
+      |> put_req_header("content-type", "application/json")
+      |> put_req_header("authorization", "Bearer " <> token)
+      |> Router.call(@opts)
+
+    returned_team =
+      Poison.decode!(conn.resp_body, %{keys: :atoms!})
+      |> get_in([:data, :team])
+
+    assert returned_team == nil
+  end
+
+  test "returns nil if team not found within division", %{token: token} do
+    query = """
+    query($divisionSlug: String!, $teamSlug: String!) {
+      team(divisionSlug: $divisionSlug, teamSlug: $teamSlug) {
+        id
+        name
+        slug
+      }
+    }
+    """
+
+    empty_division = Division.new(name: "Empty", slug: "empty", teams: [])
+
+    Data.put_division(empty_division)
+
+    variables = %{
+      "divisionSlug" => "empty",
+      "teamSlug" => "invalid"
+    }
+
+    conn =
+      conn(:post, "/api", query: query, variables: variables)
+      |> put_req_header("content-type", "application/json")
+      |> put_req_header("authorization", "Bearer " <> token)
+      |> Router.call(@opts)
+
+    returned_team =
+      Poison.decode!(conn.resp_body, %{keys: :atoms!})
+      |> get_in([:data, :team])
+
+    assert returned_team == nil
+  end
 end

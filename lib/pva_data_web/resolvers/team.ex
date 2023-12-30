@@ -2,7 +2,8 @@ alias PVAData.{
   Data,
   Standing,
   Match,
-  RankReason
+  RankReason,
+  Division
 }
 
 defmodule PVADataWeb.Resolvers.Team do
@@ -28,20 +29,22 @@ defmodule PVADataWeb.Resolvers.Team do
 
   def by_slugs(%{division_slug: division_slug, team_slug: team_slug}, _) do
     team =
-      division_slug
-      |> Data.get_division_by_slug()
-      |> Map.get(:teams)
-      |> Enum.find(fn team -> team.slug == team_slug end)
+      with %Division{teams: teams} <- Data.get_division_by_slug(division_slug) do
+        Enum.find(teams, fn team -> team.slug == team_slug end)
+      else
+        _ -> nil
+      end
 
     {:ok, team}
   end
 
   defp get(division_id, team_id) do
     team =
-      division_id
-      |> Data.get_division()
-      |> Map.get(:teams)
-      |> Enum.find(fn team -> team.id == team_id end)
+      with %Division{teams: teams} <- Data.get_division(division_id) do
+        Enum.find(teams, fn team -> team.id == team_id end)
+      else
+        _ -> nil
+      end
 
     {:ok, team}
   end

@@ -49,4 +49,34 @@ defmodule PVADataWeb.Schema.Query.DivisionTest do
 
     assert returned_division == expected_division
   end
+
+  test "returns nil if slug doesn't match any division" do
+    query = """
+    query ($slug: String!) {
+      division(slug: $slug) {
+        id
+        name
+      }
+    }
+    """
+
+    division = Division.new(name: "Coed A Thursday", slug: "coed-a-thursday")
+
+    Data.put_division(division)
+
+    {:ok, token, _} = Token.generate_and_sign()
+
+    conn =
+      conn(:post, "/api", query: query, variables: %{"slug" => "thursday-coed-a"})
+      |> put_req_header("content-type", "application/json")
+      |> put_req_header("authorization", "Bearer " <> token)
+      |> Router.call(@opts)
+
+    returned_division =
+      Poison.decode!(conn.resp_body, %{keys: :atoms!})
+      |> get_in([:data, :division])
+
+    assert conn.status == 200
+    assert returned_division == nil
+  end
 end
