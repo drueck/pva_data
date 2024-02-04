@@ -19,7 +19,7 @@ defmodule PVAData.PVAWebsite.DateUtils do
   end
 
   def parse_time(time_string) do
-    ~r/(?<hour>\d{1,2}):(?<minutes>\d{1,2})/
+    ~r/(?<hour>\d{1,2}):?(?<minutes>\d{1,2})?/
     |> Regex.named_captures(time_string)
     |> case do
       nil ->
@@ -27,7 +27,12 @@ defmodule PVAData.PVAWebsite.DateUtils do
 
       %{"hour" => hour_string, "minutes" => minutes_string} ->
         hour = String.to_integer(hour_string) + 12
-        minutes = String.to_integer(minutes_string)
+
+        minutes =
+          case Integer.parse(minutes_string) do
+            :error -> 0
+            {integer, _} -> integer
+          end
 
         case Time.new(hour, minutes, 0) do
           {:ok, time} -> time

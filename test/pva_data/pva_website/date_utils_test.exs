@@ -16,6 +16,18 @@ defmodule PVAData.PVAWebsite.DateUtilsTest do
     test "it parses the time format used on the PVA website" do
       assert DateUtils.parse_time("8:00") == ~T[20:00:00]
     end
+
+    test "it parses the time with PM" do
+      assert DateUtils.parse_time("9:30 PM") == ~T[21:30:00]
+    end
+
+    test "it parses just an hour without minutes" do
+      assert DateUtils.parse_time("7") == ~T[19:00:00]
+    end
+
+    test "it parses just an hour with PM" do
+      assert DateUtils.parse_time("6 PM") == ~T[18:00:00]
+    end
   end
 
   describe "guess_year/2" do
