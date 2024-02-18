@@ -3,7 +3,9 @@ defmodule PVAData.DataTest do
 
   alias PVAData.{
     Data,
-    Division
+    Division,
+    Team,
+    Match
   }
 
   setup do
@@ -89,6 +91,82 @@ defmodule PVAData.DataTest do
       assert %{updated_at: updated_at} = :sys.get_state(server)
       assert updated_at
       assert Data.get_updated_at(server) == updated_at
+    end
+  end
+
+  describe "get_scheduled_matches_by_date/2" do
+    test "returns all scheduled matches on the given date from any division", %{server: server} do
+      division_one = Division.new(name: "Division One", slug: "division-one")
+      team_one_a = Team.build(division_one, "A")
+      team_one_b = Team.build(division_one, "B")
+
+      match_one =
+        Match.new(
+          date: ~D[2024-01-01],
+          time: ~T[19:00:00],
+          division_id: division_one.id,
+          home_team_id: team_one_a.id,
+          visiting_team_id: team_one_b.id
+        )
+
+      match_two =
+        Match.new(
+          date: ~D[2024-01-07],
+          time: ~T[19:00:00],
+          division_id: division_one.id,
+          home_team_id: team_one_b.id,
+          visiting_team_id: team_one_a.id
+        )
+
+      division_one =
+        division_one
+        |> Map.put(:teams, [team_one_a, team_one_b])
+        |> Map.put(:scheduled_matches, [match_one, match_two])
+
+      division_two = Division.new(name: "Division Two", slug: "division-two")
+      team_two_a = Team.build(division_two, "A")
+      team_two_b = Team.build(division_two, "B")
+
+      match_three =
+        Match.new(
+          date: ~D[2024-01-01],
+          time: ~T[20:00:00],
+          division_id: division_two.id,
+          home_team_id: team_two_a.id,
+          visiting_team_id: team_two_b.id
+        )
+
+      match_four =
+        Match.new(
+          date: ~D[2024-01-07],
+          time: ~T[20:00:00],
+          division_id: division_two.id,
+          home_team_id: team_two_b.id,
+          visiting_team_id: team_two_a.id
+        )
+
+      division_two =
+        division_two
+        |> Map.put(:teams, [team_two_a, team_two_b])
+        |> Map.put(:scheduled_matches, [match_three, match_four])
+
+      Data.put_division(server, division_one)
+      Data.put_division(server, division_two)
+
+      week_one_matches = Data.get_scheduled_matches_by_date(server, ~D[2024-01-01])
+
+      assert length(week_one_matches) == 2
+      assert match_one in week_one_matches
+      assert match_three in week_one_matches
+
+      week_two_matches = Data.get_scheduled_matches_by_date(server, ~D[2024-01-07])
+
+      assert length(week_two_matches) == 2
+      assert match_two in week_two_matches
+      assert match_four in week_two_matches
+
+      week_three_matches = Data.get_scheduled_matches_by_date(server, ~D[2024-01-14])
+      assert week_three_matches == []
     end
   end
 

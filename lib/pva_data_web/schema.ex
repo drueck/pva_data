@@ -37,5 +37,12 @@ defmodule PVADataWeb.Schema do
 
       resolve &Resolvers.Team.by_slugs/2
     end
+
+    field :scheduled_matches, list_of(:match) do
+      middleware PVADataWeb.Middlewares.Authentication
+      arg :date, :date
+
+      resolve &Resolvers.Match.scheduled_for_date/2
+    end
   end
 end

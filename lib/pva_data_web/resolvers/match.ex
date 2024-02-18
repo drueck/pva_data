@@ -23,6 +23,10 @@ defmodule PVADataWeb.Resolvers.Match do
     {:ok, matches}
   end
 
+  def scheduled_for_date(%{date: date}, _) do
+    {:ok, Data.get_scheduled_matches_by_date(date)}
+  end
+
   defp completed_matches(division_id) do
     division_id
     |> Data.get_division()

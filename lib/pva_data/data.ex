@@ -43,6 +43,10 @@ defmodule PVAData.Data do
     GenServer.call(pid, :list_divisions)
   end
 
+  def get_scheduled_matches_by_date(pid \\ __MODULE__, date) do
+    GenServer.call(pid, {:get_scheduled_matches_by_date, date})
+  end
+
   def save_state(pid \\ __MODULE__) do
     GenServer.cast(pid, :save_state)
   end
@@ -118,6 +122,16 @@ defmodule PVAData.Data do
     division_list = divisions |> Map.values() |> Enum.sort_by(& &1.name)
 
     {:reply, division_list, state}
+  end
+
+  def handle_call({:get_scheduled_matches_by_date, date}, _from, %{divisions: divisions} = state) do
+    scheduled_matches =
+      divisions
+      |> Map.values()
+      |> Stream.flat_map(& &1.scheduled_matches)
+      |> Enum.filter(&(&1.date == date))
+
+    {:reply, scheduled_matches, state}
   end
 
   def handle_call(:get_updated_at, _from, %{updated_at: updated_at} = state) do
