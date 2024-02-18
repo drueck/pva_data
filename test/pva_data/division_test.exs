@@ -149,8 +149,8 @@ defmodule PVAData.DivisionTest do
 
       match_1 =
         Match.new(
-          date: Date.new(2021, 9, 22),
-          time: Time.new(20, 0, 0),
+          date: ~D[2021-09-22],
+          time: ~T[20:00:00],
           division_id: division.id,
           home_team_id: hop_heads.id,
           visiting_team_id: cjs.id
@@ -159,8 +159,8 @@ defmodule PVAData.DivisionTest do
 
       match_2 =
         Match.new(
-          date: Date.new(2021, 10, 6),
-          time: Time.new(19, 0, 0),
+          date: ~D[2021-10-06],
+          time: ~T[19:00:00],
           division_id: division.id,
           home_team_id: pound_town.id,
           visiting_team_id: cjs.id
@@ -169,8 +169,8 @@ defmodule PVAData.DivisionTest do
 
       match_3 =
         Match.new(
-          date: Date.new(2021, 11, 3),
-          time: Time.new(20, 0, 0),
+          date: ~D[2021-11-03],
+          time: ~T[20:00:00],
           division_id: division.id,
           home_team_id: hop_heads.id,
           visiting_team_id: cjs.id
@@ -202,8 +202,8 @@ defmodule PVAData.DivisionTest do
 
       match_1 =
         Match.new(
-          date: Date.new(2021, 9, 22),
-          time: Time.new(20, 0, 0),
+          date: ~D[2021-09-22],
+          time: ~T[20:00:00],
           division_id: division.id,
           home_team_id: hop_heads.id,
           visiting_team_id: cjs.id
@@ -212,8 +212,8 @@ defmodule PVAData.DivisionTest do
 
       match_2 =
         Match.new(
-          date: Date.new(2021, 11, 3),
-          time: Time.new(20, 0, 0),
+          date: ~D[2021-11-03],
+          time: ~T[20:00:00],
           division_id: division.id,
           home_team_id: hop_heads.id,
           visiting_team_id: cjs.id
@@ -222,8 +222,8 @@ defmodule PVAData.DivisionTest do
 
       cjs_v_wip =
         Match.new(
-          date: Date.new(2021, 11, 3),
-          time: Time.new(19, 0, 0),
+          date: ~D[2021-11-03],
+          time: ~T[19:00:00],
           division_id: division.id,
           home_team_id: cjs.id,
           visiting_team_id: wip.id
@@ -232,8 +232,8 @@ defmodule PVAData.DivisionTest do
 
       fake_hhs_v_wip =
         Match.new(
-          date: Date.new(2021, 10, 13),
-          time: Time.new(19, 0, 0),
+          date: ~D[2021-10-13],
+          time: ~T[19:00:00],
           division_id: division.id,
           home_team_id: hop_heads.id,
           visiting_team_id: wip.id
@@ -273,8 +273,8 @@ defmodule PVAData.DivisionTest do
 
       match_1 =
         Match.new(
-          date: Date.new(2021, 9, 22),
-          time: Time.new(20, 0, 0),
+          date: ~D[2021-09-22],
+          time: ~T[20:00:00],
           division_id: division.id,
           home_team_id: hop_heads.id,
           visiting_team_id: cjs.id
@@ -283,8 +283,8 @@ defmodule PVAData.DivisionTest do
 
       match_2 =
         Match.new(
-          date: Date.new(2021, 11, 3),
-          time: Time.new(20, 0, 0),
+          date: ~D[2021-11-03],
+          time: ~T[20:00:00],
           division_id: division.id,
           home_team_id: hop_heads.id,
           visiting_team_id: cjs.id
@@ -445,7 +445,7 @@ defmodule PVAData.DivisionTest do
                %Team{name: "Work In Progress", rank: 8, rank_reason: nil}
              ] = division.teams
 
-             assert [
+      assert [
                %Standing{
                  rank: 1,
                  rank_reason: %RankReason{

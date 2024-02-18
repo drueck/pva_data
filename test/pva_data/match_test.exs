@@ -16,8 +16,8 @@ defmodule PVAData.MatchTest do
 
       match =
         Match.new(
-          date: Date.new(2021, 1, 1),
-          time: Time.new(20, 0, 0),
+          date: ~D[2021-01-01],
+          time: ~T[20:00:00],
           division_id: division.id,
           home_team_id: court_jesters.id,
           visiting_team_id: hop_heads.id
@@ -74,8 +74,8 @@ defmodule PVAData.MatchTest do
 
       match =
         Match.new(
-          date: Date.new(2021, 9, 22),
-          time: Time.new(20, 0, 0),
+          date: ~D[2021-09-22],
+          time: ~T[20:00:00],
           division_id: division.id,
           home_team_id: hop_heads.id,
           visiting_team_id: court_jesters.id
@@ -133,8 +133,8 @@ defmodule PVAData.MatchTest do
 
       match =
         Match.new(
-          date: Date.new(2021, 9, 22),
-          time: Time.new(20, 0, 0),
+          date: ~D[2021-09-22],
+          time: ~T[20:00:00],
           division_id: division.id,
           home_team_id: hop_heads.id,
           visiting_team_id: court_jesters.id
@@ -192,8 +192,8 @@ defmodule PVAData.MatchTest do
 
       match =
         Match.new(
-          date: Date.new(2021, 9, 22),
-          time: Time.new(20, 0, 0),
+          date: ~D[2021-09-22],
+          time: ~T[20:00:00],
           division_id: division.id,
           home_team_id: hop_heads.id,
           visiting_team_id: court_jesters.id
@@ -251,8 +251,8 @@ defmodule PVAData.MatchTest do
 
       match =
         Match.new(
-          date: Date.new(2021, 9, 22),
-          time: Time.new(20, 0, 0),
+          date: ~D[2021-09-22],
+          time: ~T[20:00:00],
           division_id: division.id,
           home_team_id: hop_heads.id,
           visiting_team_id: court_jesters.id
@@ -350,8 +350,8 @@ defmodule PVAData.MatchTest do
 
       match =
         Match.new(
-          date: Date.new(2021, 9, 22),
-          time: Time.new(20, 0, 0),
+          date: ~D[2021-09-22],
+          time: ~T[20:00:00],
           division_id: division.id,
           home_team_id: hop_heads.id,
           visiting_team_id: court_jesters.id
