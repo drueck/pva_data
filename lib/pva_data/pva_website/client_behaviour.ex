@@ -1,17 +1,8 @@
 defmodule PVAData.PVAWebsite.ClientBehaviour do
-  alias PVAData.{
-    Division,
-    Match,
-    DivisionStanding
-  }
+  alias PVAData.Division
 
-  @type password :: String.t()
   @type url :: String.t()
-  @type cookies :: list(String.t())
 
-  @callback login(password, url) :: {:ok, cookies} | {:error, String.t()}
-  @callback get_teams_by_division(url, cookies) :: list(Division.t())
-  @callback get_scheduled_matches(url, cookies) :: list(Match.t())
-  @callback get_completed_matches(url, cookies) :: list(Match.t())
-  @callback get_division_standings(url, cookies) :: list(DivisionStanding.t())
+  @callback get_division_urls(url) :: {:ok, list(url)} | {:error, String.t()}
+  @callback get_division(url, url) :: {:ok, Division.t()} | {:error, String.t()}
 end

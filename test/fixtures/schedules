@@ -1,0 +1,593 @@
+
+
+
+<!doctype html>
+<html lang="en">
+<head><title>
+	Portland Volleyball Association
+</title><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<!--[if IE]><link rel="shortcut icon" href="https://d2jqoimos5um40.cloudfront.net/site_2743/1ede09.png"><![endif]-->
+<link rel="apple-touch-icon" href="https://d2jqoimos5um40.cloudfront.net/site_2743/1ede08.png">
+<link rel="icon" href="https://d2jqoimos5um40.cloudfront.net/site_2743/1ede07.png">
+
+
+
+<link rel="stylesheet" href="/resources/v1245_hotfix3/common/bootstrap/5.3.3/css/bootstrap.min.css" /><link rel="stylesheet" href="/resources/v1245_hotfix3/common/jquery/smartmenus/1.1.0/addons/bootstrap-4/jquery.smartmenus.bootstrap-4.css" /><link rel="stylesheet" href="/resources/v1245_hotfix3/common/font-awesome/5.3.1/css/all.min.css" /><link rel="stylesheet" href="/resources/v1245_hotfix3/common/slick/1.8.0/css/slick.css" /><link rel="stylesheet" type="text/css" href="https://d2jqoimos5um40.cloudfront.net/site_2743/1eddc2.css" /><link href="/WebResource.axd?d=OsT-psSoXwo_KVI9mTxP-FZNsFMj4dFkg3R7xVgAKiP63K9NzmWBPP5Wh8Rx5BReNkQcgiw3PvMph8UZ7hUgt8GNA1Z5vRF0KOk7fYEftDlC1x-1SPvhUhSB7jtZ6zbPfVBVR7J5Xy5pb7J6Zsm23CuVdqTeCcHRz6r5VF2pdsc1&amp;t=638495662620000000" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=5TTpQEcTJNUPXXOw4AR50fKIqPHYW5PozzWlBayl9sdOkmZDh7s6H5LBwpnLOR1vqnDpMAr1hXNrqNzl0H-Pt66m1ScdoCk3vXnziRL6-YwVmJeG9nfCWL8Lqa0bva2etowgCpSnAADQCWNJ5tGbwcnHoV5ZYm7WEAsyC4b7gbI1&amp;t=638495662620000000" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=3ZGFrgqq7jKHmr-WXIbRPMQmGfe2R7lSZ17Oe79oHF1RGeSp_PAyF9aRaRKWvoCE0JDdiWj_JU76w0Teu_6Vu2wOaQSt8R5eew7YYS_hdiDlAzXXtbjS0m6f6tFPEz4OhhNdtNN-qAQGjP16M9uh2g2&amp;t=638495662620000000" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=KIZCJBOo0GrvF-RlW3dzrlJnkGix34N1dv4jtf9u4_CT-VzMiBIW4IWvrSGSWZdqBjEpQ5WUCbfCxYuj1br6skKjXZe1p8fb9extuk5thCYIgBiV7-uJ42pzH4IibHClqBbO1IdgiMrgUshdtetgp1qQJtcOcvUIpaqg_AaarNYLrMOsVZn03cTmPJioQiQD0&amp;t=638495662620000000" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=2B8JaPsQc2cRxNXtuD2VXkpzft4aZIOe6U2jDL4ik65V5NsyH3LyWrWU6xpJr6ITRGXbggfPsigESGY1tgJCoCq_R8iyVeBsregoMRnsVJD7l3eSsQ7gosHX5AE2i2CtivQ-xM0kOLVoq9uL6fw4Nw2&amp;t=638495662620000000" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=zQd7oEBWddgSFdC7mLLjLCaUwMZ6ejlhZn3eHHv8sa-9eRP2txZTOg_L6sUh-Pg-utELmJhC4ahPrkP7WPkjJtiiwsWcr_WhrIL5j-WVh3bUgqdvCsyztV1OnJnodaJf86RV0v52XcMlxaed6ZiGzvZ3H-_ad2_j9hY6xKVIJIg1&amp;t=638495662620000000" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=3YFS_l773wbfIf8ocoKv0DIPJtYeVeulQSGzpJ0YJd9DUrL06V5gr1P2-Rw0ePNayiEh4WW0a2fMLfjyr8JmcIG5FRNDCkU7DB_JTQduh8XdnVar8JpysB1ZdFWlFB22r2_-TpEqdtSf-piJfleFBg2&amp;t=638495662620000000" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=yTDS7XwqKYJsJPz9Yd71bDyXOMTN0OQWQH7X_XpJYzWYPatnRwYXdrmlicZS1EjfGWE9r6NaVfDVRdKMVUtDLFTaYeCWrgHzPchAB-vrtKHFR1lCV8ttMfwuDat_NMQB_5O-tf0p1v1efdh6Sw335tTGCqH-9E0AceMU1uHE_H0o1kMUKfUpswedVwtuczD_0&amp;t=638495662620000000" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><meta name="description" content="Portland Volleyball Association" /><meta name="keywords" content="Portland Volleyball Association" /></head>
+
+<body class="bodyContainer">
+
+    
+
+    <form method="post" action="https://www.portlandvolleyball.org/Layouts/minimalist/Schedules.aspx?d=wJvCnXRzJvhZ2zxT2RY%2brw%3d%3d" id="Site_Form">
+<div class="aspNetHidden">
+<input type="hidden" name="PageScriptManager_TSM" id="PageScriptManager_TSM" value="" />
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPaA8FDzhkZDM2MmU1ZTExMTE1NRgDBR5fX0NvbnRyb2xzUmVxdWlyZVBvc3RCYWNrS2V5X18WBAUXY3RsMDAkUGFnZVdpbmRvd01hbmFnZXIFE2N0bDAwJE1lc3NhZ2VXaW5kb3cFPGN0bDAwJENvbnRlbnRQbGFjZUhvbGRlcjEkU2NoZWR1bGVzQ29udHJvbCRTY2hlZHVsZXNMaXN0VmlldwUUY3RsMDAkRm9vdGVyTGlzdFZpZXcFMmN0bDAwJE1hc3RlclJhZFNvY2lhbFNoYXJlX2NvbXBhY3RQb3B1cCRDJGNvbWJvQm94DxQrAAJlZWQFEWN0bDAwJFNraW5DaG9vc2VyDxQrAAJlBQlCb290c3RyYXBkkHwK4RH3GQwCfScTYO9T74uKFKynFN2EiezPvySkL0E=" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['Site_Form'];
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="/WebResource.axd?d=8GTebreSgeMdleXhZ4sunN4-OipZRTFPYFn7e51YztgmghNJZWs2HNwvlmcprLrvQKlwUeksR6TZHRAeIQAp0oK5MbPfgSbsHuRnOsWdd3U1&amp;t=638605647867553018" type="text/javascript"></script>
+
+
+<script src="/ScriptResource.axd?d=PnfkGt18a5twiGE5iJn6ywQjdCAgtN6FG1vVxnYCc_HiY8JyCZysw6j28nKEPm7qeasF5yHXtBlBJ0H7E7KvqYkcYZ5Tmn9IHRJKR-5-sZSvJeWM33L1NArUdrlyx-40QpN6GfRQfTLJgYqnehnCr7bTYVDKbhvy8aCLT_b89Qw1&amp;t=ffffffffc789fa9a" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=c3sKIGwpujlkXQ_02NnUjYJ3wDjnQk6DxsrARPmvSALHuYA-KimJQWtqItQ40h2aijPOaFrs7ai4W2YdghNT-bO-oia2BDAqYRweK9_hRAkylUbuWqQ6x0AUcm1CvJMd6hEdNDHhvl8n82RpbrGlwTsw-mhx1IZdgAziquUOXQRDk4ZK1dlxqvnejACH-QbK0&amp;t=ffffffffc789fa9a" type="text/javascript"></script>
+<script src="/resources/v1245_hotfix3/common/jquery/3.5.0.1/jquery-3.5.0.min.js" type="text/javascript"></script>
+<script src="/resources/v1245_hotfix3/common/bootstrap/5.3.3/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+<script src="/resources/v1245_hotfix3/common/jquery/smartmenus/1.2.1/jquery.smartmenus.min.js" type="text/javascript"></script>
+<script src="/resources/v1245_hotfix3/common/jquery/smartmenus/1.1.0/addons/bootstrap-4/jquery.smartmenus.bootstrap-4.min.js" type="text/javascript"></script>
+<script src="/resources/v1245_hotfix3/common/slick/1.8.0/js/slick.js" type="text/javascript"></script>
+<script src="/resources/v1245_hotfix3/scripts/layouts/minimalist/standard.js" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=Tp5ilixX1rSYC7nmhLdai5PRBKBrKKz0cJCySr3QhKNfiIO4gziFq5PCa7LqzdYjbwZa2IOPZ_HiDl4-Mf5NJry1KMd2yIaN5vU9j3kx_u-qvD0CJ2-Ebrbfjdo5T8uTxwzMJpxspAizevGzIK9wuQ2&amp;t=7328cdd6" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=ilNtDJoI22sAsPPLyl4H_bIzEj3qUpT8i1XKw9tmY-jsVoRL2-aPmcfGXmNmb-ak2x-5N_3wLWlfaeTwzCgJYspyKyTtlnngmZvcbxJrUbGipz5yin2OWpO5kUG6oNCYv2M4ZuhOuiNvIhIedoOpzsVOidxtAaswaj49l_tB6-k1&amp;t=7328cdd6" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=0b-4mKsWB6-FATr5gdXSy3O987wUePibuCLponySgyF8xZnj-P4CwhLWM10rlqPfgEEW5Iso1wTROdGgCsFsJ7_sWHRyBteWSi1ef1xb5bfnsqh-jChRgYK7DKI0ttf8L-EGMI78ZtvLDalG8Wdi9w2&amp;t=7328cdd6" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=GxRirgXNje3-cLPGzT5MTSOSbObWOKymN-jD0ksj00jpOWkT8-f0_tQ06EMQf_Ya-32ZspLuKPRjhR4apDkapfhjhhAlF_13bkDt7Opvunvr_dF06fsYLRfEpVvROUb1cx51E5pEQlpVrxaVvHi8sg2&amp;t=7328cdd6" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=hwyZGxRHjAfL1qs7iv7b9fA9YuSlgV2Xqgdlyj11AHTMtoJNgVevbSkMaHtSYlVoMBzPSxx7IOTVQHzz6O2kvzM3fs2meqh7Hp7WIyU7ZroqHglmAr1K2BA2gin5MVFZDd6sekjwMgwrXpCAtArY4lGF7J-hPcwBccLWBKnawKE1&amp;t=7328cdd6" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=qyOsr-XtUG-4ceNniQ0aqmj7IErNxIFsuKrO1vXEwOtZBzngpUBPLdUqSLnjboC7VitHC33umj-xKSF_maoL9Cuv_W8daiTeJYoGA_jN9LE6UWkMuOOG3MSMpV_6mBTUduO55FlziDwlx63aaHeS0HA7M7vWG9e1iC9cWfRt38f9gWCm5TlQGoxJfm1mHoZe0&amp;t=7328cdd6" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=MH4xhb9hDX3E9wSCJo-STzG5AOUAeZUQEIQOqSKeXKDdaVHGhmJ8JwCvRr83XHQA9RFf88zP4pJXYPej59Anvv4hdBal4gQCqBgbWv61GSr5LMU4mjS1Vp4Yy1D5UAnLG7tYF-Kh_R9TQlVnTBbcY9mEm2ZxQZYR5MZ5UA5BZ0g1&amp;t=7328cdd6" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=mbDBOpclf2FHJ2IeU6kj5SayCLgC8K1h4JE-Sf2fQCjIf2tMlNlbcXcjNzMl-y9S87pKBpRw2h_lcS0TdEsKr-2038zmzl_ai_twxTvCdTDykd3AbqqNIwGJdOM7I-jroiCaz5N_fTKPI3R-U6tG8niSIw4VprpkqrOiHQi_apw1&amp;t=7328cdd6" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=jHtNRVmh423Uh317ttKVRNcRCW9tyPHXNwl3L-xfI_4pnzBfvJi6JrdtMvffnN1igq20AX0vOyBMgGqg35WYDfgGqUNDvtsz2c_2zva-c1t-u_2rTD2rK5nM_V3K3_df3cY07ib-eZtZ-SgfKoKlrKbVK19flGJ9ihe8YohlqdI1&amp;t=7328cdd6" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=LokHpkHBAut4JkBmsCDLaO5e84ooDg22EZSsoQsPkT6ob7BLnCA6AifpKM8MiGopW7m2TWkQN-CYi4P3KG4Zkw4nG4OveXQyMqUWKfomqTuIbCSbJxVd18AzUDmlPpx3zkOVGQxT1O_Oi5IO4kZFABLUF8Hr65oBjN0560JHfrs1&amp;t=7328cdd6" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=sghAn5RN2Q04FrmTQrY6l3RNdpawDK-2pjGGWu7mUJDcDO9vu3NRYGOauGhd68lGM0cr_xqF09USdOz13POYWxIgQu-KF4Hj-liWWI_FM8J79kuUuYzYvESUDgKTgSSks38V3iOHcILHcL8X8ZZfK8DtCH1N_mMaFmMC4x7AyFSRgKPjm3fVSr-Jrp7pZEFl0&amp;t=7328cdd6" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=XC8S6zZvLfae4C9gzcsxSJwp16ELXPh2F6gzCj8TunMtnNJwM0FVHYB6UxwWiMLONyRnhTRSh2sl_oQr4fXi8TnIbGcB1t4Iuzy7jxq-SSAf5QZhRc9fOhvQSRWZmMg-lFuqxcloBKVR9hoApKuyqVdlYTxI1lSRivOAw4X5gwYCm9n8tOH9Bk92T2uvL13a0&amp;t=7328cdd6" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=NGi3WvZW65rvABXi8OW5oUYngXOGFo-jmpIuuG9r3v9qNq51iQmdijnXV9PNwGcrgKsMq-89iahxK0AdajBhhqFWkhUzsW6emZLqPGbN7dqeZPbnCUWeHpjbuwM9XxCftJzwLOyizRgc5uetqtsjim7ilyfKW7AD7eVLMWF9GMY1&amp;t=7328cdd6" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=3KczoHfTxHy9_IOieTS9gQ9tsQzNSAt0MUrpspaPJKJVXvPhvLrU6nnS7si3nFp2di3K6gIF69nBAtpe7m-0qJf58zSg-Z9_OGW4ztJ_W1UqD5Sy44T2sKOOH63MInEIJM6UgE5UWM0zxILyE-VPhiix-Glik1MLMqRNN8zzZRM1&amp;t=7328cdd6" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=h7mzAs6Pm7Nhht3Pnjrn12PGq6fMwVceXMAsogQYPE1Lf27FXCwHwlhsh7SClda0VjIftOQKs2wk-0hmHC1DHVRnNSjV1ZSIZje-L6eH5D35GdLEq6AotGqzciNB1uOXud1yBFC7qE8gtm7WK6F7fA2&amp;t=7328cdd6" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=HlotbqnDpd76GEyqlzwDMEbkihiI88VTnwCzFT-e8CRl_jaSjVmaHt24g9awCqyqF9J5JxX1UP-oEsWvXo8zF7zGYIhRvIcyQ_Bcp_9IhQ5Q-9oS-PxaP7UOkBmhfLyzAhg4cDudMutUMLXJ6cZ0D5h_fIibOEEBcu9UqYSjvuo1&amp;t=7328cdd6" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=btuTJbHSnCxg6T0Prki7AZEoTiGxqYzkcxFmP9kjk9Jx18is_t5TDJ7G1Rb9HL-6kTPgjJJ4MZVv72p0AjOY0kfMp2AVWH7QSoIort9zCN_JJVuFgytqr6SvSJ5Z8_nkXdcjMBX27Npell8hMhCsamu-advZjMHLcATIIO-xJXI1&amp;t=7328cdd6" type="text/javascript"></script>
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="1A5FD23F" />
+</div>
+
+        <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl00$PageScriptManager', 'Site_Form', ['tctl00$PageAjaxManagerSU','PageAjaxManagerSU'], [], [], 90, 'ctl00');
+//]]>
+</script>
+
+
+        
+
+        <div id="ctl00_PageWindowManager" style="display:none;">
+	<!-- 2023.3.1010.45 --><div id="ctl00_MessageWindow" style="display:none;">
+		<div id="ctl00_MessageWindow_C" style="display:none;">
+			
+                        
+                    
+		</div><input id="ctl00_MessageWindow_ClientState" name="ctl00_MessageWindow_ClientState" type="hidden" />
+	</div><div id="ctl00_PageWindowManager_alerttemplate" style="display:none;">
+        <div class="rwDialog rwAlertDialog">
+            <div class="rwDialogContent">
+                <div class="rwDialogMessage">{1}</div>
+            </div>
+            <div class="rwDialogButtons">
+                <button type="button" class="rwOkBtn" onclick="$find('{0}').close(true); return false;">##LOC[OK]##</button>
+            </div>
+        </div>
+        </div><div id="ctl00_PageWindowManager_prompttemplate" style="display:none;">
+        <div class="rwDialog rwPromptDialog">
+            <div class="rwDialogContent">
+                <div class="rwDialogMessage">{1}</div>
+                <div class="rwPromptInputContainer">
+                    <script type="text/javascript">
+                        function RadWindowprompt_detectenter(id, ev, input) {
+                            if (!ev) ev = window.event;
+                            if (ev.keyCode == 13) {
+                                var but = input.parentNode.parentNode.parentNode.getElementsByTagName("button")[0];
+                                if (but) {
+                                    if (but.click) {
+                                        but.click();
+                                    }
+                                    else if (but.onclick) {
+                                        but.focus();
+                                        var click = but.onclick;
+                                        but.onclick = null;
+                                        if (click) click.call(but);
+                                    }
+                                }
+                                return false;
+                            }
+                            else return true;
+                        }
+                    </script>
+                    <input title="Enter Value" aria-label="input" onkeydown="return RadWindowprompt_detectenter('{0}', event, this);" type="text" class="rwPromptInput radPreventDecorate" value="{2}" />
+                </div>
+            </div>
+            <div class="rwDialogButtons">
+                <button type="button" class="rwOkBtn" onclick="$find('{0}').close(this.parentNode.parentNode.getElementsByTagName('input')[0].value); return false;">##LOC[OK]##</button>
+                <button type="button" class="rwCancelBtn" onclick="$find('{0}').close(null); return false;">##LOC[Cancel]##</button>
+            </div>
+        </div>
+        </div><div id="ctl00_PageWindowManager_confirmtemplate" style="display:none;">
+        <div class="rwDialog rwConfirmDialog">
+            <div class="rwDialogContent">
+                <div class="rwDialogMessage">{1}</div>
+            </div>
+            <div class="rwDialogButtons">
+                <button type="button" class="rwOkBtn" onclick="$find('{0}').close(true); return false;">##LOC[OK]##</button>
+                <button type="button" class="rwCancelBtn" onclick="$find('{0}').close(false); return false;">##LOC[Cancel]##</button>
+            </div>
+        </div>
+        </div><input id="ctl00_PageWindowManager_ClientState" name="ctl00_PageWindowManager_ClientState" type="hidden" />
+</div>
+
+        <div id="PageAjaxManagerSU">
+	<span id="ctl00_PageAjaxManager" style="display:none;"></span>
+</div>
+        <div id="LoadingPanel" class="RadAjax RadAjax_Bootstrap" style="display:none;">
+	<div class="raDiv">
+
+	</div><div class="raColor raTransp">
+
+	</div>
+</div>
+
+        
+
+        
+
+
+        
+
+        
+
+
+<div class="headerSocialLinks" style="padding: 0px;">
+    
+</div>
+
+<div id="ctl04_HeaderWrapper" class="headerWrapper">
+
+    <nav id="ctl04_MenuBarBackgroundColor" class="navbar navbar-expand-lg navbar-light amber lighten-4">
+
+        
+        
+
+        
+        
+
+         
+
+        
+
+        <div id="ctl04_SigninPanel" class="signin-user-header" style="font-family:Arial;font-weight:400;font-size:16px;">
+	
+            <a id="ctl04_UserSignInHyperLink" class="signInHyperLink" href="/user/SignIn.aspx?d=wJvCnXRzJvhZ2zxT2RY%2brw%3d%3d">
+                <div class="signInText" style="white-space: nowrap">
+                    Sign In
+                </div>
+            </a>
+
+            <div style="padding-left: 15px;"></div>
+            |
+            <div style="padding-right: 15px;"></div>
+
+            <a id="ctl04_CartHyperLink2" class="signin-user-cart2" href="/user/place-order/cart.aspx?d=wJvCnXRzJvhZ2zxT2RY%2brw%3d%3d">
+                Cart
+                <span id="ctl04_CartSpan2" class="btnMessages2">(0)</span></a>
+            
+        
+</div>
+
+        
+
+        <a class="navbar-brand"></a>
+
+        <button class="navbar-toggler first-button" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent20" aria-controls="navbarSupportedContent20"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <div class="animated-icon1"><span></span><span></span><span></span></div>
+        </button>
+
+        <div class="collapse navbar-collapse edge" id="navbarSupportedContent20">
+
+
+            
+            <div class="headerSocialLinks" style="padding: 0px;">
+                
+                <div style="margin-bottom: 20px;"></div>
+            </div>
+
+            <div style="padding-top: 25px;"></div>
+
+
+            <ul id="ctl04_NavbarFontFamily" class="navbar-nav nav ml-auto headerAlignment headerRightAlignment" style="font-family:Arial;font-weight:400;font-size:16px;">
+                <li class="nav-item active">
+                    <li class="nav-item"     ><a class="nav-link " href="/home">Home</a></li><li class="nav-item"     ><a class="nav-link " href="/current-programs">Registration</a></li><li class="nav-item"     ><a class="nav-link " href="/schedules">Game Schedules and Scores</a></li><li class="nav-item"     ><a class="nav-link " href="/content/263/Rules">Rules</a></li><li class="nav-item"     ><a class="nav-link " href="/calendar">Calendar</a></li><li class="nav-item"     ><a class="nav-link " href="/locations">Gyms</a></li><li class="nav-item dropdown"        ><a class="nav-link dropdown-toggle" href="#">About Us<span class="caret"></span></a><ul class="dropdown-menu"  style="font-size:16px"    ><li   ><a class="dropdown-item "   style="font-size:16px"  href="/content/4/Organization">Organization</a></li></ul></li><li class="nav-item"     ><a class="nav-link " href="/form/7339/Free-Agent-Signup">Free Agent Signup</a></li><li class="nav-item"     ><a class="nav-link " href="/contact">Contact Us</a></li>
+                </li>
+            </ul>
+
+            <div style="padding-top: 25px;"></div>
+
+        </div>
+    </nav>
+
+    <div class="container" style="padding: 0px;">
+
+        <div class="row">
+            <div class="col-md-12">
+                
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+<div id="ctl04_OnScrollMenuBar">
+	
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if ($(window).width() > 992) {
+                $(".headerWrapper").removeClass('alwaysShowBGColor');
+                $(".headerWrapper").removeClass('navColorScrolled').addClass("navColorTop");
+                $(window).scroll(function () {
+                    var scroll = $(window).scrollTop();
+                    if (scroll > 30) {
+                        $(".headerWrapper").removeClass('navColorTop').addClass("navColorScrolled");
+                    } else {
+                        $(".headerWrapper").removeClass('navColorScrolled').addClass("navColorTop");
+                    }
+                });
+            } else {
+                $(".headerWrapper").addClass("alwaysShowBGColor");
+            }
+        });
+    </script>
+
+</div>
+
+
+
+
+<script>
+    //Desktop View
+    $(".signin-dropbtn i").mouseover(function () {
+        $(".signin-dropdown-content").show();
+
+        $(".signin-header").mouseleave(function () {
+            $('.signin-dropdown-content').hide();
+        });
+
+        $(".signin-dropdown-content").mouseleave(function () {
+            $('.signin-dropdown-content').hide();
+        });
+    });
+
+    //Mobile View
+    $(document).ready(function () {
+        $(".signin-dropbtn-mobile i").click(function () {
+            $(".signin-dropdown-content-mobile").toggle();
+        });
+    });
+
+</script>
+
+        
+
+        
+
+        <div id="HeaderImagePanel">
+	
+            <!-- Header Single Image -->
+            <img src="https://d2jqoimos5um40.cloudfront.net/site_2743/1ede05.png" id="Banner" class="img-fluid" aria-hidden="true" aria-label=" " />
+        
+</div>
+
+        
+        
+
+        
+        
+
+        <div id="PageContainer">
+
+            <div id="mainContainer" class="minMainContent" style="margin-top:15px;">
+
+                
+
+                
+
+                
+
+                <div id="TitlePanel">
+	
+
+                    <div style="padding-top: 1px;"></div>
+                    <h1>
+                        Game Schedules
+                    </h1>
+                    
+                    
+
+                
+</div>
+
+                <div id="ContentPanel" class="contentPanel">
+	
+
+                    <div id="MessageDisplay">
+		
+                        
+                    
+	</div>
+
+                    <div id="ContentPaddingTopDiv"></div>
+
+                    <div id="ContentHeaderPanel">
+
+	</div>
+
+                    
+
+    
+
+<div id="cbcontent" class="cbcontainer">
+     
+
+    
+    
+
+</div>
+
+<div id="SchedulesPageLayout">
+
+    
+            
+            <div class="row">
+                
+            <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 schedulesListView" style="padding-bottom: 20px;">
+                <span id="ctl00_ContentPlaceHolder1_SchedulesControl_SchedulesListView_ctrl0_ctrl1_LeagueLabel" class="leagueTitle">Adult Volleyball</span><br />
+                <span id="ctl00_ContentPlaceHolder1_SchedulesControl_SchedulesListView_ctrl0_ctrl1_SeasonLabel" class="leagueSeasonDescription">Winter '24</span><br />
+                <a href="/sites/PortlandVolleyball/schedule/599419/Monday-Womens-A2">Monday Women's A2</a><br /><a href="/sites/PortlandVolleyball/schedule/597504/Thursday-Coed-B">Thursday Coed B</a><br /><a href="/sites/PortlandVolleyball/schedule/599420/Thursday-Coed-C">Thursday Coed C</a><br /><a href="/sites/PortlandVolleyball/schedule/597503/Wednesday-Coed-A">Wednesday Coed A</a><br /><a href="/sites/PortlandVolleyball/schedule/605444/Wednesday-Coed-A-2">Wednesday Coed A-2</a><br /><a href="/sites/PortlandVolleyball/schedule/597454/Womens-Monday-A">Women's Monday A</a><br /><a href="/sites/PortlandVolleyball/schedule/597501/Womens-Monday-B">Women's Monday B</a><br /><a href="/sites/PortlandVolleyball/schedule/597502/Womens-Tuesday-A">Women's Tuesday A</a><br />
+            </div>
+        
+            </div>
+        
+        <input id="ctl00_ContentPlaceHolder1_SchedulesControl_SchedulesListView_ClientState" name="ctl00_ContentPlaceHolder1_SchedulesControl_SchedulesListView_ClientState" type="hidden" /><span id="ctl00_ContentPlaceHolder1_SchedulesControl_SchedulesListView" style="display:none;"></span>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+                
+</div>
+            </div>
+
+            
+
+            
+            <div id="StickyFooter" class="subPagesFooter">
+                <div class="footerContent">
+
+                    <div class="row">
+                        
+                                <div id="ctl00_FooterListView_ctrl0_FooterColumns" class="col-sm-6 col-md-6 col-lg-4 col-xl-3 footerColumns">
+                                    <span style="font-size: 20px; font-weight: 500; line-height: 1.1; margin-bottom: 0.5rem; display: block;">
+                                        Important Site Links</span>
+                                    <ul><li><a href="https://www.teamsideline.com/Org/CurrentPrograms.aspx?d=H%2fPfu8LK%2bORMjZcOIcU83Xqs82fHyt1YllYgV7EmwF8%3d">Registration</a></li><li><a href="https://www.teamsideline.com/Org/Schedules.aspx?d=H%2fPfu8LK%2bORMjZcOIcU83Xqs82fHyt1YJanmCxdWa68%3d">Game Schedules</a></li><li><a href="https://www.teamsideline.com/Org/ContactOrg.aspx?d=H%2fPfu8LK%2bORMjZcOIcU83V62RGqYhWfMSntO7y44%2bTU%3d">Contact Us</a></li><li><a href="https://www.teamsideline.com/Org/Locations.aspx?d=H%2fPfu8LK%2bORMjZcOIcU83V62RGqYhWfMiZ%2bfxjxaFNA%3d">Game Locations</a></li></ul>
+
+
+                                    
+
+
+                                </div>
+                            
+                                <div id="ctl00_FooterListView_ctrl1_FooterColumns" class="col-sm-6 col-md-6 col-lg-4 col-xl-3 footerColumns">
+                                    <span style="font-size: 20px; font-weight: 500; line-height: 1.1; margin-bottom: 0.5rem; display: block;">
+                                        Get Connected</span>
+                                    <div class="footerSocial"><a href="https://www.facebook.com/PortlandVolleyballAssociation" target="_blank" aria-label="Visit our Facebook page (opens in a new tab)"><i class="fab fa-facebook-f fa-2x"></i></a></div>
+
+
+                                    
+
+
+                                </div>
+                            
+                                <div id="ctl00_FooterListView_ctrl2_FooterColumns" class="col footerColumns">
+                                    <span style="font-size: 20px; font-weight: 500; line-height: 1.1; margin-bottom: 0.5rem; display: block;">
+                                        Download Our App</span>
+                                    
+
+
+                                    <div id="ctl00_FooterListView_ctrl2_TelerikAppStorePanel">
+	
+                                        <div class="row" style="padding-right: 20px;">
+                                            <div class="playStores">
+                                                <span class="appleStoreIcon">
+                                                    <a href="https://itunes.apple.com/us/app/teamsideline-team-sites/id1232007355?mt=8" target="_blank" aria-label="Download our app from App Store (opens in a new tab)">
+                                                        <img id="ctl00_FooterListView_ctrl2_AppleStoreImg" src="/resources/v1245_hotfix3/img/app-store/AppleBadge.png" alt="Download our app from App Store" />
+                                                    </a>
+                                                </span>
+                                                <span class="androidStoreIcon">
+                                                    <a href="https://play.google.com/store/apps/details?id=com.teamsideline.teamsites&hl=en" target="_blank" aria-label="Download our app from Google play (opens in a new tab)">
+                                                        <img id="ctl00_FooterListView_ctrl2_GooglePlayStoreImg" src="/resources/v1245_hotfix3/img/app-store/GooglePlayBadge.png" alt="Download our app from Google Play" />
+                                                    </a>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    
+</div>
+
+
+                                </div>
+                            <input id="ctl00_FooterListView_ClientState" name="ctl00_FooterListView_ClientState" type="hidden" /><span id="ctl00_FooterListView" style="display:none;"></span>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="clearfix"></div>
+                            <br />
+                            <div class="footerLine"></div>
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top: 20px; padding-bottom: 20px;">
+                        <div id="FooterPoweredBy" class="col-sm-12 col-md-12 col-lg-4 col-xl-4 footerAllRights order-lg-1 order-md-1 order-sm-1"> 
+                            <a href="https://go.teamsideline.com?utm_source=teamsideline&utm_medium=site&utm_campaign=powered_by">Site Powered by TeamSideline.com</a>
+                            <span>&nbsp | &nbsp</span>
+                            <a id="TermsOfServiceHyperLink" href="/sites/PortlandVolleyball/terms-of-service" target="_blank">Terms of Service</a>                            
+                           
+                        </div>
+
+                        <div id="FooterAddress" class="col-sm-12 col-md-12 col-lg-4 col-xl-4 footerAllRights footerAddress order-lg-6 order-md-12 order-sm-12"> 
+                            
+                        </div>
+
+                        <div id="FooterPrivacy" class="col-sm-12 col-md-12 col-lg-4 col-xl-4 mobileFloatRight footerTPS order-lg-12 order-md-6 order-sm-6"> 
+
+                             <a id="RefundPolicyHyperLink" href="/sites/PortlandVolleyball/refund-policy" target="_blank">Refund Policy</a> 
+                            <span>&nbsp | &nbsp</span>
+                            <a id="PrivacyPolicyHyperLink" href="/sites/PortlandVolleyball/privacy-policy" target="_blank">Privacy and Security Policy</a>  
+                            <span>&nbsp | &nbsp</span>
+							<a id="AdminSignInHyperLink" href="/sites/PortlandVolleyball/admin/sign_in">
+								Admin Sign In &nbsp;<i class="fas fa-caret-right"></i>
+                            </a>
+                            
+                            
+                            
+                        </div>                   
+
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    
+
+<script type="text/javascript">
+//<![CDATA[
+window.__TsmHiddenField = $get('PageScriptManager_TSM');Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadWindow, {"_dockMode":true,"_renderMode":2,"behaviors":4,"clientStateFieldID":"ctl00_MessageWindow_ClientState","formID":"Site_Form","iconUrl":"","maxHeight":"320px","minimizeIconUrl":"","modal":true,"name":"MessageWindow","skin":"Bootstrap","visibleStatusbar":false,"width":"500px"}, null, null, $get("ctl00_MessageWindow"));
+});
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadWindowManager, {"_renderMode":2,"clientStateFieldID":"ctl00_PageWindowManager_ClientState","formID":"Site_Form","iconUrl":"","minimizeIconUrl":"","modal":true,"name":"PageWindowManager","skin":"Bootstrap","windowControls":"['ctl00_MessageWindow']"}, null, {"child":"ctl00_MessageWindow"}, $get("ctl00_PageWindowManager"));
+});
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadAjaxManager, {"_updatePanels":"","ajaxSettings":[],"clientEvents":{OnRequestStart:"",OnResponseEnd:""},"defaultLoadingPanelID":"","enableAJAX":true,"enableHistory":false,"links":[],"styles":[],"uniqueID":"ctl00$PageAjaxManager","updatePanelsRenderMode":0}, null, null, $get("ctl00_PageAjaxManager"));
+});
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadAjaxLoadingPanel, {"initialDelayTime":0,"isSticky":false,"minDisplayTime":0,"skin":"Bootstrap","uniqueID":"ctl00$LoadingPanel","zIndex":90000}, null, null, $get("LoadingPanel"));
+});
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadListView, {"Skin":"Bootstrap","UniqueID":"ctl00$ContentPlaceHolder1$SchedulesControl$SchedulesListView","_clientSettings":{"DataBinding":{"DataService":{}}},"_virtualItemCount":1,"clientStateFieldID":"ctl00_ContentPlaceHolder1_SchedulesControl_SchedulesListView_ClientState","renderMode":1}, null, null, $get("ctl00_ContentPlaceHolder1_SchedulesControl_SchedulesListView"));
+});
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadListView, {"Skin":"Bootstrap","UniqueID":"ctl00$FooterListView","_clientSettings":{"DataBinding":{"ItemPlaceHolderID":"ctl00_FooterListView_itemPlaceholder","DataService":{}}},"_virtualItemCount":3,"clientStateFieldID":"ctl00_FooterListView_ClientState","renderMode":1}, null, null, $get("ctl00_FooterListView"));
+});
+//]]>
+</script>
+</form>
+
+    
+
+    
+
+    <script>
+
+        // Submenu Cut Off
+        $("a.nav-link").hover(function (e) {
+            var x = $(".navbar-nav .show .dropdown-menu .dropdown-submenu");
+            if (x.offset()) {
+                var xOffset = x.offset();
+                var xLeft = xOffset.left;
+                var WindowWidth = window.innerWidth;
+
+                if (WindowWidth > 992) {  //only on desktop
+                    console.log(xLeft);
+                    if (xLeft + 580 <= WindowWidth) {
+                        $(".navbar-nav .show .dropdown-menu .dropdown-submenu > .dropdown-menu").removeClass("submenuFloatLeft").addClass("submenuFloatRight");
+                        console.log("Right Aligned");
+                    }
+                    else {
+                        $(".navbar-nav .show .dropdown-menu .dropdown-submenu > .dropdown-menu").removeClass("submenuFloatRight").addClass("submenuFloatLeft");
+                        console.log("Left Aligned");
+                    }
+                }
+            }
+        });
+
+
+    </script>
+
+    <script>
+        //Dropdown Cut Off
+        $(document).ready(function () {
+            var WindowWidth = window.innerWidth;
+            if (WindowWidth > 992) {
+                $("li.dropdown").on("mouseover", function (e) {
+                    var t = $(this);
+
+                    if (t.offset()) {
+                        var tOffset = t.offset();
+                        var tLeft = tOffset.left;
+                    }
+
+                    if (tLeft + 340 < WindowWidth) {
+                        $(".dropdown-menu").removeClass("dropdownMenuRightAligned").addClass("dropdownMenuLeftAligned");
+                        console.log("Level 4");
+                    }
+                    else {
+                        $(".dropdown-menu").removeClass("dropdownMenuLeftAligned").addClass("dropdownMenuRightAligned");
+                        console.log("Level 5");
+                    }
+
+                });
+            }
+        });
+    </script>
+
+
+
+
+
+</body>
+</html>

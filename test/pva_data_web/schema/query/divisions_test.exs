@@ -224,8 +224,8 @@ defmodule PVADataWeb.Schema.Query.DivisionsTest do
             name
             slug
           }
-          location
-          ref
+          location_name
+          location_url
         }
       }
     }
@@ -245,8 +245,8 @@ defmodule PVADataWeb.Schema.Query.DivisionsTest do
         division_id: coed_a_thursday.id,
         home_team_id: court_jesters.id,
         visiting_team_id: whatever.id,
-        location: "Rex Putnam High School",
-        ref: "Marty"
+        location_name: "Rex Putnam High School",
+        location_url: "https://maps.app.goo.gl/mDqsfmqQjz9dGQeLA"
       )
 
     match_2 =
@@ -256,8 +256,8 @@ defmodule PVADataWeb.Schema.Query.DivisionsTest do
         division_id: coed_a_thursday.id,
         home_team_id: whatever.id,
         visiting_team_id: court_jesters.id,
-        location: "Rex Putnam High School",
-        ref: "Marty"
+        location_name: "Rex Putnam High School",
+        location_url: "https://maps.app.goo.gl/mDqsfmqQjz9dGQeLA"
       )
 
     coed_a_thursday =
@@ -304,8 +304,8 @@ defmodule PVADataWeb.Schema.Query.DivisionsTest do
           name: whatever.name,
           slug: whatever.slug
         },
-        location: match_1.location,
-        ref: match_1.ref
+        location_name: match_1.location_name,
+        location_url: match_1.location_url
       },
       %{
         id: match_2.id,
@@ -326,8 +326,8 @@ defmodule PVADataWeb.Schema.Query.DivisionsTest do
           name: court_jesters.name,
           slug: court_jesters.slug
         },
-        location: match_2.location,
-        ref: match_2.ref
+        location_name: match_2.location_name,
+        location_url: match_2.location_url
       }
     ]
 
@@ -357,8 +357,8 @@ defmodule PVADataWeb.Schema.Query.DivisionsTest do
             name
             slug
           }
-          location
-          ref
+          location_name
+          location_url
           set_results {
             id
             set_number
@@ -384,8 +384,8 @@ defmodule PVADataWeb.Schema.Query.DivisionsTest do
         division_id: coed_a_thursday.id,
         home_team_id: court_jesters.id,
         visiting_team_id: whatever.id,
-        location: "Rex Putnam High School",
-        ref: "Marty"
+        location_name: "Rex Putnam High School",
+        location_url: "https://maps.app.goo.gl/mDqsfmqQjz9dGQeLA"
       )
 
     match_1 =
@@ -418,8 +418,8 @@ defmodule PVADataWeb.Schema.Query.DivisionsTest do
         division_id: coed_a_thursday.id,
         home_team_id: whatever.id,
         visiting_team_id: court_jesters.id,
-        location: "Rex Putnam High School",
-        ref: "Marty"
+        location_name: "Rex Putnam High School",
+        location_url: "https://maps.app.goo.gl/mDqsfmqQjz9dGQeLA"
       )
 
     match_2 =
@@ -489,8 +489,8 @@ defmodule PVADataWeb.Schema.Query.DivisionsTest do
           name: whatever.name,
           slug: whatever.slug
         },
-        location: match_1.location,
-        ref: match_1.ref,
+        location_name: match_1.location_name,
+        location_url: match_1.location_url,
         set_results:
           match_1.set_results
           |> Enum.map(fn set_result ->
@@ -516,8 +516,8 @@ defmodule PVADataWeb.Schema.Query.DivisionsTest do
           name: court_jesters.name,
           slug: court_jesters.slug
         },
-        location: match_2.location,
-        ref: match_2.ref,
+        location_name: match_2.location_name,
+        location_url: match_2.location_url,
         set_results:
           match_2.set_results
           |> Enum.map(fn set_result ->

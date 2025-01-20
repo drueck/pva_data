@@ -28,12 +28,14 @@ defmodule PVAData.Division do
     )
   end
 
-  # what the pva website says about how teams are ranked
-  # 1. Win percentage
-  # 2. Percentage of possible match points
-  # 3. Head to head record (if two teams are tied)
-  # 4. Points differential in all sets involving the tied teams
-  # 5. Points allowed in sets involving the tied teams in sets against each other
+  # What the team sideline pva site says about how teams are ranked:
+  # 1. Winning Percentage
+  # 2. Average Points Differential
+  # 3. Total Wins
+  # 4. Total Points For
+  # 5. Total Points Differential
+  # 6. Total Points Against
+  # 8. Coin Toss
 
   def compare_teams(
         %Division{} = division,
@@ -42,12 +44,12 @@ defmodule PVAData.Division do
         save_rank_data \\ fn _, _ -> :noop end
       ) do
     [
-      &compare_win_percentage/3,
-      &compare_match_points_percentage/3,
-      &compare_head_to_head_match_points/3,
-      &compare_head_to_head_points_differential/3,
-      &compare_points_differential/3,
-      &compare_points_allowed_head_to_head/3,
+      &compare_winning_percentage/3,
+      &compare_average_points_differential/3,
+      &compare_total_wins/3,
+      &compare_total_points_for/3,
+      &compare_total_points_differential/3,
+      &compare_total_points_against/3,
       &compare_names/3
     ]
     |> Enum.reduce({0, nil}, fn fun, {result, rank_data} ->
@@ -68,11 +70,11 @@ defmodule PVAData.Division do
     end
   end
 
-  def compare_win_percentage(%Division{} = division, %Team{} = a, %Team{} = b) do
+  def compare_winning_percentage(%Division{} = division, %Team{} = a, %Team{} = b) do
     a_standing = Enum.find(division.standings, &(&1.team_id == a.id))
     b_standing = Enum.find(division.standings, &(&1.team_id == b.id))
 
-    stat = "win percentage"
+    stat = "winning percentage"
 
     rank_data = %{
       a.id => {stat, a_standing.winning_percentage},
@@ -89,60 +91,83 @@ defmodule PVAData.Division do
     {result, rank_data}
   end
 
-  def compare_match_points_percentage(%Division{} = division, %Team{} = a, %Team{} = b) do
-    a_standing = Enum.find(division.standings, &(&1.team_id == a.id))
-    b_standing = Enum.find(division.standings, &(&1.team_id == b.id))
+  def compare_average_points_differential(%Division{} = division, %Team{} = a, %Team{} = b) do
+    team_a_avg_points_differential =
+      completed_matches_involving_team(division, a)
+      |> Enum.map(&Match.point_differential(&1, a))
+      |> then(fn point_differentials ->
+        if Enum.empty?(point_differentials),
+          do: 0,
+          else: Float.round(Enum.sum(point_differentials) / Enum.count(point_differentials), 3)
+      end)
 
-    stat = "percentage of possible match points"
+    team_b_avg_points_differential =
+      completed_matches_involving_team(division, b)
+      |> Enum.map(&Match.point_differential(&1, b))
+      |> then(fn point_differentials ->
+        if Enum.empty?(point_differentials),
+          do: 0,
+          else: Float.round(Enum.sum(point_differentials) / Enum.count(point_differentials), 3)
+      end)
+
+    stat = "average points differential"
 
     rank_data = %{
-      a.id => {stat, a_standing.match_points_percentage},
-      b.id => {stat, b_standing.match_points_percentage}
+      a.id => {stat, team_a_avg_points_differential},
+      b.id => {stat, team_b_avg_points_differential}
     }
 
     result =
       cond do
-        a_standing.match_points_percentage > b_standing.match_points_percentage -> 1
-        a_standing.match_points_percentage < b_standing.match_points_percentage -> -1
+        team_a_avg_points_differential > team_b_avg_points_differential -> 1
+        team_a_avg_points_differential < team_b_avg_points_differential -> -1
         true -> 0
       end
 
     {result, rank_data}
   end
 
-  def compare_head_to_head_match_points(%Division{} = division, %Team{} = a, %Team{} = b) do
-    matches = completed_matches_between_teams(division, a, b)
+  def compare_total_wins(%Division{} = division, %Team{} = a, %Team{} = b) do
+    team_a_wins =
+      completed_matches_involving_team(division, a)
+      |> Enum.count(&(Match.result(&1, a) == :win))
 
-    team_a_match_points = Enum.map(matches, &Match.match_points(&1, a)) |> Enum.sum()
-    team_b_match_points = Enum.map(matches, &Match.match_points(&1, b)) |> Enum.sum()
+    team_b_wins =
+      completed_matches_involving_team(division, b)
+      |> Enum.count(&(Match.result(&1, b) == :win))
 
-    stat = "head to head record (match points)"
-
-    rank_data = %{
-      a.id => {stat, team_a_match_points},
-      b.id => {stat, team_b_match_points}
-    }
-
-    {team_a_match_points - team_b_match_points, rank_data}
-  end
-
-  def compare_head_to_head_points_differential(%Division{} = division, %Team{} = a, %Team{} = b) do
-    matches = completed_matches_between_teams(division, a, b)
-
-    team_a_points_differential = Enum.map(matches, &Match.point_differential(&1, a)) |> Enum.sum()
-    team_b_points_differential = Enum.map(matches, &Match.point_differential(&1, b)) |> Enum.sum()
-
-    stat = "head to head record (points differential)"
+    stat = "total wins"
 
     rank_data = %{
-      a.id => {stat, team_a_points_differential},
-      b.id => {stat, team_b_points_differential}
+      a.id => {stat, team_a_wins},
+      b.id => {stat, team_b_wins}
     }
 
-    {team_a_points_differential - team_b_points_differential, rank_data}
+    {team_a_wins - team_b_wins, rank_data}
   end
 
-  def compare_points_differential(%Division{} = division, %Team{} = a, %Team{} = b) do
+  def compare_total_points_for(%Division{} = division, %Team{} = a, %Team{} = b) do
+    team_a_total_points =
+      completed_matches_involving_team(division, a)
+      |> Enum.map(&Match.points_scored(&1, a))
+      |> Enum.sum()
+
+    team_b_total_points =
+      completed_matches_involving_team(division, b)
+      |> Enum.map(&Match.points_scored(&1, b))
+      |> Enum.sum()
+
+    stat = "total points for"
+
+    rank_data = %{
+      a.id => {stat, team_a_total_points},
+      b.id => {stat, team_b_total_points}
+    }
+
+    {team_a_total_points - team_b_total_points, rank_data}
+  end
+
+  def compare_total_points_differential(%Division{} = division, %Team{} = a, %Team{} = b) do
     team_a_points_differential =
       completed_matches_involving_team(division, a)
       |> Enum.map(&Match.point_differential(&1, a))
@@ -153,7 +178,7 @@ defmodule PVAData.Division do
       |> Enum.map(&Match.point_differential(&1, b))
       |> Enum.sum()
 
-    stat = "points differential in all sets"
+    stat = "total points differential"
 
     rank_data = %{
       a.id => {stat, team_a_points_differential},
@@ -170,27 +195,25 @@ defmodule PVAData.Division do
     {result, rank_data}
   end
 
-  def compare_points_allowed_head_to_head(%Division{} = division, %Team{} = a, %Team{} = b) do
-    matches = completed_matches_between_teams(division, a, b)
-
-    points_allowed_by_team_a =
-      matches
+  def compare_total_points_against(%Division{} = division, %Team{} = a, %Team{} = b) do
+    team_a_points_allowed =
+      completed_matches_involving_team(division, a)
       |> Enum.map(&Match.points_allowed(&1, a))
       |> Enum.sum()
 
-    points_allowed_by_team_b =
-      matches
+    team_b_points_allowed =
+      completed_matches_involving_team(division, b)
       |> Enum.map(&Match.points_allowed(&1, b))
       |> Enum.sum()
 
-    stat = "points allowed head to head"
+    stat = "total points against"
 
     rank_data = %{
-      a.id => {stat, points_allowed_by_team_a},
-      b.id => {stat, points_allowed_by_team_b}
+      a.id => {stat, team_a_points_allowed},
+      b.id => {stat, team_b_points_allowed}
     }
 
-    {points_allowed_by_team_b - points_allowed_by_team_a, rank_data}
+    {team_b_points_allowed - team_a_points_allowed, rank_data}
   end
 
   def compare_names(_, %Team{} = a, %Team{} = b) do
@@ -211,19 +234,14 @@ defmodule PVAData.Division do
     {result, rank_data}
   end
 
-  defp completed_matches_involving_team(%Division{} = division, %Team{} = team) do
-    division.completed_matches
-    |> Enum.filter(fn match ->
-      match.home_team_id == team.id || match.visiting_team_id == team.id
-    end)
+  def completed_matches_involving_team(%Division{} = division, %Team{} = team) do
+    completed_matches_involving_team(division, team.id)
   end
 
-  defp completed_matches_between_teams(%Division{} = division, %Team{} = a, %Team{} = b) do
-    team_ids = MapSet.new([a.id, b.id])
-
+  def completed_matches_involving_team(%Division{} = division, team_id) do
     division.completed_matches
     |> Enum.filter(fn match ->
-      team_ids == MapSet.new([match.home_team_id, match.visiting_team_id])
+      match.home_team_id == team_id || match.visiting_team_id == team_id
     end)
   end
 

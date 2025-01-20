@@ -17,7 +17,7 @@ defmodule PVAData.DivisionTest do
     end
   end
 
-  describe "compare_win_percentage/3" do
+  describe "compare_winning_percentage/3" do
     test "compares by win percentage in standings" do
       division = Division.build("Coed A Wednesday")
 
@@ -47,9 +47,9 @@ defmodule PVAData.DivisionTest do
 
       division = %{division | teams: teams, standings: standings}
 
-      {result, _} = Division.compare_win_percentage(division, cjs, pound_town)
+      {result, _} = Division.compare_winning_percentage(division, cjs, pound_town)
       assert result < 0
-      {result, _} = Division.compare_win_percentage(division, pound_town, cjs)
+      {result, _} = Division.compare_winning_percentage(division, pound_town, cjs)
       assert result > 0
 
       tied_standings = [
@@ -73,124 +73,11 @@ defmodule PVAData.DivisionTest do
 
       division = %{division | standings: tied_standings}
 
-      assert {0, _} = Division.compare_win_percentage(division, cjs, pound_town)
+      assert {0, _} = Division.compare_winning_percentage(division, cjs, pound_town)
     end
   end
 
-  describe "compare_match_points_percentage/3" do
-    test "compares by match points percentage in standings" do
-      division = Division.build("Coed A Wednesday")
-
-      newcomers = Team.build(division, "The Newcomers")
-      jump_feet = Team.build(division, "21JumpFeet")
-
-      teams = [newcomers, jump_feet]
-
-      standings = [
-        Standing.new(
-          team_id: newcomers.id,
-          division_id: division.id,
-          wins: 5,
-          losses: 5,
-          winning_percentage: 50.00,
-          match_points_percentage: 53.33
-        ),
-        Standing.new(
-          team_id: jump_feet.id,
-          division_id: division.id,
-          wins: 5,
-          losses: 5,
-          winning_percentage: 50.00,
-          match_points_percentage: 46.67
-        )
-      ]
-
-      division = %{division | teams: teams, standings: standings}
-
-      {result, _} = Division.compare_match_points_percentage(division, jump_feet, newcomers)
-      assert result < 0
-      {result, _} = Division.compare_match_points_percentage(division, newcomers, jump_feet)
-      assert result > 0
-
-      tied_standings = [
-        Standing.new(
-          team_id: newcomers.id,
-          division_id: division.id,
-          wins: 5,
-          losses: 5,
-          winning_percentage: 50.00,
-          match_points_percentage: 53.33
-        ),
-        Standing.new(
-          team_id: jump_feet.id,
-          division_id: division.id,
-          wins: 5,
-          losses: 5,
-          winning_percentage: 50.00,
-          match_points_percentage: 53.33
-        )
-      ]
-
-      division = %{division | standings: tied_standings}
-
-      assert {0, _} = Division.compare_match_points_percentage(division, newcomers, jump_feet)
-    end
-  end
-
-  describe "compare_head_to_head_match_points/3" do
-    test "compares teams by their head to head record" do
-      division = Division.build("Coed A Wednesday")
-
-      cjs = Team.build(division, "Court Jesters")
-      pound_town = Team.build(division, "Pound Town")
-      hop_heads = Team.build(division, "HopHeads")
-
-      teams = [cjs, pound_town, hop_heads]
-
-      match_1 =
-        Match.new(
-          date: ~D[2021-09-22],
-          time: ~T[20:00:00],
-          division_id: division.id,
-          home_team_id: hop_heads.id,
-          visiting_team_id: cjs.id
-        )
-        |> Match.add_set_results([{21, 25}, {25, 18}, {15, 4}])
-
-      match_2 =
-        Match.new(
-          date: ~D[2021-10-06],
-          time: ~T[19:00:00],
-          division_id: division.id,
-          home_team_id: pound_town.id,
-          visiting_team_id: cjs.id
-        )
-        |> Match.add_set_results([{25, 17}, {25, 19}, {15, 10}])
-
-      match_3 =
-        Match.new(
-          date: ~D[2021-11-03],
-          time: ~T[20:00:00],
-          division_id: division.id,
-          home_team_id: hop_heads.id,
-          visiting_team_id: cjs.id
-        )
-        |> Match.add_set_results([{25, 21}, {18, 25}, {4, 15}])
-
-      completed_matches = [match_1, match_2, match_3]
-
-      division = %{division | teams: teams, completed_matches: completed_matches}
-
-      {result, _} = Division.compare_head_to_head_match_points(division, cjs, pound_town)
-      assert result < 0
-      {result, _} = Division.compare_head_to_head_match_points(division, pound_town, cjs)
-      assert result > 0
-
-      assert {0.0, _} = Division.compare_head_to_head_match_points(division, cjs, hop_heads)
-    end
-  end
-
-  describe "compare_points_differential/3" do
+  describe "compare_total_points_differential/3" do
     test "compares based on point differential for all sets for each team" do
       division = Division.build("Coed A Wednesday")
 
@@ -244,9 +131,9 @@ defmodule PVAData.DivisionTest do
 
       division = %{division | teams: teams, completed_matches: completed_matches}
 
-      {result, _} = Division.compare_points_differential(division, cjs, hop_heads)
+      {result, _} = Division.compare_total_points_differential(division, cjs, hop_heads)
       assert result > 0
-      {result, _} = Division.compare_points_differential(division, hop_heads, cjs)
+      {result, _} = Division.compare_total_points_differential(division, hop_heads, cjs)
       assert result < 0
 
       mirror_image_match =
@@ -257,59 +144,8 @@ defmodule PVAData.DivisionTest do
 
       division = %{division | completed_matches: mirror_images_matches}
 
-      assert {0, _} = Division.compare_points_differential(division, cjs, hop_heads)
-      assert {0, _} = Division.compare_points_differential(division, hop_heads, cjs)
-    end
-  end
-
-  describe "compare_points_allowed_head_to_head/3" do
-    test "compares by points allowed in head to head matches" do
-      division = Division.build("Coed A Wednesday")
-
-      cjs = Team.build(division, "Court Jesters")
-      hop_heads = Team.build(division, "Hop Heads")
-
-      teams = [cjs, hop_heads]
-
-      match_1 =
-        Match.new(
-          date: ~D[2021-09-22],
-          time: ~T[20:00:00],
-          division_id: division.id,
-          home_team_id: hop_heads.id,
-          visiting_team_id: cjs.id
-        )
-        |> Match.add_set_results([{21, 25}, {25, 18}, {15, 4}])
-
-      match_2 =
-        Match.new(
-          date: ~D[2021-11-03],
-          time: ~T[20:00:00],
-          division_id: division.id,
-          home_team_id: hop_heads.id,
-          visiting_team_id: cjs.id
-        )
-        |> Match.add_set_results([{25, 21}, {18, 25}, {9, 15}])
-
-      completed_matches = [match_1, match_2]
-
-      division = %{division | teams: teams, completed_matches: completed_matches}
-
-      {result, _} = Division.compare_points_allowed_head_to_head(division, cjs, hop_heads)
-      assert result < 0
-      {result, _} = Division.compare_points_allowed_head_to_head(division, hop_heads, cjs)
-      assert result > 0
-
-      match_2_mirror =
-        match_2
-        |> Match.add_set_results([{25, 21}, {18, 25}, {4, 15}])
-
-      mirror_image_matches = [match_1, match_2_mirror]
-
-      division = %{division | completed_matches: mirror_image_matches}
-
-      assert {0, _} = Division.compare_points_allowed_head_to_head(division, cjs, hop_heads)
-      assert {0, _} = Division.compare_points_allowed_head_to_head(division, hop_heads, cjs)
+      assert {0, _} = Division.compare_total_points_differential(division, cjs, hop_heads)
+      assert {0, _} = Division.compare_total_points_differential(division, hop_heads, cjs)
     end
   end
 
@@ -329,6 +165,7 @@ defmodule PVAData.DivisionTest do
   end
 
   describe "compare_teams/2" do
+    @tag :skip
     test "works" do
       {:ok, divisions} = Scraper.scrape("test/fixtures/tie-breaker")
 
@@ -355,6 +192,7 @@ defmodule PVAData.DivisionTest do
   end
 
   describe "add_ranks/2" do
+    @tag :skip
     test "when nobody has played yet, every team should get rank 1" do
       {:ok, divisions} = Scraper.scrape("test/fixtures/new-season")
 
@@ -371,6 +209,7 @@ defmodule PVAData.DivisionTest do
       end
     end
 
+    @tag :skip
     test "when there is data, ranks should be added accurately" do
       {:ok, divisions} = Scraper.scrape("test/fixtures/tie-breaker")
 

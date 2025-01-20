@@ -5,20 +5,20 @@ defmodule PVAData.PVAWebsite.DateUtilsTest do
 
   describe "parse_date/1" do
     test "parses the date format used on the PVA website" do
-      assert %Date{} = date = DateUtils.parse_date("4/08 (Mon)")
-      assert date.month == 4
-      assert date.day == 8
+      assert %Date{} = date = DateUtils.parse_date("Mon 1/6")
+      assert date.month == 1
+      assert date.day == 6
       assert date.year == Date.utc_today().year
     end
   end
 
   describe "parse_time/1" do
     test "it parses the time format used on the PVA website" do
-      assert DateUtils.parse_time("8:00") == ~T[20:00:00]
+      assert DateUtils.parse_time("8:00 PM") == ~T[20:00:00]
     end
 
-    test "it parses the time with PM" do
-      assert DateUtils.parse_time("9:30 PM") == ~T[21:30:00]
+    test "it parses the time without PM" do
+      assert DateUtils.parse_time("9:30") == ~T[21:30:00]
     end
 
     test "it parses just an hour without minutes" do

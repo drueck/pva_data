@@ -14,9 +14,8 @@ defmodule PVAData.Match do
     :division_id,
     :home_team_id,
     :visiting_team_id,
-    :location,
-    :court,
-    :ref,
+    :location_name,
+    :location_url,
     set_results: []
   ]
 
@@ -66,6 +65,19 @@ defmodule PVAData.Match do
     |> Enum.count()
   end
 
+  def sets_forfeited(%Match{} = match, %Team{id: team_id}) do
+    sets_forfeited(match, team_id)
+  end
+
+  # for our purposes we'll say a set where a team scores 0 was a forfeit
+  def sets_forfeited(%Match{set_results: set_results} = match, team_id) do
+    set_results
+    |> Enum.filter(fn set_result ->
+      Map.get(set_result, team_score_key(match, team_id)) == 0
+    end)
+    |> Enum.count()
+  end
+
   def point_differential(%Match{} = match, %Team{id: team_id}) do
     point_differential(match, team_id)
   end
@@ -76,6 +88,18 @@ defmodule PVAData.Match do
       team_score = Map.get(set_result, team_score_key(match, team_id))
       opponent_score = Map.get(set_result, oppononent_score_key(match, team_id))
       team_score - opponent_score
+    end)
+    |> Enum.sum()
+  end
+
+  def points_scored(%Match{} = match, %Team{id: team_id}) do
+    points_scored(match, team_id)
+  end
+
+  def points_scored(%Match{set_results: set_results} = match, team_id) do
+    set_results
+    |> Enum.map(fn set_result ->
+      Map.get(set_result, team_score_key(match, team_id))
     end)
     |> Enum.sum()
   end

@@ -62,9 +62,7 @@ defmodule PVADataWeb.Schema.Types do
     field :wins, :integer
     field :losses, :integer
     field :winning_percentage, :float
-    field :match_points, :float
-    field :match_points_possible, :float
-    field :match_points_percentage, :float
+    field :average_point_differential, :float
     field :rank, :integer
     field :rank_reason, :rank_reason
   end
@@ -106,9 +104,9 @@ defmodule PVADataWeb.Schema.Types do
       resolve &Resolvers.Team.visiting_team_from_match/3
     end
 
-    field :location, :string
+    field :location_name, :string
+    field :location_url, :string
     field :court, :string
-    field :ref, :string
     field :set_results, list_of(:set_result)
   end
 

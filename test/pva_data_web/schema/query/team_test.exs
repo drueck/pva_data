@@ -141,7 +141,6 @@ defmodule PVADataWeb.Schema.Query.TeamTest do
           }
           wins
           losses
-          match_points
         }
       }
     }
@@ -155,8 +154,7 @@ defmodule PVADataWeb.Schema.Query.TeamTest do
         team_id: team.id,
         division_id: division.id,
         wins: 5,
-        losses: 3,
-        match_points: 22.5
+        losses: 3
       )
 
     division =
@@ -194,8 +192,7 @@ defmodule PVADataWeb.Schema.Query.TeamTest do
           slug: division.slug
         },
         wins: team_standing.wins,
-        losses: team_standing.losses,
-        match_points: team_standing.match_points
+        losses: team_standing.losses
       }
     }
 
@@ -241,8 +238,8 @@ defmodule PVADataWeb.Schema.Query.TeamTest do
         name
         slug
       }
-      location
-      ref
+      location_name
+      location_url
     }
     """
 
@@ -257,8 +254,8 @@ defmodule PVADataWeb.Schema.Query.TeamTest do
         division_id: division.id,
         home_team_id: team_2.id,
         visiting_team_id: team_1.id,
-        location: "Rex Putnam High School",
-        ref: "Marty"
+        location_name: "Rex Putnam High School",
+        location_url: "https://maps.app.goo.gl/mDqsfmqQjz9dGQeLA"
       )
 
     completed_match =
@@ -294,8 +291,8 @@ defmodule PVADataWeb.Schema.Query.TeamTest do
         division_id: division.id,
         home_team_id: team_1.id,
         visiting_team_id: team_2.id,
-        location: "Rex Putnam High School",
-        ref: "Marty"
+        location_name: "Rex Putnam High School",
+        location_url: "https://maps.app.goo.gl/mDqsfmqQjz9dGQeLA"
       )
 
     division =
@@ -333,8 +330,8 @@ defmodule PVADataWeb.Schema.Query.TeamTest do
           division: Map.take(division, [:id, :name, :slug]),
           home_team: Map.take(team_2, [:id, :name, :slug]),
           visiting_team: Map.take(team_1, [:id, :name, :slug]),
-          location: completed_match.location,
-          ref: completed_match.ref,
+          location_name: completed_match.location_name,
+          location_url: completed_match.location_url,
           set_results:
             completed_match.set_results
             |> Enum.map(fn set_result ->
@@ -353,8 +350,8 @@ defmodule PVADataWeb.Schema.Query.TeamTest do
           division: Map.take(division, [:id, :name, :slug]),
           home_team: Map.take(team_1, [:id, :name, :slug]),
           visiting_team: Map.take(team_2, [:id, :name, :slug]),
-          location: scheduled_match.location,
-          ref: scheduled_match.ref
+          location_name: scheduled_match.location_name,
+          location_url: scheduled_match.location_url
         }
       ]
     }
