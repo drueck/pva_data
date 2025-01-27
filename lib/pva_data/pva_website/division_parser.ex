@@ -65,8 +65,10 @@ defmodule PVAData.PVAWebsite.DivisionParser do
         |> Enum.reduce([], fn row, matches ->
           case Meeseeks.fetch_all(row, css("td")) do
             {:ok, match_row = [_, _, _, _, _]} ->
-              match = build_match(division, match_row)
-              [match | matches]
+              case build_match(division, match_row) do
+                {:ok, match} -> [match | matches]
+                _ -> matches
+              end
 
             {:ok, [single_td]} ->
               case Meeseeks.fetch_one(single_td, css(".resultsMultiScorePanel span:nth-child(2)")) do
@@ -105,8 +107,6 @@ defmodule PVAData.PVAWebsite.DivisionParser do
   end
 
   defp build_match(division, match_row) do
-    # TODO: error handling?
-
     [date_td, time_td, home_td, visitor_td, location_td] = match_row
 
     date = DateUtils.parse_date(Meeseeks.text(date_td))
@@ -125,15 +125,20 @@ defmodule PVAData.PVAWebsite.DivisionParser do
     location_url = location_link |> Meeseeks.attr("href")
     location_name = location_link |> Meeseeks.one(css("span")) |> Meeseeks.text()
 
-    Match.new(
-      date: date,
-      time: time,
-      division_id: division.id,
-      home_team_id: home.id,
-      visiting_team_id: visitor.id,
-      location_name: location_name,
-      location_url: location_url
-    )
+    if is_nil(date) || is_nil(time) do
+      {:error, "invalid match, probably a bye"}
+    else
+      {:ok,
+       Match.new(
+         date: date,
+         time: time,
+         division_id: division.id,
+         home_team_id: home.id,
+         visiting_team_id: visitor.id,
+         location_name: location_name,
+         location_url: location_url
+       )}
+    end
   end
 
   defp get_scores(results_text) do
