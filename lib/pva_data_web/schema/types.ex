@@ -106,7 +106,7 @@ defmodule PVADataWeb.Schema.Types do
 
     field :location_name, :string
     field :location_url, :string
-    field :court, :string
+    field :ref, :string
     field :set_results, list_of(:set_result)
   end
 

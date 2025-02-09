@@ -71,7 +71,8 @@ defmodule PVAData.PVAWebsite.DivisionParserTest do
         gangsta.id,
         big_digs.id,
         "PA",
-        "http://maps.google.com/maps?li=rwp&q=3990%20NW%201st%20St%2CGresham%2COR%2097030"
+        "http://maps.google.com/maps?li=rwp&q=3990%20NW%201st%20St%2CGresham%2COR%2097030",
+        nil
       }
 
       m = List.last(division.scheduled_matches)
@@ -82,7 +83,8 @@ defmodule PVAData.PVAWebsite.DivisionParserTest do
         m.home_team_id,
         m.visiting_team_id,
         m.location_name,
-        m.location_url
+        m.location_url,
+        m.ref
       }
 
       assert actual_last_scheduled_match_data == expected_last_scheduled_match_data
@@ -96,6 +98,7 @@ defmodule PVAData.PVAWebsite.DivisionParserTest do
         giggles.id,
         "PA",
         "http://maps.google.com/maps?li=rwp&q=3990%20NW%201st%20St%2CGresham%2COR%2097030",
+        "Karen Strong",
         [{1, 25, 11}, {2, 25, 19}, {3, 15, 8}]
       }
 
@@ -108,6 +111,7 @@ defmodule PVAData.PVAWebsite.DivisionParserTest do
         m.visiting_team_id,
         m.location_name,
         m.location_url,
+        m.ref,
         m.set_results
         |> Enum.map(fn s -> {s.set_number, s.home_team_score, s.visiting_team_score} end)
       }

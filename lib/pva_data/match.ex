@@ -16,6 +16,7 @@ defmodule PVAData.Match do
     :visiting_team_id,
     :location_name,
     :location_url,
+    :ref,
     set_results: []
   ]
 

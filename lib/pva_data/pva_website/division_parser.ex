@@ -71,16 +71,14 @@ defmodule PVAData.PVAWebsite.DivisionParser do
               end
 
             {:ok, [single_td]} ->
-              case Meeseeks.fetch_one(single_td, css(".resultsMultiScorePanel span:nth-child(2)")) do
-                {:ok, results_span} ->
-                  scores = get_scores(Meeseeks.text(results_span))
-                  [latest_match | other_matches] = matches
-                  [Match.add_set_results(latest_match, scores) | other_matches]
+              [latest_match | other_matches] = matches
 
-                {:error, _} ->
-                  # not a results row, so we ignore it
-                  matches
-              end
+              updated_match =
+                latest_match
+                |> add_ref(single_td)
+                |> add_scores(single_td)
+
+              [updated_match | other_matches]
 
             {:error, _} ->
               # neither a match row nor a results row, so we ignore it
@@ -138,6 +136,41 @@ defmodule PVAData.PVAWebsite.DivisionParser do
          location_name: location_name,
          location_url: location_url
        )}
+    end
+  end
+
+  defp add_ref(match, td) do
+    case Meeseeks.fetch_one(td, css(".resultsCommentsPanel span:nth-child(2)")) do
+      {:ok, ref_span} ->
+        case get_ref(Meeseeks.text(ref_span)) do
+          nil -> match
+          ref -> %{match | ref: ref}
+        end
+
+      {:error, _} ->
+        # not a results row, so we ignore it
+        match
+    end
+  end
+
+  defp get_ref(results_text) do
+    # "Officials: Jane Doe (Volleyball)" is the typical format of the span text
+    # So we get the text after "Officials: " and before an optional opening paren
+    case Regex.run(~r/^Officials:\s+([^(]+)/, results_text) do
+      [_, name] -> String.trim(name)
+      _ -> nil
+    end
+  end
+
+  defp add_scores(match, td) do
+    case Meeseeks.fetch_one(td, css(".resultsMultiScorePanel span:nth-child(2)")) do
+      {:ok, results_span} ->
+        scores = get_scores(Meeseeks.text(results_span))
+        Match.add_set_results(match, scores)
+
+      {:error, _} ->
+        # not a results row, so we ignore it
+        match
     end
   end
 
