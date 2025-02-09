@@ -127,7 +127,15 @@ defmodule PVAData.PVAWebsite.DivisionParser do
       end)
 
     location_link = location_td |> Meeseeks.one(css("a"))
-    location_url = location_link |> Meeseeks.attr("href")
+
+    location_url =
+      location_link
+      |> Meeseeks.attr("href")
+      |> then(fn
+        nil -> nil
+        url -> String.replace(url, "http:", "https:")
+      end)
+
     location_name = location_link |> Meeseeks.one(css("span")) |> Meeseeks.text()
 
     if is_nil(date) || is_nil(time) do

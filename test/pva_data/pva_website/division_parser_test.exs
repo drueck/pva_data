@@ -71,7 +71,7 @@ defmodule PVAData.PVAWebsite.DivisionParserTest do
         gangsta.id,
         big_digs.id,
         "PA",
-        "http://maps.google.com/maps?li=rwp&q=3990%20NW%201st%20St%2CGresham%2COR%2097030",
+        "https://maps.google.com/maps?li=rwp&q=3990%20NW%201st%20St%2CGresham%2COR%2097030",
         nil
       }
 
@@ -97,7 +97,7 @@ defmodule PVAData.PVAWebsite.DivisionParserTest do
         ops.id,
         giggles.id,
         "PA",
-        "http://maps.google.com/maps?li=rwp&q=3990%20NW%201st%20St%2CGresham%2COR%2097030",
+        "https://maps.google.com/maps?li=rwp&q=3990%20NW%201st%20St%2CGresham%2COR%2097030",
         "Karen Strong",
         [{1, 25, 11}, {2, 25, 19}, {3, 15, 8}]
       }
