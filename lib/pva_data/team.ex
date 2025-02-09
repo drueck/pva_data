@@ -6,7 +6,7 @@ defmodule PVAData.Team do
     Division
   }
 
-  defstruct [:id, :name, :division_id, :slug, :rank_reason, rank: 0]
+  defstruct [:id, :name, :division_id, :slug, :contact, :rank_reason, rank: 0]
 
   def build(%Division{id: division_id}, name) do
     trimmed_name = String.trim(name)

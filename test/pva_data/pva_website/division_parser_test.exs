@@ -17,13 +17,13 @@ defmodule PVAData.PVAWebsite.DivisionParserTest do
 
       d = Division.build("Wednesday Coed A")
 
-      dig_deep = Team.build(d, "Dig Deep")
-      ops = Team.build(d, "Other People's Spouses")
-      gangsta = Team.build(d, "Gangsta Pair A Dice")
-      five_squared = Team.build(d, "five squared")
-      back_at_it = Team.build(d, "Back At It")
-      big_digs = Team.build(d, "Big Digs")
-      giggles = Team.build(d, "Hits & Giggles")
+      dig_deep = %{Team.build(d, "Dig Deep") | contact: "Saechin"}
+      ops = %{Team.build(d, "Other People's Spouses") | contact: "Whytock"}
+      gangsta = %{Team.build(d, "Gangsta Pair A Dice") | contact: "Crooks"}
+      five_squared = %{Team.build(d, "five squared") | contact: "Ralley"}
+      back_at_it = %{Team.build(d, "Back At It") | contact: "Rueck"}
+      big_digs = %{Team.build(d, "Big Digs") | contact: "Ortiz"}
+      giggles = %{Team.build(d, "Hits & Giggles") | contact: "Beltran"}
 
       expected_teams = [ops, dig_deep, gangsta, back_at_it, big_digs, five_squared, giggles]
 
@@ -31,14 +31,14 @@ defmodule PVAData.PVAWebsite.DivisionParserTest do
         expected_teams
         |> Enum.with_index()
         |> Enum.map(fn {t, rank} ->
-          {t.id, t.name, t.slug, rank + 1}
+          {t.id, t.name, t.slug, t.contact, rank + 1}
         end)
 
       actual_team_data =
         division.teams
         |> Enum.sort_by(& &1.rank)
         |> Enum.map(fn t ->
-          {t.id, t.name, t.slug, t.rank}
+          {t.id, t.name, t.slug, t.contact, t.rank}
         end)
 
       assert actual_team_data == expected_team_data

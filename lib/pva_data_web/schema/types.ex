@@ -28,6 +28,7 @@ defmodule PVADataWeb.Schema.Types do
     field :id, :string
     field :name, :string
     field :slug, :string
+    field :contact, :string
     field :rank, :integer
     field :rank_reason, :rank_reason
 

@@ -35,11 +35,18 @@ defmodule PVAData.PVAWebsite.DivisionParser do
 
   defp add_teams_and_standings(division, document) do
     document
-    |> Meeseeks.fetch_all(css("div[id$=\"standingsGrid\"] tbody tr td:nth-child(2)"))
+    |> Meeseeks.fetch_all(css("div[id$=\"standingsGrid\"] tbody tr"))
     |> case do
-      {:ok, name_tds} ->
-        names = name_tds |> Enum.map(&Meeseeks.text/1)
-        teams = names |> Enum.map(fn name -> Team.build(division, name) end)
+      {:ok, team_rows} ->
+        teams =
+          Enum.map(team_rows, fn team_row ->
+            # if this fails, we're letting it crash because something changed on the pva site
+            [_place, name, _w, _l, _t, _gb, _gp, _pct, _str, coach] =
+              Meeseeks.all(team_row, css("td"))
+              |> Enum.map(&Meeseeks.text/1)
+
+            %{Team.build(division, name) | contact: coach}
+          end)
 
         standings =
           teams
