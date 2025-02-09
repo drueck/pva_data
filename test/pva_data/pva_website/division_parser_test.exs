@@ -6,9 +6,9 @@ defmodule PVAData.PVAWebsite.DivisionParserTest do
   alias PVAData.{Division, Team}
 
   describe "get_division/1" do
-    test "correctly parses a coed division" do
+    test "correctly parses a division" do
       assert {:ok, division} =
-               "test/fixtures/sites/PortlandVolleyball/schedule/597503/Wednesday-Coed-A"
+               "test/fixtures/default/sites/PortlandVolleyball/schedule/597503/Wednesday-Coed-A"
                |> File.read!()
                |> DivisionParser.get_division()
 
@@ -25,7 +25,7 @@ defmodule PVAData.PVAWebsite.DivisionParserTest do
       big_digs = Team.build(d, "Big Digs")
       giggles = Team.build(d, "Hits & Giggles")
 
-      expected_teams = [ops, gangsta, dig_deep, five_squared, giggles, back_at_it, big_digs]
+      expected_teams = [ops, dig_deep, gangsta, back_at_it, big_digs, five_squared, giggles]
 
       expected_team_data =
         expected_teams
@@ -43,17 +43,14 @@ defmodule PVAData.PVAWebsite.DivisionParserTest do
 
       assert actual_team_data == expected_team_data
 
-      # Note: This ranking doesn't currently match what the website showed at
-      # the time I took the snapshot, but it does match what the tie breaker
-      # list says it should be, so I'm leaving this as the expected sort order.
       expected_standings_data = [
-        {1, "Other People's Spouses", 1, 0, 100.0},
-        {2, "Gangsta Pair A Dice", 1, 0, 100.0},
-        {3, "Dig Deep", 2, 0, 100.0},
-        {4, "five squared", 1, 2, 33.333},
-        {5, "Hits & Giggles", 0, 1, 0.0},
-        {6, "Back At It", 0, 1, 0.0},
-        {7, "Big Digs", 0, 1, 0.0}
+        {1, "Other People's Spouses", 5, 0, 100.0},
+        {2, "Dig Deep", 4, 2, 66.667},
+        {3, "Gangsta Pair A Dice", 4, 2, 66.667},
+        {4, "Back At It", 3, 2, 60.0},
+        {5, "Big Digs", 2, 4, 33.333},
+        {6, "five squared", 1, 5, 16.667},
+        {7, "Hits & Giggles", 1, 5, 16.667}
       ]
 
       actual_standings_data =
@@ -66,15 +63,15 @@ defmodule PVAData.PVAWebsite.DivisionParserTest do
 
       assert actual_standings_data == expected_standings_data
 
-      assert Enum.count(division.scheduled_matches) == 11
+      assert Enum.count(division.scheduled_matches) == 15
 
       expected_last_scheduled_match_data = {
-        ~D[2025-01-29],
-        ~T[20:30:00],
-        back_at_it.id,
-        giggles.id,
-        "PMS Large Ct 2",
-        "http://maps.google.com/maps?li=rwp&q=11800%20NE%20Shaver%20St.%2CPortland%2COR%2097220"
+        ~D[2025-03-12],
+        ~T[21:00:00],
+        gangsta.id,
+        big_digs.id,
+        "PA",
+        "http://maps.google.com/maps?li=rwp&q=3990%20NW%201st%20St%2CGresham%2COR%2097030"
       }
 
       m = List.last(division.scheduled_matches)
@@ -90,16 +87,16 @@ defmodule PVAData.PVAWebsite.DivisionParserTest do
 
       assert actual_last_scheduled_match_data == expected_last_scheduled_match_data
 
-      assert Enum.count(division.completed_matches) == 5
+      assert Enum.count(division.completed_matches) == 20
 
       expected_last_completed_match_data = {
-        ~D[2025-01-15],
-        ~T[20:30:00],
-        five_squared.id,
-        back_at_it.id,
-        "PMS Large Ct 1",
-        "http://maps.google.com/maps?li=rwp&q=11800%20NE%20Shaver%20St.%2CPortland%2COR%2097220",
-        [{1, 25, 17}, {2, 28, 26}, {3, 16, 14}]
+        ~D[2025-02-05],
+        ~T[21:00:00],
+        ops.id,
+        giggles.id,
+        "PA",
+        "http://maps.google.com/maps?li=rwp&q=3990%20NW%201st%20St%2CGresham%2COR%2097030",
+        [{1, 25, 11}, {2, 25, 19}, {3, 15, 8}]
       }
 
       m = List.last(division.completed_matches)

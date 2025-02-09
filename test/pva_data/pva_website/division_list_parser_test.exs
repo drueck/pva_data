@@ -6,7 +6,7 @@ defmodule PVAData.PVAWebsite.DivisionListParserTest do
   describe "get_division_urls/1" do
     test "returns the expected urls" do
       assert {:ok, urls} =
-               "test/fixtures/schedules"
+               "test/fixtures/default/schedules"
                |> File.read!()
                |> DivisionListParser.get_division_urls()
 

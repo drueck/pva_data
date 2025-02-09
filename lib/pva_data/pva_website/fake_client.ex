@@ -6,7 +6,7 @@ defmodule PVAData.PVAWebsite.FakeClient do
 
   @behaviour PVAData.PVAWebsite.ClientBehaviour
 
-  @base_path "test/fixtures"
+  @base_path "test/fixtures/default"
 
   def get_division_urls(base_path \\ nil) do
     "#{base_path || @base_path}/schedules"

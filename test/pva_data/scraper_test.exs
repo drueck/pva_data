@@ -27,8 +27,8 @@ defmodule PVAData.ScraperTest do
 
       assert length(division.teams) == 7
       assert length(division.standings) == 7
-      assert length(division.scheduled_matches) == 11
-      assert length(division.completed_matches) == 5
+      assert length(division.scheduled_matches) == 15
+      assert length(division.completed_matches) == 20
 
       assert %Team{} = hd(division.teams)
       assert %Match{} = hd(division.scheduled_matches)
