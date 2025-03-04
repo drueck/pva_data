@@ -80,12 +80,16 @@ defmodule PVAData.PVAWebsite.DivisionParser do
             {:ok, [single_td]} ->
               [latest_match | other_matches] = matches
 
-              updated_match =
-                latest_match
-                |> add_ref(single_td)
-                |> add_scores(single_td)
+              if is_schedule_conflict?(single_td) do
+                other_matches
+              else
+                updated_match =
+                  latest_match
+                  |> add_ref(single_td)
+                  |> add_scores(single_td)
 
-              [updated_match | other_matches]
+                [updated_match | other_matches]
+              end
 
             {:error, _} ->
               # neither a match row nor a results row, so we ignore it
@@ -108,6 +112,18 @@ defmodule PVAData.PVAWebsite.DivisionParser do
       {:ok, division}
     else
       {:error, _} -> {:error, "could not get matches"}
+    end
+  end
+
+  def is_schedule_conflict?(td) do
+    case Meeseeks.fetch_one(td, css(".resultsCommentsPanel span:nth-child(2)")) do
+      {:ok, comment_span} ->
+        Meeseeks.text(comment_span)
+        |> String.downcase()
+        |> String.contains?("schedule conflict")
+
+      {:error, _} ->
+        false
     end
   end
 

@@ -1,6 +1,7 @@
 defmodule PVAData.PVAWebsite.DivisionParserTest do
   use ExUnit.Case, async: true
 
+  alias PVAData.Match
   alias PVAData.PVAWebsite.DivisionParser
 
   alias PVAData.{Division, Team}
@@ -117,6 +118,38 @@ defmodule PVAData.PVAWebsite.DivisionParserTest do
       }
 
       assert actual_last_completed_match_data == expected_last_completed_match_data
+    end
+
+    test "ignores matches that have been rescheduled" do
+      assert {:ok, division} =
+               "test/fixtures/rescheduled/sites/PortlandVolleyball/schedule/597454/Womens-Monday-A"
+               |> File.read!()
+               |> DivisionParser.get_division()
+
+      assert Enum.count(division.scheduled_matches) == 12
+
+      d = Division.build("Women's Monday A")
+      sara_and_others = %{Team.build(d, "Sara and Others") | contact: "Sayre"}
+
+      sara_and_others_scheduled =
+        division.scheduled_matches
+        |> Enum.filter(fn %Match{home_team_id: a_id, visiting_team_id: b_id} ->
+          a_id == sara_and_others.id || b_id == sara_and_others.id
+        end)
+
+      assert Enum.count(sara_and_others_scheduled) == 3
+
+      expected_dates_and_times = [
+        {~D[2025-02-24], ~T[21:00:00]},
+        {~D[2025-03-03], ~T[19:00:00]},
+        {~D[2025-03-10], ~T[21:00:00]}
+      ]
+
+      actual_dates_and_times =
+        sara_and_others_scheduled
+        |> Enum.map(fn match -> {match.date, match.time} end)
+
+      assert actual_dates_and_times == expected_dates_and_times
     end
   end
 end
