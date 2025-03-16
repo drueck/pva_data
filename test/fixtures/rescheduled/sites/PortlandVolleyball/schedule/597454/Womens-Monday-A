@@ -1845,14 +1845,12 @@
                                     
                                 </div>
                                 <div style="float: right;">
-                                    <span id="ctl00_ContentPlaceHolder1_StandingsResultsControl_ScheduleGrid_ctl00_ctl112_HomeScoreLabel"><b>3</b></span>
                                 </div>
                             </td><td align="left" valign="top" bgcolor="#FFFF00">
                                 <div style="float: left; width: 105px;">
                                     <span id="ctl00_ContentPlaceHolder1_StandingsResultsControl_ScheduleGrid_ctl00_ctl112_AwayLabel">Sara and Others</span>
                                 </div>
                                 <div style="float: right;">
-                                    <span id="ctl00_ContentPlaceHolder1_StandingsResultsControl_ScheduleGrid_ctl00_ctl112_AwayScoreLabel">0</span>
                                 </div>
                             </td><td align="left" valign="top" bgcolor="#FFFF00" width="115">
                                 <a id="ctl00_ContentPlaceHolder1_StandingsResultsControl_ScheduleGrid_ctl00_ctl112_LocationLink" class="standingResultsLocationLink" href="http://maps.google.com/maps?li=rwp&amp;q=3990%20NW%201st%20St%2CGresham%2COR%2097030" target="_blank"><span id="ctl00_ContentPlaceHolder1_StandingsResultsControl_ScheduleGrid_ctl00_ctl112_ScheduleLabel">PA</span><span style="margin-left: 3px;"><i class="fas fa-external-link"></i></span></a>
