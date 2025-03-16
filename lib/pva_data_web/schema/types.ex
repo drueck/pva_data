@@ -109,6 +109,10 @@ defmodule PVADataWeb.Schema.Types do
     field :location_url, :string
     field :ref, :string
     field :set_results, list_of(:set_result)
+
+    field :forfeited_team, :team do
+      resolve &Resolvers.Team.forfeited_team_from_match/3
+    end
   end
 
   object :set_result do

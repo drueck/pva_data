@@ -1,11 +1,14 @@
 defmodule PVAData.Match do
-  use PVAData.ComputedId, keys: [:date, :time, :division_id, :home_team_id, :visiting_team_id]
+  use PVAData.ComputedId,
+    keys: [
+      :date,
+      :time,
+      :division_id,
+      :home_team_id,
+      :visiting_team_id
+    ]
 
-  alias PVAData.{
-    Team,
-    Match,
-    SetResult
-  }
+  alias PVAData.{Match, Team, SetResult}
 
   defstruct [
     :id,
@@ -17,8 +20,13 @@ defmodule PVAData.Match do
     :location_name,
     :location_url,
     :ref,
+    :forfeited_team_id,
     set_results: []
   ]
+
+  def has_results?(%Match{} = match) do
+    match.forfeited_team_id || match.set_results != []
+  end
 
   def add_set_results(%Match{} = match, scores) do
     set_results =
@@ -121,6 +129,14 @@ defmodule PVAData.Match do
     result(match, team_id)
   end
 
+  def result(
+        %Match{forfeited_team_id: forfeited_team_id},
+        team_id
+      )
+      when not is_nil(forfeited_team_id) do
+    if forfeited_team_id == team_id, do: :loss, else: :win
+  end
+
   def result(%Match{} = match, team_id) do
     sets_won = sets_won(match, team_id)
     sets_lost = sets_lost(match, team_id)
@@ -130,28 +146,6 @@ defmodule PVAData.Match do
     else
       if sets_won > sets_lost, do: :win, else: :loss
     end
-  end
-
-  def match_points(%Match{} = match, %Team{id: team_id}) do
-    match_points(match, team_id)
-  end
-
-  def match_points(%Match{} = match, team_id) do
-    match_points_for_winning_sets(match, team_id) +
-      match_points_for_point_differential(match, team_id) +
-      match_points_for_winning_match(match, team_id)
-  end
-
-  defp match_points_for_winning_sets(match, team_id) do
-    sets_won(match, team_id) * 0.5
-  end
-
-  defp match_points_for_point_differential(match, team_id) do
-    if point_differential(match, team_id) > 0, do: 1, else: 0
-  end
-
-  defp match_points_for_winning_match(match, team_id) do
-    if result(match, team_id) == :win, do: 2, else: 0
   end
 
   defp result_by_point_differential(%Match{} = match, team_id) do

@@ -284,7 +284,7 @@ defmodule PVAData.MatchTest do
       assert Match.result(match, court_jesters) == :loss
       assert Match.result(match, hop_heads) == :win
 
-      point_differential_results = [
+      point_differential_set_results = [
         SetResult.new(
           match_id: match.id,
           set_number: 1,
@@ -299,12 +299,12 @@ defmodule PVAData.MatchTest do
         )
       ]
 
-      match = %{match | set_results: point_differential_results}
+      match = %{match | set_results: point_differential_set_results}
 
       assert Match.result(match, court_jesters) == :loss
       assert Match.result(match, hop_heads) == :win
 
-      tie_results = [
+      tie_set_results = [
         SetResult.new(
           match_id: match.id,
           set_number: 1,
@@ -319,69 +319,10 @@ defmodule PVAData.MatchTest do
         )
       ]
 
-      match = %{match | set_results: tie_results}
+      match = %{match | set_results: tie_set_results}
 
       assert Match.result(match, court_jesters) == :tie
       assert Match.result(match, hop_heads) == :tie
-    end
-  end
-
-  describe "match_points/2" do
-    test "it returns the match points earned by the given team" do
-      division =
-        Division.new(
-          name: "Coed A Wednesday",
-          slug: "coed-a-wednesday"
-        )
-
-      court_jesters =
-        Team.new(
-          name: "Court Jesters",
-          slug: "court-jesters",
-          division_id: division.id
-        )
-
-      hop_heads =
-        Team.new(
-          name: "HopHeads",
-          slug: "hopheads",
-          division_id: division.id
-        )
-
-      match =
-        Match.new(
-          date: ~D[2021-09-22],
-          time: ~T[20:00:00],
-          division_id: division.id,
-          home_team_id: hop_heads.id,
-          visiting_team_id: court_jesters.id
-        )
-
-      set_results = [
-        SetResult.new(
-          match_id: match.id,
-          set_number: 1,
-          home_team_score: 21,
-          visiting_team_score: 25
-        ),
-        SetResult.new(
-          match_id: match.id,
-          set_number: 1,
-          home_team_score: 25,
-          visiting_team_score: 18
-        ),
-        SetResult.new(
-          match_id: match.id,
-          set_number: 1,
-          home_team_score: 15,
-          visiting_team_score: 4
-        )
-      ]
-
-      match = %{match | set_results: set_results}
-
-      assert Match.match_points(match, court_jesters) == 0.5
-      assert Match.match_points(match, hop_heads) == 4
     end
   end
 end

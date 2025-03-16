@@ -100,9 +100,9 @@ defmodule PVAData.PVAWebsite.DivisionParser do
 
       # note that sheduled matches also includes completed matches that just lack scores
       # these can be filtered out on the front end based on the date in the client timezone
-      {scheduled_matches, completed_matches} =
+      {completed_matches, scheduled_matches} =
         matches
-        |> Enum.split_with(fn %Match{set_results: set_results} -> set_results == [] end)
+        |> Enum.split_with(&Match.has_results?/1)
 
       division =
         division
@@ -133,14 +133,20 @@ defmodule PVAData.PVAWebsite.DivisionParser do
     date = DateUtils.parse_date(Meeseeks.text(date_td))
     time = DateUtils.parse_time(Meeseeks.text(time_td))
 
-    [home, visitor] =
+    [[home, home_score], [visitor, visitor_score]] =
       [home_td, visitor_td]
       |> Enum.map(fn td ->
         td
-        |> Meeseeks.one(css("div span"))
-        |> Meeseeks.text()
-        |> then(fn name -> Team.build(division, name) end)
+        |> parse_team_td()
+        |> then(fn [name, score] -> [Team.build(division, name), score] end)
       end)
+
+    forfeited_team_id =
+      case [home_score, visitor_score] do
+        [_, "L"] -> visitor.id
+        ["L", _] -> home.id
+        _ -> nil
+      end
 
     location_link = location_td |> Meeseeks.one(css("a"))
 
@@ -165,8 +171,28 @@ defmodule PVAData.PVAWebsite.DivisionParser do
          home_team_id: home.id,
          visiting_team_id: visitor.id,
          location_name: location_name,
-         location_url: location_url
+         location_url: location_url,
+         forfeited_team_id: forfeited_team_id
        )}
+    end
+  end
+
+  defp parse_team_td(td) do
+    case Meeseeks.fetch_all(td, css("div span")) do
+      {:error, _} ->
+        [nil, nil]
+
+      {:ok, [name_span, score_span]} ->
+        name_text = Meeseeks.text(name_span) |> String.trim()
+        score_text = Meeseeks.text(score_span) |> String.trim()
+
+        case score_text do
+          "" -> [name_text, nil]
+          _ -> [name_text, score_text]
+        end
+
+      {:ok, [name_span | _]} ->
+        [Meeseeks.text(name_span) |> String.trim(), nil]
     end
   end
 
@@ -193,7 +219,7 @@ defmodule PVAData.PVAWebsite.DivisionParser do
     end
   end
 
-  defp add_scores(match, td) do
+  defp add_scores(%Match{} = match, td) do
     case Meeseeks.fetch_one(td, css(".resultsMultiScorePanel span:nth-child(2)")) do
       {:ok, results_span} ->
         scores = get_scores(Meeseeks.text(results_span))

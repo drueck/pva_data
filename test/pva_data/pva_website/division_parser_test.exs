@@ -151,5 +151,46 @@ defmodule PVAData.PVAWebsite.DivisionParserTest do
 
       assert actual_dates_and_times == expected_dates_and_times
     end
+
+    test "handles forfeits" do
+      assert {:ok, division} =
+               "test/fixtures/comments-and-forfeits/sites/PortlandVolleyball/schedule/597501/Womens-Monday-B"
+               |> File.read!()
+               |> DivisionParser.get_division()
+
+      assert Enum.count(division.scheduled_matches) == 4
+      assert Enum.count(division.completed_matches) == 28
+
+      d = Division.build("Women's Monday B")
+      dig_and_dive = %{Team.build(d, "Dig and Dive") | contact: "Evans"}
+      filberts = %{Team.build(d, "Filberts") | contact: "Emmert"}
+      floor_burn = %{Team.build(d, "Floor Burn") | contact: "Hopkins"}
+
+      dig_and_dive_forfeits =
+        division.completed_matches
+        |> Enum.filter(fn %Match{} = match ->
+          (match.home_team_id == dig_and_dive.id || match.visiting_team_id == dig_and_dive.id) &&
+            match.forfeited_team_id == dig_and_dive.id
+        end)
+
+      assert Enum.count(dig_and_dive_forfeits) == 2
+
+      dig_and_dive_forfeits
+      |> Enum.each(fn match ->
+        assert match.set_results == []
+        assert Match.has_results?(match)
+      end)
+
+      actual_winner_ids =
+        dig_and_dive_forfeits
+        |> Enum.map(fn match -> match.visiting_team_id end)
+        |> Enum.sort()
+
+      expected_winner_ids =
+        [filberts.id, floor_burn.id]
+        |> Enum.sort()
+
+      assert actual_winner_ids == expected_winner_ids
+    end
   end
 end

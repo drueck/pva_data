@@ -19,6 +19,12 @@ defmodule PVADataWeb.Resolvers.Team do
     get(division_id, team_id)
   end
 
+  def forefeited_team_from_match(%Match{forfeited_team_id: nil}), do: nil
+
+  def forfeited_team_from_match(%Match{} = match, _, _) do
+    get(match.division_id, match.forfeited_team_id)
+  end
+
   def team_from_rank_reason(%RankReason{} = rank_reason, _, _) do
     get(rank_reason.division_id, rank_reason.team_id)
   end
