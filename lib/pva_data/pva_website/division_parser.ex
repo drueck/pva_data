@@ -65,38 +65,13 @@ defmodule PVAData.PVAWebsite.DivisionParser do
   end
 
   defp add_matches(division, document) do
-    with {:ok, container} <- Meeseeks.fetch_one(document, css(".standingResultsSchedulesTable")),
-         {:ok, rows} <- Meeseeks.fetch_all(container, css("tr.rgRow, tr.rgAltRow")) do
-      matches =
-        rows
-        |> Enum.reduce([], fn row, matches ->
-          case Meeseeks.fetch_all(row, css("td")) do
-            {:ok, match_row = [_, _, _, _, _]} ->
-              case build_match(division, match_row) do
-                {:ok, match} -> [match | matches]
-                _ -> matches
-              end
-
-            {:ok, [single_td]} ->
-              [latest_match | other_matches] = matches
-
-              if is_schedule_conflict?(single_td) do
-                other_matches
-              else
-                updated_match =
-                  latest_match
-                  |> add_ref(single_td)
-                  |> add_scores(single_td)
-
-                [updated_match | other_matches]
-              end
-
-            {:error, _} ->
-              # neither a match row nor a results row, so we ignore it
-              matches
-          end
-        end)
-        |> Enum.reverse()
+    with {:ok, regular_season_container} <-
+           Meeseeks.fetch_one(document, css(".standingResultsSchedulesTable")),
+         {:ok, regular_season_rows} <-
+           Meeseeks.fetch_all(regular_season_container, css("tr.rgRow, tr.rgAltRow")) do
+      regular_season_matches = build_matches(division, regular_season_rows)
+      playoff_matches = get_playoff_matches(division, document)
+      matches = regular_season_matches ++ playoff_matches
 
       # note that sheduled matches also includes completed matches that just lack scores
       # these can be filtered out on the front end based on the date in the client timezone
@@ -125,6 +100,59 @@ defmodule PVAData.PVAWebsite.DivisionParser do
       {:error, _} ->
         false
     end
+  end
+
+  def get_playoff_matches(division, document) do
+    with {:ok, playoffs_container} <-
+           Meeseeks.fetch_one(document, css("table[id*=PlayoffGrid]")),
+         {:ok, playoffs_rows} <-
+           Meeseeks.fetch_all(playoffs_container, css("tr.rgRow, tr.rgAltRow")) do
+      build_matches(division, playoffs_rows)
+      |> Enum.filter(fn match ->
+        Enum.any?(division.teams, fn %Team{id: id} -> id == match.home_team_id end)
+      end)
+    else
+      _ ->
+        []
+    end
+  end
+
+  def build_matches(division, rows) do
+    rows
+    |> Enum.reduce([], fn row, matches ->
+      case Meeseeks.fetch_all(row, css("td")) do
+        {:ok, match_row = [_, _, _, _, _]} ->
+          case build_match(division, match_row) do
+            {:ok, match} -> [match | matches]
+            _ -> matches
+          end
+
+        {:ok, [date, time, _playoffs_game_number, home, away, location]} ->
+          case build_match(division, [date, time, home, away, location]) do
+            {:ok, match} -> [match | matches]
+            _ -> matches
+          end
+
+        {:ok, [single_td]} ->
+          [latest_match | other_matches] = matches
+
+          if is_schedule_conflict?(single_td) do
+            other_matches
+          else
+            updated_match =
+              latest_match
+              |> add_ref(single_td)
+              |> add_scores(single_td)
+
+            [updated_match | other_matches]
+          end
+
+        {:error, _} ->
+          # neither a match row nor a results row, so we ignore it
+          matches
+      end
+    end)
+    |> Enum.reverse()
   end
 
   defp build_match(division, match_row) do

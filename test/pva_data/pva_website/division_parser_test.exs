@@ -192,5 +192,66 @@ defmodule PVAData.PVAWebsite.DivisionParserTest do
 
       assert actual_winner_ids == expected_winner_ids
     end
+
+    test "includes playoffs" do
+      assert {:ok, division} =
+               "test/fixtures/playoffs-bracket/sites/PortlandVolleyball/schedule/597503/Wednesday-Coed-A"
+               |> File.read!()
+               |> DivisionParser.get_division()
+
+      d = Division.build("Wednesday Coed A")
+      back_at_it = Team.build(d, "Back At It")
+      dig_deep = Team.build(d, "Dig Deep")
+      big_digs = Team.build(d, "Big Digs")
+      ops = Team.build(d, "Other People's Spouses")
+
+      assert Enum.count(division.completed_matches) == 35
+      assert Enum.count(division.scheduled_matches) == 2
+
+      expected_first_match_data = {
+        ~D[2025-03-19],
+        ~T[19:00:00],
+        ops.id,
+        big_digs.id,
+        "MHS Aux Ct 1",
+        "https://maps.google.com/maps?li=rwp&q=2301%20SE%20Willard%20St.%2CMilwaukie%2COR%2097222",
+        "Karen Strong"
+      }
+
+      expected_last_match_data = {
+        ~D[2025-03-19],
+        ~T[19:00:00],
+        back_at_it.id,
+        dig_deep.id,
+        "MHS Aux Ct 2",
+        "https://maps.google.com/maps?li=rwp&q=2301%20SE%20Willard%20St.%2CMilwaukie%2COR%2097222",
+        "Scott Lewis"
+      }
+
+      [m1, m2] = division.scheduled_matches
+
+      actual_first_match_data = {
+        m1.date,
+        m1.time,
+        m1.home_team_id,
+        m1.visiting_team_id,
+        m1.location_name,
+        m1.location_url,
+        m1.ref
+      }
+
+      actual_last_match_data = {
+        m2.date,
+        m2.time,
+        m2.home_team_id,
+        m2.visiting_team_id,
+        m2.location_name,
+        m2.location_url,
+        m2.ref
+      }
+
+      assert actual_first_match_data == expected_first_match_data
+      assert actual_last_match_data == expected_last_match_data
+    end
   end
 end
