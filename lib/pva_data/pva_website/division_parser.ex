@@ -109,7 +109,8 @@ defmodule PVAData.PVAWebsite.DivisionParser do
            Meeseeks.fetch_all(playoffs_container, css("tr.rgRow, tr.rgAltRow")) do
       build_matches(division, playoffs_rows)
       |> Enum.filter(fn match ->
-        Enum.any?(division.teams, fn %Team{id: id} -> id == match.home_team_id end)
+        Enum.any?(division.teams, &(&1.id == match.home_team_id)) &&
+          Enum.any?(division.teams, &(&1.id == match.visiting_team_id))
       end)
     else
       _ ->
