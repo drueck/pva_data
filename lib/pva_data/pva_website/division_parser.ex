@@ -40,10 +40,11 @@ defmodule PVAData.PVAWebsite.DivisionParser do
       {:ok, team_rows} ->
         teams =
           Enum.map(team_rows, fn team_row ->
-            # if this fails, we're letting it crash because something changed on the pva site
-            [_place, name, _w, _l, _t, _gb, _gp, _pct, _str, coach] =
+            [_place, name | rest] =
               Meeseeks.all(team_row, css("td"))
               |> Enum.map(&Meeseeks.text/1)
+
+            coach = List.last(rest)
 
             %{Team.build(division, name) | contact: coach}
           end)
