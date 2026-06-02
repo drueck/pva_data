@@ -1,4 +1,4 @@
-https://github.com/gigalixir/gigalixir-buildpack-clean-cache.git
-https://github.com/emk/heroku-buildpack-rust.git
-https://github.com/HashNuke/heroku-buildpack-elixir
-https://github.com/gigalixir/gigalixir-buildpack-releases.git
+https://github.com/gigalixir/gigalixir-buildpack-clean-cache
+https://github.com/emk/heroku-buildpack-rust
+https://github.com/gigalixir/gigalixir-buildpack-elixir
+https://github.com/gigalixir/gigalixir-buildpack-releases
