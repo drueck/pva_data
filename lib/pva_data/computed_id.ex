@@ -11,7 +11,7 @@ defmodule PVAData.ComputedId do
         |> Map.take(unquote(keys))
         |> Map.values()
         |> Enum.map(&inspect/1)
-        |> (fn values -> :crypto.hash(:md5, values) end).()
+        |> then(fn values -> :crypto.hash(:md5, values) end)
         |> Base.encode16()
         |> String.downcase()
       end
