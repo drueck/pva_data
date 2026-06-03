@@ -9,7 +9,8 @@ defmodule PVAData.PVAWebsite.DateUtils do
       %{"month" => month_string, "day" => day_string} ->
         month = String.to_integer(month_string)
         day = String.to_integer(day_string)
-        year = guess_year(month, Date.utc_today())
+        today = Application.get_env(:pva_data, :reference_date, Date.utc_today())
+        year = guess_year(month, today)
 
         case Date.new(year, month, day) do
           {:ok, date} -> date

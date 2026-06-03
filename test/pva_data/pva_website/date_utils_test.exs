@@ -5,10 +5,11 @@ defmodule PVAData.PVAWebsite.DateUtilsTest do
 
   describe "parse_date/1" do
     test "parses the date format used on the PVA website" do
+      reference_date = Application.get_env(:pva_data, :reference_date, Date.utc_today())
       assert %Date{} = date = DateUtils.parse_date("Mon 1/6")
       assert date.month == 1
       assert date.day == 6
-      assert date.year == Date.utc_today().year
+      assert date.year == reference_date.year
     end
   end
 

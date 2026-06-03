@@ -11,3 +11,5 @@ config :absinthe,
 
 config :rollbax,
   enabled: false
+
+config :pva_data, reference_date: ~D[2025-01-15]
