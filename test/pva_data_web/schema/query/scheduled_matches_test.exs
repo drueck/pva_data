@@ -1,6 +1,7 @@
 defmodule PVADataWeb.Schema.Query.ScheduledMatchesTest do
   use ExUnit.Case
-  use Plug.Test
+  import Plug.Test
+  import Plug.Conn
 
   alias PVAData.{
     Data,
@@ -93,7 +94,7 @@ defmodule PVADataWeb.Schema.Query.ScheduledMatchesTest do
       |> Router.call(@opts)
 
     returned_matches =
-      Poison.decode!(conn.resp_body, %{keys: :atoms!})
+      Jason.decode!(conn.resp_body, keys: :atoms!)
       |> get_in([:data, :scheduled_matches])
       |> Enum.sort_by(& &1.id)
 

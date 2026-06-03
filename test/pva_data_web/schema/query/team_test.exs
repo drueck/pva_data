@@ -1,6 +1,7 @@
 defmodule PVADataWeb.Schema.Query.TeamTest do
   use ExUnit.Case
-  use Plug.Test
+  import Plug.Test
+  import Plug.Conn
 
   alias PVAData.{
     Router,
@@ -66,7 +67,7 @@ defmodule PVADataWeb.Schema.Query.TeamTest do
       |> Router.call(@opts)
 
     returned_team =
-      Poison.decode!(conn.resp_body, %{keys: :atoms!})
+      Jason.decode!(conn.resp_body, keys: :atoms!)
       |> get_in([:data, :team])
 
     assert conn.status == 200
@@ -109,7 +110,7 @@ defmodule PVADataWeb.Schema.Query.TeamTest do
       |> Router.call(@opts)
 
     returned_team =
-      Poison.decode!(conn.resp_body, %{keys: :atoms!})
+      Jason.decode!(conn.resp_body, keys: :atoms!)
       |> get_in([:data, :team])
 
     assert conn.status == 200
@@ -176,7 +177,7 @@ defmodule PVADataWeb.Schema.Query.TeamTest do
       |> Router.call(@opts)
 
     returned_team =
-      Poison.decode!(conn.resp_body, %{keys: :atoms!})
+      Jason.decode!(conn.resp_body, keys: :atoms!)
       |> get_in([:data, :team])
 
     assert conn.status == 200
@@ -315,7 +316,7 @@ defmodule PVADataWeb.Schema.Query.TeamTest do
       |> Router.call(@opts)
 
     returned_team =
-      Poison.decode!(conn.resp_body, %{keys: :atoms!})
+      Jason.decode!(conn.resp_body, keys: :atoms!)
       |> get_in([:data, :team])
 
     assert conn.status == 200
@@ -382,7 +383,7 @@ defmodule PVADataWeb.Schema.Query.TeamTest do
       |> Router.call(@opts)
 
     returned_team =
-      Poison.decode!(conn.resp_body, %{keys: :atoms!})
+      Jason.decode!(conn.resp_body, keys: :atoms!)
       |> get_in([:data, :team])
 
     assert returned_team == nil
@@ -415,7 +416,7 @@ defmodule PVADataWeb.Schema.Query.TeamTest do
       |> Router.call(@opts)
 
     returned_team =
-      Poison.decode!(conn.resp_body, %{keys: :atoms!})
+      Jason.decode!(conn.resp_body, keys: :atoms!)
       |> get_in([:data, :team])
 
     assert returned_team == nil

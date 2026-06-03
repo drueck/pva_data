@@ -1,6 +1,7 @@
 defmodule PVADataWeb.Schema.Query.DivisionTest do
   use ExUnit.Case
-  use Plug.Test
+  import Plug.Test
+  import Plug.Conn
 
   alias PVAData.{
     Data,
@@ -40,7 +41,7 @@ defmodule PVADataWeb.Schema.Query.DivisionTest do
       |> Router.call(@opts)
 
     returned_division =
-      Poison.decode!(conn.resp_body, %{keys: :atoms!})
+      Jason.decode!(conn.resp_body, keys: :atoms!)
       |> get_in([:data, :division])
 
     assert conn.status == 200
@@ -73,7 +74,7 @@ defmodule PVADataWeb.Schema.Query.DivisionTest do
       |> Router.call(@opts)
 
     returned_division =
-      Poison.decode!(conn.resp_body, %{keys: :atoms!})
+      Jason.decode!(conn.resp_body, keys: :atoms!)
       |> get_in([:data, :division])
 
     assert conn.status == 200
