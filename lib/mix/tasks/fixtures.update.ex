@@ -28,8 +28,6 @@ defmodule Mix.Tasks.Fixtures.Update do
   end
 
   def do_run(fixture_path) do
-    HTTPoison.start()
-
     path = Path.expand(fixture_path)
 
     with :ok <- ensure_directory_exists(path),
@@ -81,11 +79,11 @@ defmodule Mix.Tasks.Fixtures.Update do
   defp save_schedules_page(path) do
     url = "#{@website_path}/schedules"
 
-    with {:ok, %HTTPoison.Response{body: body}} <- HTTPoison.get(url, [], follow_redirect: true),
+    with {:ok, %Req.Response{body: body}} <- Req.get(url),
          :ok <- File.write(Path.join(path, "schedules"), body) do
       :ok
     else
-      {:error, error = %HTTPoison.Error{}} ->
+      {:error, error} when is_exception(error) ->
         {:error, Exception.message(error)}
 
       error_tuple ->
@@ -96,13 +94,13 @@ defmodule Mix.Tasks.Fixtures.Update do
   defp save_division_pages(path, division_urls) do
     division_urls
     |> Enum.map(fn page_path ->
-      {page_path, HTTPoison.get("#{@website_path}/#{page_path}", [], follow_redirect: true)}
+      {page_path, Req.get("#{@website_path}/#{page_path}")}
     end)
     |> Enum.map(fn
       {_, {:error, reason}} ->
         {:error, reason}
 
-      {page_path, {:ok, %HTTPoison.Response{body: body}}} ->
+      {page_path, {:ok, %Req.Response{body: body}}} ->
         file_path = Path.join(path, page_path)
 
         with :ok <- File.mkdir_p(Path.dirname(file_path)),
