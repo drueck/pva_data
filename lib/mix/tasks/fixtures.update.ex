@@ -28,6 +28,7 @@ defmodule Mix.Tasks.Fixtures.Update do
   end
 
   def do_run(fixture_path) do
+    Application.ensure_all_started(:req)
     path = Path.expand(fixture_path)
 
     with :ok <- ensure_directory_exists(path),

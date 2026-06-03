@@ -165,21 +165,23 @@ defmodule PVAData.DivisionTest do
   end
 
   describe "compare_teams/2" do
-    @tag :skip
     test "works" do
-      {:ok, divisions} = Scraper.scrape("test/fixtures/tie-breaker")
+      {:ok, divisions} = Scraper.scrape("test/fixtures/tie-breakers")
 
-      division = Enum.find(divisions, &(&1.name == "Coed A Wednesday"))
+      division = Enum.find(divisions, &(&1.name == "Wednesday Coed A"))
 
       expected_sorted_names = [
+        "Serve Me Daddy",
+        "Other People\xe2\x80\x99s Spouses",
+        "Volley Parton",
         "Pound Town",
-        "HopHeads",
-        "Court Jesters",
-        "The Newcomers",
-        "21JumpFeet",
-        "Last Minute Ballers",
-        "Spiked Punch",
-        "Work In Progress"
+        "Back At It",
+        "Whispers",
+        "Whatever 2",
+        "Hard Pass",
+        "Pancakes For Dinner",
+        "26 letters",
+        "Spikological Warfare"
       ]
 
       sorted_names =
@@ -192,157 +194,200 @@ defmodule PVAData.DivisionTest do
   end
 
   describe "add_ranks/2" do
-    @tag :skip
     test "when nobody has played yet, every team should get rank 1" do
-      {:ok, divisions} = Scraper.scrape("test/fixtures/new-season")
+      division = Division.build("Wednesday Coed A")
+      teams = Enum.map(["Team A", "Team B", "Team C"], &Team.build(division, &1))
+      standings = Enum.map(teams, &Standing.new(team_id: &1.id, division_id: division.id))
+      division = %{division | teams: teams, standings: standings} |> Division.add_ranks()
 
-      division =
-        Enum.find(divisions, &(&1.name == "Coed A Wednesday"))
-        |> Division.add_ranks()
-
-      for team <- division.teams do
-        assert team.rank == 1
-      end
-
-      for standing <- division.standings do
-        assert standing.rank == 1
-      end
+      for team <- division.teams, do: assert team.rank == 1
+      for standing <- division.standings, do: assert standing.rank == 1
     end
 
-    @tag :skip
     test "when there is data, ranks should be added accurately" do
-      {:ok, divisions} = Scraper.scrape("test/fixtures/tie-breaker")
+      {:ok, divisions} = Scraper.scrape("test/fixtures/tie-breakers")
 
       division =
-        Enum.find(divisions, &(&1.name == "Coed A Wednesday"))
+        Enum.find(divisions, &(&1.name == "Wednesday Coed A"))
         |> Division.add_ranks()
 
       assert [
                %Team{
-                 name: "Pound Town",
+                 name: "Serve Me Daddy",
                  rank: 1,
                  rank_reason: %RankReason{
-                   statistic: "win percentage",
-                   team_value: 90.0,
-                   lower_team_value: 80.0
+                   statistic: "average points differential",
+                   team_value: 17.125,
+                   lower_team_value: 9.0
                  }
                },
                %Team{
-                 name: "HopHeads",
+                 name: "Other People\xe2\x80\x99s Spouses",
                  rank: 2,
                  rank_reason: %RankReason{
-                   statistic: "head to head record (points differential)",
-                   team_value: 11,
-                   lower_team_value: -11
+                   statistic: "average points differential",
+                   team_value: 9.0,
+                   lower_team_value: 6.25
                  }
                },
                %Team{
-                 name: "Court Jesters",
+                 name: "Volley Parton",
                  rank: 3,
                  rank_reason: %RankReason{
-                   statistic: "win percentage",
-                   team_value: 80.0,
+                   statistic: "winning percentage",
+                   team_value: 87.5,
+                   lower_team_value: 75.0
+                 }
+               },
+               %Team{
+                 name: "Pound Town",
+                 rank: 4,
+                 rank_reason: %RankReason{
+                   statistic: "winning percentage",
+                   team_value: 75.0,
+                   lower_team_value: 62.5
+                 }
+               },
+               %Team{
+                 name: "Back At It",
+                 rank: 5,
+                 rank_reason: %RankReason{
+                   statistic: "winning percentage",
+                   team_value: 62.5,
                    lower_team_value: 50.0
                  }
                },
                %Team{
-                 name: "The Newcomers",
-                 rank: 4,
-                 rank_reason: %RankReason{
-                   statistic: "percentage of possible match points",
-                   team_value: 53.33,
-                   lower_team_value: 46.67
-                 }
-               },
-               %Team{
-                 name: "21JumpFeet",
-                 rank: 5,
-                 rank_reason: %RankReason{
-                   statistic: "win percentage",
-                   team_value: 50.0,
-                   lower_team_value: 30.0
-                 }
-               },
-               %Team{
-                 name: "Last Minute Ballers",
+                 name: "Whispers",
                  rank: 6,
                  rank_reason: %RankReason{
-                   statistic: "win percentage",
-                   team_value: 30.0,
-                   lower_team_value: 10.0
+                   statistic: "winning percentage",
+                   team_value: 50.0,
+                   lower_team_value: 37.5
                  }
                },
                %Team{
-                 name: "Spiked Punch",
+                 name: "Whatever 2",
                  rank: 7,
                  rank_reason: %RankReason{
-                   statistic: "percentage of possible match points",
-                   team_value: 17.78,
-                   lower_team_value: 11.11
+                   statistic: "average points differential",
+                   team_value: -0.625,
+                   lower_team_value: -6.875
                  }
                },
-               %Team{name: "Work In Progress", rank: 8, rank_reason: nil}
+               %Team{
+                 name: "Hard Pass",
+                 rank: 8,
+                 rank_reason: %RankReason{
+                   statistic: "winning percentage",
+                   team_value: 37.5,
+                   lower_team_value: 12.5
+                 }
+               },
+               %Team{
+                 name: "Pancakes For Dinner",
+                 rank: 9,
+                 rank_reason: %RankReason{
+                   statistic: "average points differential",
+                   team_value: -3.5,
+                   lower_team_value: -25.125
+                 }
+               },
+               %Team{
+                 name: "26 letters",
+                 rank: 10,
+                 rank_reason: %RankReason{
+                   statistic: "winning percentage",
+                   team_value: 12.5,
+                   lower_team_value: +0.0
+                 }
+               },
+               %Team{name: "Spikological Warfare", rank: 11, rank_reason: nil}
              ] = division.teams
 
       assert [
                %Standing{
                  rank: 1,
                  rank_reason: %RankReason{
-                   statistic: "win percentage",
-                   team_value: 90.0,
-                   lower_team_value: 80.0
+                   statistic: "average points differential",
+                   team_value: 17.125,
+                   lower_team_value: 9.0
                  }
                },
                %Standing{
                  rank: 2,
                  rank_reason: %RankReason{
-                   statistic: "head to head record (points differential)",
-                   team_value: 11,
-                   lower_team_value: -11
+                   statistic: "average points differential",
+                   team_value: 9.0,
+                   lower_team_value: 6.25
                  }
                },
                %Standing{
                  rank: 3,
                  rank_reason: %RankReason{
-                   statistic: "win percentage",
-                   team_value: 80.0,
-                   lower_team_value: 50.0
+                   statistic: "winning percentage",
+                   team_value: 87.5,
+                   lower_team_value: 75.0
                  }
                },
                %Standing{
                  rank: 4,
                  rank_reason: %RankReason{
-                   statistic: "percentage of possible match points",
-                   team_value: 53.33,
-                   lower_team_value: 46.67
+                   statistic: "winning percentage",
+                   team_value: 75.0,
+                   lower_team_value: 62.5
                  }
                },
                %Standing{
                  rank: 5,
                  rank_reason: %RankReason{
-                   statistic: "win percentage",
-                   team_value: 50.0,
-                   lower_team_value: 30.0
+                   statistic: "winning percentage",
+                   team_value: 62.5,
+                   lower_team_value: 50.0
                  }
                },
                %Standing{
                  rank: 6,
                  rank_reason: %RankReason{
-                   statistic: "win percentage",
-                   team_value: 30.0,
-                   lower_team_value: 10.0
+                   statistic: "winning percentage",
+                   team_value: 50.0,
+                   lower_team_value: 37.5
                  }
                },
                %Standing{
                  rank: 7,
                  rank_reason: %RankReason{
-                   statistic: "percentage of possible match points",
-                   team_value: 17.78,
-                   lower_team_value: 11.11
+                   statistic: "average points differential",
+                   team_value: -0.625,
+                   lower_team_value: -6.875
                  }
                },
-               %Standing{rank: 8, rank_reason: nil}
-             ] = division.standings
+               %Standing{
+                 rank: 8,
+                 rank_reason: %RankReason{
+                   statistic: "winning percentage",
+                   team_value: 37.5,
+                   lower_team_value: 12.5
+                 }
+               },
+               %Standing{
+                 rank: 9,
+                 rank_reason: %RankReason{
+                   statistic: "average points differential",
+                   team_value: -3.5,
+                   lower_team_value: -25.125
+                 }
+               },
+               %Standing{
+                 rank: 10,
+                 rank_reason: %RankReason{
+                   statistic: "winning percentage",
+                   team_value: 12.5,
+                   lower_team_value: +0.0
+                 }
+               },
+               %Standing{rank: 11, rank_reason: nil}
+             ] = Enum.sort_by(division.standings, & &1.rank)
     end
   end
 end
